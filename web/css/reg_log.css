@@ -1,0 +1,144 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #4618ac;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+
+.container, .box {
+    width: 100%;
+    max-width: 500px;
+    margin: 0px auto;  
+    background-color: white;
+    padding: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #b8a3d1;  
+    border-radius: 10px;
+}
+
+
+.box {
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #007bff;
+    cursor: default;
+}
+
+
+h2 {
+    text-align: center;
+    color: #333;
+    cursor: default;
+}
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    min-height: 42px;
+}
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.remember-me input, .accept-me input {
+    margin-right: 10px;
+}
+
+.accept-me{
+    display: flex;
+    align-items: left;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+
+#accept-label {
+    text-align: left !important;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+.form-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left;  
+}
+
+
+.input-field:focus {
+    border: 1px solid #ccc; 
+    outline: none; 
+}
+
+
+#accept-agreement {
+    text-align: left;
+    cursor: default;
+    margin-bottom: 0;
+}
+
+#accept-agreement a, #footer-a, #form-footer-a{
+    color: #007bff;
+    text-decoration: none;
+}
+
+#footer-p {
+    cursor: default;
+    margin-bottom: 0;
+}
+
+.form-footer {
+    cursor: default;
+}
+
+.logo img {
+    position: absolute;  
+    top: 20px;  
+    left: 20px; 
+    cursor: pointer;
+}
