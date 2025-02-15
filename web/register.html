@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookshop - Register</title>
 
-    <link rel="stylesheet" href="./web/css/reg_log.css">
+    <link rel="stylesheet" href="./css/reg_log.css">
 </head>
 <body>
 
@@ -24,15 +24,15 @@
 
         <div class="container">
             <h2>Regisztráció</h2>
-            <form action="/submit-register" method="POST">
+            <form action="../php/register.php" method="POST">
                 <div class="input-group">
-                    <label for="firstname">Család név:</label>
-                    <input type="text" name="fistname" id="fistname" class="input-field" required>
+                    <label for="surname">Család név:</label>
+                    <input type="text" name="surname" id="surname" class="input-field" required>
                 </div>
 
                 <div class="input-group">
-                    <label for="lastname">Kereszt név:</label>
-                    <input type="text" name="lastname" id="lastname" class="input-field" required>
+                    <label for="firstname">Kereszt név:</label>
+                    <input type="text" name="firstname" id="firstname" class="input-field" required>
                 </div>
 
                 <div class="input-group">
@@ -41,8 +41,8 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="phone">Telefonszám:</label>
-                    <input type="tel" name="phone" id="phone" class="input-field" required>
+                    <label for="phone_number">Telefonszám</label>
+                    <input type="tel" name="phone_number" id="phone_number" class="input-field" required>
                 </div>
 
                 <div class="input-group">
@@ -51,8 +51,15 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="password">Jelszó megerősítés</label>
-                    <input type="password" name="password" id="password" class="input-field" required>
+                    <label for="password_confirm">Jelszó megerősítés</label>
+                    <input type="password" name="password_confirm" id="password_confirm" class="input-field" required>
+                </div>
+
+
+
+                <div class="input-group">
+                    <label for="address">Cím</label>
+                    <input type="text" name="address" id="address" class="input-field" required>
                 </div>
 
                 <div class="accept-me">

@@ -30,7 +30,7 @@ function uploadBook(title, imagePath) {
 }
 
 // Ez tesztelés csak, később ennek kell pl egy POST api
-// uploadBook('Nigga', path.join(__dirname, '..', 'web\\bookimg\\Vajak_fecske-torony.jpg'))
+//uploadBook('Nigga', path.join(__dirname, '..', 'web\\bookimg\\Vajak_fecske-torony.jpg'))
 const app = express()
 
 // egy adott könyv

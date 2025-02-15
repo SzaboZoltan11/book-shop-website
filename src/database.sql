@@ -1,4 +1,7 @@
-CREATE DATABASE konyvwebaruhaz;
+CREATE DATABASE konyvwebaruhaz
+CHARACTER SET utf8
+COLLATE utf8_hungarian_ci;
+
 
 USE konyvwebaruhaz;
 
@@ -12,8 +15,7 @@ CREATE TABLE `books` (
   `description` TEXT,
   `pages` INT(4) NOT NULL,
   `electronic` TINYINT(1) NOT NULL DEFAULT 0,
-  `release_date` DATE NOT NULL
-
+  `release_date` DATE NOT NULL,
   `cover` longblob COMPRESSED NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
