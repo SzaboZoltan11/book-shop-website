@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
     
     <div class="container">
         <h2>Bejelentkezés</h2>
-        <form action="/submit-login" method="POST">
+        <form action="../php/login.php" method="POST">
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="input-field" required>
@@ -25,20 +28,34 @@
                 <input type="password" name="password" id="password"  class="input-field" required>
             </div>
 
+            <div id="password-show-hide" onclick="togglePasswordVisibility()"><p class="no-margin">Jelszó megjelenítése</p></div>
+
+
             <div class="remember-me">
                 <input type="checkbox" name="remember" id="remember">
                 <label for="remember">Emlékezz rám</label>
             </div>
 
             <p id="accept-agreement">Fiók létrehozásával elfogadod a Bookshop <a href="">Adatvédelmi Tájékoztatóját</a> és <a href="">Felhasználási Feltételeit</a>.</p>
-
+            <?php
+                if (isset($_SESSION['error'])) {
+                    echo "<p style='color: red;'>" . $_SESSION['error'] . "</p>";
+                    unset($_SESSION['error']); 
+                }
+            ?>
             <button type="submit" class="btn">Bejelentkezés</button>
         </form>
 
+    
+  
+
         <div class="form-footer">
-            <p id="footer-p">Nincs még fiókod? <a href="/register" id="footer-a">Regisztrálj itt</a></p>
+            <p id="footer-p">Nincs még fiókod? <a href="registration.php" id="footer-a">Regisztrálj itt</a></p>
             <p><a href="/forgot-password" id="footer-a">Elfelejtetted a jelszavad?</a></p>
         </div>
     </div>
+
+    <script src="./js/registration.js"></script>
+
 </body>
 </html>

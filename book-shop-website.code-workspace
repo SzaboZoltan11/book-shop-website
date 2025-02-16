@@ -1,11 +1,15 @@
 {
 	"folders": [
 		{
+			"name": "book-shop-website",
 			"path": "."
 		},
 		{
-			"path": "C:\\xampp\\apache\\conf"
+			"name": "conf",
+			"path": "../../../../xampp/apache/conf"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "book-shop-website"
+	}
 }

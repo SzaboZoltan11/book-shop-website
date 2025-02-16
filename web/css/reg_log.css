@@ -142,3 +142,53 @@ h2 {
     left: 20px; 
     cursor: pointer;
 }
+
+.no-margin {
+    margin: 0;
+}
+
+#password-show-hide {
+    display: block;
+    width: fit-content;
+    max-width: fit-content;
+    text-align: left;
+    color: #007bff;
+    padding-bottom: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#password-show-hide:hover {
+    color: #99ccff; 
+}
+
+.requirements {
+    position: relative;
+    padding-left: 15px; 
+    display: flex;
+    align-items: left; 
+    cursor: default ;
+}
+
+#requirements-p{
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.requirements::before {
+    content: '◯'; 
+    position: absolute;
+    left: 0;
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: black; 
+    font-size: 12px; 
+    line-height: 1; 
+    font-weight: 800;
+}
+
+.add-margin {
+    margin: 20px;
+}
+
+

@@ -36,3 +36,9 @@ A suliban az óra végén előnyös kiszedni ezt.
 git config set SzaboZoltan11 user.name
 git config set user.email szabozola91@gmail.com
 ```
+
+## Starting
+
+Indíccsd el a xampot
+
+Menj oda hogy http://localhost/bookshop/web/
