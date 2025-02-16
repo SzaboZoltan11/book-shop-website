@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
                 // Test the connection by querying the database
                 var vasarlok = _context.vasarlok.ToList();  // You can replace this with your own query
 
-                _context.vasarlok.Add(new Game()
+                _context.vasarlok.Add(new game()
                 {
                     Id = 69,
                     LastPlayed = DateTime.UtcNow,
