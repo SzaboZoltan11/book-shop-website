@@ -6,79 +6,11 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private static Dictionary<Button, Rectangle> originalButtonSizes = new Dictionary<Button, Rectangle>();
-        private ApplicationDbContext _context;
-
-        void Building()
-        {
-            try
-            {
-                
-                // Create ConfigurationBuilder to read from appsettings.json
-                var configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory()) // Set the base path
-                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) // Load appsettings.json
-                    .Build();
-
-                // Set up DbContextOptions with the connection string
-                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-
-                // Use Pomelo's MySQL provider
-                optionsBuilder.UseMySql(
-                    configuration.GetConnectionString("WebApiDatabase"),
-                    new MariaDbServerVersion("10.4.32"));  // You can set the version of MySQL you're using here.
-
-                // Create the ApplicationDbContext using the options
-                _context = new ApplicationDbContext(optionsBuilder.Options);
-
-                // Test the connection by querying the database
-                var vasarlok = _context.game.ToList();  // You can replace this with your own query
-                
-                var result = _context.game.SingleOrDefault(b => b.Id == 69);
-                if (result != null)
-                {
-                    result.Lastplayed = DateTime.UtcNow;
-                    _context.SaveChanges();
-                }
-
-                MessageBox.Show("Adatbázis kapcsolat sikeres!");
-            }
-            catch (Exception ex)
-            {
-                // Show custom error form
-                var errorForm = new Form();
-                var errorLabel = new Label();
-                var copyButton = new Button();
-
-                // Set up the error message label
-                errorLabel.Text = "Hiba történt az adatbázis kapcsolat során: " + ex.Message;
-                errorLabel.Dock = DockStyle.Top;
-                errorLabel.TextAlign = ContentAlignment.MiddleCenter;
-
-                // Set up the copy button
-                copyButton.Text = "Copy Error";
-                copyButton.Dock = DockStyle.Bottom;
-                copyButton.Click += (sender, e) =>
-                {
-                    Clipboard.SetText(ex.Message);  // Copy the error message to clipboard
-                    MessageBox.Show("Error message copied to clipboard!"); // Optional confirmation
-                };
-
-                // Add controls to the error form
-                errorForm.Controls.Add(errorLabel);
-                errorForm.Controls.Add(copyButton);
-
-                // Show the error form
-                errorForm.ShowDialog();
-            }
-        }
-
-
         public Form1()
         {
 
             InitializeComponent();
             InitializeButtons();
-            Building();
             this.Resize += Form1_Resize;
         }
 
@@ -89,7 +21,6 @@ namespace WindowsFormsApp1
             {
                 Kartyak.Buttons[i] = new Button
                 {
-
                     Width = 95,
                     Height = 158,
                     Tag = i,
@@ -138,6 +69,15 @@ namespace WindowsFormsApp1
                     Kartyak.Buttons[i].BackgroundImageLayout = ImageLayout.Center;
 
                 }
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var result = new Connection().Building();
+            if (result == Playableresult.cantplay)
+            {
+                this.Close();
             }
         }
     }
