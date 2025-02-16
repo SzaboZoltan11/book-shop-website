@@ -24,21 +24,21 @@ namespace WindowsFormsApp1
 
                 // Use Pomelo's MySQL provider
                 optionsBuilder.UseMySql(
-                    configuration.GetConnectionString("DefaultConnection"),
+                    configuration.GetConnectionString("WebApiDatabase"),
                     new MariaDbServerVersion("10.4.32"));  // You can set the version of MySQL you're using here.
 
                 // Create the ApplicationDbContext using the options
                 _context = new ApplicationDbContext(optionsBuilder.Options);
 
                 // Test the connection by querying the database
-                var vasarlok = _context.vasarlok.ToList();  // You can replace this with your own query
-
-                _context.vasarlok.Add(new game()
+                var vasarlok = _context.game.ToList();  // You can replace this with your own query
+                
+                var result = _context.game.SingleOrDefault(b => b.Id == 69);
+                if (result != null)
                 {
-                    Id = 69,
-                    LastPlayed = DateTime.UtcNow,
-                });
-                _context.SaveChanges();
+                    result.Lastplayed = DateTime.UtcNow;
+                    _context.SaveChanges();
+                }
 
                 MessageBox.Show("Adatbázis kapcsolat sikeres!");
             }
