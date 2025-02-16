@@ -60,6 +60,10 @@ CREATE TABLE `delivery` (
   `delivery_date` DATE NOT NULL,
   FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`) 
 );
-
+CREATE TABLE `game`(
+  `user_id` INT(11) NOT NULL,
+  `lastplayed` DATETIME,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
+)
 
 

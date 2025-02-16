@@ -6,13 +6,13 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private static Dictionary<Button, Rectangle> originalButtonSizes = new Dictionary<Button, Rectangle>();
-        private Rectangle originalFormSize;
         private ApplicationDbContext _context;
 
         void Building()
         {
             try
             {
+                
                 // Create ConfigurationBuilder to read from appsettings.json
                 var configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory()) // Set the base path
@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
                 // Test the connection by querying the database
                 var vasarlok = _context.vasarlok.ToList();  // You can replace this with your own query
 
-                _context.vasarlok.Add(new Vasarlok()
+                _context.vasarlok.Add(new Game()
                 {
                     Id = 69,
                     LastPlayed = DateTime.UtcNow,
@@ -103,11 +103,7 @@ namespace WindowsFormsApp1
                 originalButtonSizes[Kartyak.Buttons[i]] = new Rectangle(Kartyak.Buttons[i].Location, Kartyak.Buttons[i].Size);
             }
         }
-        private void Form1_Load()
-        {
-            originalFormSize = new Rectangle(this.Location.X, this.Location.Y, this.Size.Width, this.Size.Height);
 
-        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
