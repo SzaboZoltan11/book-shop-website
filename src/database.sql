@@ -25,10 +25,10 @@ CREATE TABLE `users` (
   `surname` VARCHAR(100) NOT NULL,
   `firstname` VARCHAR(100) NOT NULL,
   `email` VARCHAR(150) UNIQUE NOT NULL,
-  `password` VARCHAR(128) NOT NULL,
+  `password` VARCHAR(60) NOT NULL,
   `phone_number` VARCHAR(20) NOT NULL,
   `reg_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `address` VARCHAR(150) NOT NULL 
+  `accept_newsletter` TINYINT(1) NOT NULL DEFAULT 0
 );
 
 

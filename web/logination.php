@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 session_start();
 ?>
@@ -7,7 +11,6 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookshop - Login</title>
-
     <link rel="stylesheet" href="./css/reg_log.css">
 </head>
 <body>
@@ -20,19 +23,18 @@ session_start();
         <form action="../php/login.php" method="POST">
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="input-field" required>
+                <input type="email" name="email" id="email" class="input-field" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" required>
             </div>
             
             <div class="input-group">
                 <label for="password">Jelszó</label>
-                <input type="password" name="password" id="password"  class="input-field" required>
+                <input type="password" name="password" id="password" class="input-field" value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>" required>
             </div>
 
             <div id="password-show-hide" onclick="togglePasswordVisibility()"><p class="no-margin">Jelszó megjelenítése</p></div>
 
-
             <div class="remember-me">
-                <input type="checkbox" name="remember" id="remember">
+                <input type="checkbox" name="remember" id="remember" <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
                 <label for="remember">Emlékezz rám</label>
             </div>
 
@@ -46,16 +48,23 @@ session_start();
             <button type="submit" class="btn">Bejelentkezés</button>
         </form>
 
-    
-  
-
         <div class="form-footer">
             <p id="footer-p">Nincs még fiókod? <a href="registration.php" id="footer-a">Regisztrálj itt</a></p>
-            <p><a href="/forgot-password" id="footer-a">Elfelejtetted a jelszavad?</a></p>
+            <p><a href="php_password_reset/forgot_password.php" id="footer-a">Elfelejtetted a jelszavad?</a></p>
         </div>
     </div>
 
     <script src="./js/registration.js"></script>
 
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>

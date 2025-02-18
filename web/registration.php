@@ -12,10 +12,7 @@
         <img src="./img/logo.png" alt="" width="100px" onclick="window.location.href='./index.html';">
     </div>
 
-    <!-- Hibák megjelenítése -->
-    <!-- Hibák megjelenítése -->
 
-    <!-- Külön konténer a box és a container számára -->
     <div class="content-wrapper">
         <div class="box">
             Hozz létre egy fiókot a gyors vásárláshoz, speciális kuponkódokhoz, kívánságlistákhoz és rendelési előzményekhez.
@@ -59,10 +56,7 @@
                 <div class="requirements"><p class="no-margin" id="requirements-p">Legalább 8 karakter</p></div>
                 <div class="requirements"><p class="no-margin" id="requirements-p">Legalább egy szám (0-9) és egy speciális karakter</p></div>
                 <div class="add-margin"></div>
-                <div class="input-group">
-                    <label for="address">Cím</label>
-                    <input type="text" name="address" id="address" class="input-field" required>
-                </div>
+               
 
                 
 
