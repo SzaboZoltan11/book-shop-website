@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include 'connect.php';
+include '../../src/connect.php';
 
 $token = $_POST['token'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     header("Location: /bookshop/web/logination.php");
 } else {
     $_SESSION['error'] = "Érvénytelen vagy lejárt token.";
-    header("Location: /bookshop/web/forgot_password.php");
+    header("Location: /bookshop/web/php_password_reset/forgot_password.php");
 }
 
 $stmt->close();

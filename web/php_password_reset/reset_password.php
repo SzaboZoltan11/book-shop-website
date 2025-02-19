@@ -1,5 +1,6 @@
 
 <?php
+
 if (!isset($_GET['token'])) {
     exit("Érvénytelen token.");
 }
@@ -21,3 +22,4 @@ if (!isset($_GET['token'])) {
     </form>
 </body>
 </html>
+
