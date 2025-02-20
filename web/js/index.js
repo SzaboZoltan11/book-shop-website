@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const logo = document.querySelector(".navbar-brand");
     const wishlist = document.querySelector("a[href='wishlist.html']");
     const cart = document.querySelector("a[href='cart.html']");
-    const login = document.querySelector("a[href='../login.html']");
-    const register = document.querySelector("a[href='../register.html']");
+    const login = document.querySelector("a[href='logination.php']");
+    const register = document.querySelector("a[href='registration.php']");
     const mediaQuery = window.matchMedia("(max-width: 1200px)");
 
     function toggleSearchState(event) {
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
 
-    fetch('/api/books')
+    fetch('/bookshop/web/api/books.php')
         .then(v => v.json())
         .then(books => {
             for (const book of books) {
                 const card = document.createElement("div")
                 card.classList.add("card")
-                card.innerHTML = `<img src="data:image/png;base64,${book.cover}"><p>${book.title}</p>`
+                card.innerHTML = `<img src="/bookshop/web/database/covers/${book.cover}.png"><p>${book.title}</p>`
                 slider.appendChild(card)
             }
         })

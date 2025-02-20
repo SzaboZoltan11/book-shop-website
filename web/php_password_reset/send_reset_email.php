@@ -25,7 +25,6 @@ if ($result->num_rows > 0) {
     $stmt->bind_param("ssss", $email, $token, $created_at, $created_at);
     $stmt->execute();
     
-    // Frissítsd az expires mezőt egy órával későbbre
     $sql = "UPDATE password_reset SET expires = ? WHERE token = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $expires, $token);

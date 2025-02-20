@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h2>Könyv felvétele</h2>
+    <form action="data_up.php" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+            <label for="title">Cím</label>
+            <input type="text" name="title" id="title" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="price">Ár</label>
+            <input type="number" name="price" id="price" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="isbn">ISBN</label>
+            <input type="text" name="isbn" id="isbn" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="author">Szerző</label>
+            <input type="text" name="author" id="author" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="status">Státusz</label>
+            <input type="text" name="status" id="status" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="description">Leírás</label>
+            <input type="text" name="description" id="description" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="pages">Oldalak száma</label>
+            <input type="text" name="pages" id="pages" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="electronic">Elektronikus-e</label>
+            <input type="text" name="electronic" id="electronic" class="input-field" required>
+        </div>
+
+        <div class="input-group">
+            <label for="release_date">Kiadásának éve</label>
+            <input type="text" name="release_date" id="release_date" class="input-field" required>
+        </div>
+
+
+        <div class="input-group">
+            <label for="cover">Kép feltöltése</label>
+            <input type="file" name="cover" id="cover" class="input-field" required>
+        </div>
+        
+        <button type="submit" class="btn">Feltöltés</button>
+
+    </form>
+</body>
+</html>
