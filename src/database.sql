@@ -66,4 +66,11 @@ CREATE TABLE `game`(
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
 )
 
+CREATE TABLE user_tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 

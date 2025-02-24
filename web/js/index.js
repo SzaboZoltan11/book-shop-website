@@ -43,9 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
 
+
+    const _books = []
+
     fetch('/bookshop/web/api/books.php')
         .then(v => v.json())
         .then(books => {
+    
+            _books.push(...books)
             for (const book of books) {
                 const card = document.createElement("div")
                 card.classList.add("card")
@@ -77,7 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
  
     nextBtn.addEventListener("click", () => {
         if (window.innerWidth >= 1201) {
-            const maxScroll = (items.length - 4) * scrollStep; 
+            // és itt volt a hiba btw
+            const maxScroll = (_books.length - 4) * scrollStep; 
             if (scrollAmount < maxScroll) {
                 scrollAmount += scrollStep;
                 slider.style.transform = `translateX(-${scrollAmount}px)`;
