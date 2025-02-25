@@ -35,6 +35,10 @@ A suliban az óra végén előnyös kiszedni ezt.
 
 git config set SzaboZoltan11 user.name
 git config set user.email szabozola91@gmail.com
+
+git config --global user.name "SzaboZoltan11"
+git config --global user.email "szabozola91@gmail.com"
+
 ```
 
 ## Starting

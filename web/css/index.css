@@ -1,4 +1,6 @@
-
+body {
+    background-color: #4618ac;
+}
 
 .navbar {
     background-color: #36435c;
@@ -661,28 +663,63 @@ a {
     position: relative;
     overflow: hidden;
     max-width: 100%;
+    width: 100%; 
 }
 
 .slider {
     display: flex;
     gap: 15px;
     transition: transform 0.3s ease-in-out;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .card {
-    width: calc(25% - 15px); /* 4 kártya */
+    width: calc(25% - 15px); 
     flex-shrink: 0;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
     text-align: center;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .card img {
-    width: 100%; /* A kép kitölti a kártya szélességét */
-    height: auto; /* Arányos magasság */
-    border-radius: 8px;
+    width: 100%; 
+    min-width: 200px; 
+    height: auto; 
+    margin-bottom: 10px; 
+}
+
+.card-info {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.card-info p {
+    margin: 5px 0;
+    font-size: 14px; 
+    color: #333;
+}
+
+.card-info .title {
+    font-weight: bold;
+}
+
+.card-info .price {
+    color: #e60000;
+    font-weight: bold;
+}
+
+.card-info .buy-btn {
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .prev-btn, .next-btn {
@@ -705,10 +742,32 @@ a {
     right: 0; 
 }
 
+
+/* Vásárlás gomb stílusa */
+.card .card-info .buy-btn {
+    background-color: transparent;
+    border: 2px solid #808080; 
+    color: white; 
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card .card-info .buy-btn:hover {
+    background-color: #808080; 
+    color: white; 
+}
+
+
+
+
+
 /* For screens less than 1201px */
 @media (max-width: 1200px) {
     .slider-container {
-        overflow-x: auto; /* Allow horizontal scrolling */
+        overflow-x: auto; 
         width: 100%;
     }
 
@@ -718,14 +777,14 @@ a {
     }
 
     .card {
-        width: auto; /* Kisebb kártyák */
+        width: auto; 
         display: inline-block;
         margin-right: 15px;
     }
 
     .card img {
-        width: 100%; /* A kép kitölti a kártyát, de nem lesz túl nagy */
-        height: 200px; /* A magasság arányos marad */
+        width: 100%; 
+        height: 200px; 
     }
 
     .scrollable {
@@ -733,6 +792,27 @@ a {
     }
 
     .prev-btn, .next-btn {
-        display: none; /* Elrejtjük a gombokat 1201px alatt */
+        display: none; 
     }
+}
+
+.card .card-info {
+    transform: translateY(0px);
+    background-color: #0008;
+    transition: background-color 500ms linear;
+}
+
+.card .buy-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card:hover .card-info {
+    transform: translateY(-40px);
+    background-color: #000;
+}
+
+.card:hover .buy-btn {
+    opacity: 1;
+    pointer-events: all;
 }

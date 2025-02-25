@@ -147,7 +147,7 @@
                         <a class="dropdown-item" href="">asd</a>
                         <a class="dropdown-item" href="">asd</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="index.html">Összes kaszinó</a>
+                        <a class="dropdown-item" href="index.html">Összes Könyv</a>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
@@ -187,15 +187,35 @@
 
 
     <main class="container mt-5">
-        <div class="slider-container">
+        <div class="slider-container" data-category="fiction">
+            <h2>Fiction</h2>
             <button class="prev-btn">&#10094;</button>
-            <div class="slider" id="slider">
-                <!-- Kártyák dinamikusan betöltve JS által -->
+            <div class="slider" id="slider-fiction">
+                <!-- Kártyák dinamikusan betöltve -->
+            </div>
+            <button class="next-btn">&#10095;</button>
+        </div>
+    
+        <div class="slider-container" data-category="nonfiction">
+            <h2>Non-Fiction</h2>
+            <button class="prev-btn">&#10094;</button>
+            <div class="slider" id="slider-nonfiction">
+                <!-- Kártyák dinamikusan betöltve -->
+            </div>
+            <button class="next-btn">&#10095;</button>
+        </div>
+    
+        <div class="slider-container" data-category="bestsellers">
+            <h2>Bestsellers</h2>
+            <button class="prev-btn">&#10094;</button>
+            <div class="slider" id="slider-bestsellers">
+                <!-- Kártyák dinamikusan betöltve -->
             </div>
             <button class="next-btn">&#10095;</button>
         </div>
         <a href="game://Game" target="_blank">Cuccos</a>
     </main>
+    
 
 
 <!--
