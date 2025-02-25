@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
                 var result = _context.game.SingleOrDefault(b => b.Id == 69);
                 if (result != null)
                 {
-                    if (DateTime.Today < result.Lastplayed)
+                    if (/*DateTime.Today < result.Lastplayed*/ false)
                     {
                         MessageBox.Show("Ma már játszottál!");
                         return Playableresult.cantplay;
