@@ -2,8 +2,18 @@
 
 include '../connect.php';
 
-$sql = "SELECT * FROM books";
-$req = $conn->prepare($sql);
+$req = null;
+if (isset($_GET['category']))
+{
+    $sql = "SELECT * FROM books WHERE books.category = ?";
+    $req = $conn->prepare($sql);
+    $req->bind_param("s", $_GET['category']);
+}
+else
+{
+    $sql = "SELECT * FROM books";
+    $req = $conn->prepare($sql);
+}
 $req->execute();
 $result = $req->get_result();
 

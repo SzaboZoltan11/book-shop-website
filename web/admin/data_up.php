@@ -21,16 +21,17 @@ $description = $_POST['description'];
 $pages = $_POST['pages'];
 $electronic = $_POST['electronic'];
 $release_date = $_POST['release_date'];
+$category = $_POST['category'];
 
 $file_name = bin2hex(random_bytes(8)); //16
 
+chdir('..');
+$databaseConversDir = getcwd() . '\\database\\covers\\';
+make_dir($databaseConversDir);
+move_uploaded_file($_FILES["cover"]['tmp_name'], $databaseConversDir . $file_name . ".png");
 
-const DATABASE_COVERS = 'C:\\Users\\Zola\\Documents\\book-shop-website\\web\\database\\covers\\';
-make_dir(DATABASE_COVERS);
-move_uploaded_file($_FILES["cover"]['tmp_name'], DATABASE_COVERS . $file_name . ".png");
-
-$sql = "INSERT INTO books (title, price, isbn, author, status, description, pages, electronic, release_date, cover)
-VALUES ('$title', '$price', '$isbn', '$author', '$status', '$description', '$pages', '$electronic', '$release_date', '$file_name')";
+$sql = "INSERT INTO books (title, price, isbn, author, status, description, pages, electronic, release_date, category, cover)
+VALUES ('$title', '$price', '$isbn', '$author', '$status', '$description', '$pages', '$electronic', '$release_date', '$category', '$file_name')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Feltöltöttél egy könyvet";

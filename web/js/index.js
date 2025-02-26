@@ -46,10 +46,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const _books = [];
 
+
+
         fetch(`/bookshop/web/api/books.php?category=${category}`)
             .then(res => res.json())
             .then(books => {
+                if (!books || books.length === 0) {
+                    console.error(`Nincsenek könyvek a ${category} kategóriában.`);
+                    return;
+                }
+
                 _books.push(...books);
+
+                // A könyvek hozzáadása a sliderhez
                 books.forEach(book => {
                     const card = document.createElement("div");
                     card.classList.add("card");
@@ -57,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     card.style.overflow = "hidden";
 
                     card.innerHTML = `
-                        <img src="/bookshop/web/database/covers/${book.cover}.png">
+                        <img src="/bookshop/web/database/covers/${book.cover}.png" alt="${book.title}">
                         <div class="card-info">
                             <p class="title">${book.title}</p>
                             <p class="price">${Math.floor(book.price)} Ft</p>
@@ -68,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     slider.appendChild(card);
                 });
             })
-            .catch(console.error);
+            .catch(error => {
+                console.error("Hiba a könyvek betöltésekor: ", error);
+            });
 
         let scrollAmount = 0;
         const scrollStep = 270;
@@ -108,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("resize", handleResize);
     });
 
+    // Dekoratív dobozok (animált)
     {
         const boxes = []
         for (let i = 0; i < 10; i++) {

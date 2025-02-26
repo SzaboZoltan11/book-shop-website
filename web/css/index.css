@@ -1,5 +1,6 @@
 body {
     background-color: #4618ac;
+    color: #fff;
 }
 
 .navbar {
@@ -672,23 +673,25 @@ a {
     transition: transform 0.3s ease-in-out;
     width: 100%; 
     box-sizing: border-box; 
+    margin-bottom: 20px;
 }
 
 .card {
     width: calc(25% - 15px); 
     flex-shrink: 0;
-    border: 1px solid #ddd;
+    border: 1px solid #3c1f7d;
     border-radius: 8px;
     text-align: center;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: #3c1f7d;
 }
 
 .card img {
     width: 100%; 
     min-width: 200px; 
-    height: auto; 
+    height: 300px; 
     margin-bottom: 10px; 
 }
 
@@ -697,7 +700,7 @@ a {
     bottom: 0;
     width: 100%;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.8); 
+    background-color: #3c1f7d;; 
 }
 
 .card-info p {
@@ -726,37 +729,52 @@ a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0;
     cursor: pointer;
+    border-radius: 50%; /* Kör alakú háttér */
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Vastagabb nyíl */
+    font-weight: bold;
+    line-height: 1;
 }
 
 .prev-btn { 
-    left: 0; 
+    left: 10px; 
     z-index: 100;
 }
 
 .next-btn { 
-    right: 0; 
+    right: 10px; 
 }
+
+button:focus {
+    outline: none;
+}
+
 
 
 /* Vásárlás gomb stílusa */
 .card .card-info .buy-btn {
     background-color: transparent;
-    border: 2px solid #808080; 
+    border: 2px solid #fff; 
     color: white; 
     font-size: 16px;
     padding: 10px 20px;
+    margin-top: 0;
     cursor: pointer;
     display: inline-block;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .card .card-info .buy-btn:hover {
-    background-color: #808080; 
+    background-color: #3c1f7d;
     color: white; 
 }
 
@@ -798,8 +816,7 @@ a {
 
 .card .card-info {
     transform: translateY(0px);
-    background-color: #0008;
-    transition: background-color 500ms linear;
+    background-color: #3c1f7d;
 }
 
 .card .buy-btn {
@@ -809,10 +826,14 @@ a {
 
 .card:hover .card-info {
     transform: translateY(-40px);
-    background-color: #000;
+    background-color: #3c1f7d;
 }
 
 .card:hover .buy-btn {
     opacity: 1;
     pointer-events: all;
+}
+
+.card-info p {
+    color: white;
 }

@@ -16,8 +16,9 @@ CREATE TABLE `books` (
   `pages` INT(4) NOT NULL,
   `electronic` TINYINT(1) NOT NULL DEFAULT 0,
   `release_date` DATE NOT NULL,
-  `cover` VARCHAR(16) NOT NULL
-) 
+  `cover` VARCHAR(16) NOT NULL,
+  `category` VARCHAR(50) NOT NULL 
+);
 
 
 CREATE TABLE `users` (
