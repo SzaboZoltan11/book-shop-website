@@ -5,6 +5,11 @@ COLLATE utf8_hungarian_ci;
 
 USE konyvwebaruhaz;
 
+CREATE TABLE `category` (
+  `category_id` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  `name` VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE `books` (
   `book_id` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   `title` VARCHAR(64) NOT NULL,
@@ -17,8 +22,19 @@ CREATE TABLE `books` (
   `electronic` TINYINT(1) NOT NULL DEFAULT 0,
   `release_date` DATE NOT NULL,
   `cover` VARCHAR(16) NOT NULL,
-  `category` VARCHAR(50) NOT NULL 
+  `category_id` INT(11),
+  FOREIGN KEY (`category_id`) REFERENCES `category`(`category_id`)
 );
+
+CREATE TABLE `book_category` (
+  `book_id` INT(11) NOT NULL,
+  `category_id` INT(11) NOT NULL,
+  PRIMARY KEY (`book_id`, `category_id`),
+  FOREIGN KEY (`book_id`) REFERENCES `books`(`book_id`),
+  FOREIGN KEY (`category_id`) REFERENCES `category`(`category_id`)
+);
+
+
 
 
 CREATE TABLE `users` (

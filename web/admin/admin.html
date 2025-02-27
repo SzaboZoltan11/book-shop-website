@@ -55,7 +55,57 @@
 
         <div class="input-group">
             <label for="category">Kategória</label>
-            <input type="text" name="category" id="category" class="input-field" required>
+            <div id="category-container"></div>
+            <select id="category" class="input-field">
+                <option value="">Válassz kategóriát</option>
+                <option value="1">Szépirodalom</option>
+                <option value="2">Fantasy</option>
+            </select>
+            <input type=text name="categories" value="" id="categories_input_hidden">
+
+            <script>
+                {
+                    /** @type {HTMLSelectElement} */
+                    const categoryInput = document.getElementById('category')
+                    /** @type {HTMLDivElement} */
+                    const categoryContainer = document.getElementById('category-container')
+
+                    function refreshCategoriesInputValue() {
+                        const categoryItems = categoryContainer.getElementsByClassName('__category_item')
+                        const values = []
+                        for (const categoryItem of categoryItems) {
+                            values.push(categoryItem.getAttribute('data-category-id'))
+                        }
+                        document.getElementById('categories_input_hidden').value = values.join(',')
+                    }
+
+                    categoryInput.addEventListener('input', () => {
+                        const selectedCategory = categoryInput.selectedOptions.item(0)
+                        if (!selectedCategory) return
+
+                        const categoryItem = document.createElement('div')
+                        categoryItem.innerHTML = `
+                            <span data-category-id="${selectedCategory.value}" class="__category_item">${selectedCategory.textContent}</span>
+                            <span id="category-item-${selectedCategory.value}">X</span>
+                        `
+                        categoryContainer.appendChild(categoryItem)
+
+                        /** @type {HTMLElement} */
+                        const xButton = categoryContainer.querySelector(`#category-item-${selectedCategory.value}`)
+                        xButton.addEventListener('click', () => {
+                            categoryItem.remove()
+                            refreshCategoriesInputValue()
+                        })
+
+                        categoryInput.value = ''
+                        refreshCategoriesInputValue()
+                    })
+
+                    setTimeout(() => {
+                        refreshCategoriesInputValue()
+                    }, 500)
+                }
+            </script>
         </div>
         
 

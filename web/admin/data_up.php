@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 include '../connect.php';
 
-
 function make_dir(string $path)
 {
     return is_dir($path) || mkdir($path, 0777, true);
@@ -21,7 +20,8 @@ $description = $_POST['description'];
 $pages = $_POST['pages'];
 $electronic = $_POST['electronic'];
 $release_date = $_POST['release_date'];
-$category = $_POST['category'];
+
+$categories = explode(',', $_POST['categories'] ?? '');
 
 $file_name = bin2hex(random_bytes(8)); //16
 
@@ -30,14 +30,35 @@ $databaseConversDir = getcwd() . '\\database\\covers\\';
 make_dir($databaseConversDir);
 move_uploaded_file($_FILES["cover"]['tmp_name'], $databaseConversDir . $file_name . ".png");
 
-$sql = "INSERT INTO books (title, price, isbn, author, status, description, pages, electronic, release_date, category, cover)
-VALUES ('$title', '$price', '$isbn', '$author', '$status', '$description', '$pages', '$electronic', '$release_date', '$category', '$file_name')";
+$sql = "INSERT INTO books (title, price, isbn, author, status, description, pages, electronic, release_date, cover)
+VALUES ('$title', '$price', '$isbn', '$author', '$status', '$description', '$pages', '$electronic', '$release_date', '$file_name')";
+    
+echo $sql;
+echo "<br>";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Feltöltöttél egy könyvet";
-} else {
-    echo "Hiba: " . $sql . "<br>" . $conn->error;
+if (!$conn->query($sql)) {
+    echo "Nem jó a könyv feltöltés: " . $sql . "<br>" . $conn->error;
+    $conn->close();
+    die;
 }
+
+$bookId = $conn->insert_id;
+
+foreach ($categories as $category) {
+    $sql = "INSERT INTO book_category (book_id, category_id)
+    VALUES ('" . $bookId . "', '$category')";
+
+    echo $sql;
+    echo "<br>";
+
+    if (!$conn->query($sql)) {
+        echo "Nem jó hozzáadni a $category kategóriához: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        die;
+    }
+}
+
+echo "Feltöltöttél egy könyvet";
 
 $conn->close();
 ?>
