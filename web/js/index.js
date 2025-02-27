@@ -35,89 +35,98 @@ document.addEventListener("DOMContentLoaded", function () {
         searchInput.addEventListener("blur", toggleSearchState);
     }
 
-    // Slider kód több containerhez
-    const sliderContainers = document.querySelectorAll(".slider-container");
+    fetch('/bookshop/web/api/categories.php')
+        .then(v => v.json())
+        .then(v => {
+            const main = document.getElementsByTagName('main').item(0)
+            for (const item of v) {
+                let container = document.createElement('div')
+                container.className = 'slider-container'
+                container.innerHTML = `
+                    <h2>${item.name}</h2>
+                    <button class="prev-btn">&#10094;</button>
+                    <div class="slider" id="slider-${item.category_id}"></div>
+                    <button class="next-btn">&#10095;</button>
+                `
+                container = main.appendChild(container)
 
-    sliderContainers.forEach(container => {
-        const slider = container.querySelector(".slider");
-        const prevBtn = container.querySelector(".prev-btn");
-        const nextBtn = container.querySelector(".next-btn");
-        const category = container.getAttribute("data-category");
-
-        const _books = [];
-
-
-
-        fetch(`/bookshop/web/api/books.php?category=${category}`)
-            .then(res => res.json())
-            .then(books => {
-                if (!books || books.length === 0) {
-                    console.error(`Nincsenek könyvek a ${category} kategóriában.`);
-                    return;
+                const slider = document.getElementById(`slider-${item.category_id}`);
+                const prevBtn = container.querySelector(".prev-btn");
+                const nextBtn = container.querySelector(".next-btn");
+        
+                const _books = [];
+        
+                fetch(`/bookshop/web/api/books.php?category=${item.category_id}`)
+                    .then(res => res.json())
+                    .then(books => {
+                        if (!books || books.length === 0) {
+                            console.error(`Nincsenek könyvek a ${item.category_id} kategóriában.`);
+                            return;
+                        }
+        
+                        _books.push(...books);
+        
+                        // A könyvek hozzáadása a sliderhez
+                        books.forEach(book => {
+                            const card = document.createElement("div");
+                            card.classList.add("card");
+                            card.style.position = "relative";
+                            card.style.overflow = "hidden";
+        
+                            card.innerHTML = `
+                                <img src="/bookshop/web/database/covers/${book.cover}.png" alt="${book.title}">
+                                <div class="card-info">
+                                    <p class="title">${book.title}</p>
+                                    <p class="price">${Math.floor(book.price)} Ft</p>
+                                    <button class="buy-btn">Vásárlás</button>
+                                </div>
+                            `;
+        
+                            slider.appendChild(card);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Hiba a könyvek betöltésekor: ", error);
+                    });
+        
+                let scrollAmount = 0;
+                const scrollStep = 270;
+        
+                function handleResize() {
+                    if (window.innerWidth < 1201) {
+                        prevBtn.style.display = "none";
+                        nextBtn.style.display = "none";
+                        slider.style.transition = "none";
+                        slider.classList.add("scrollable");
+                    } else {
+                        prevBtn.style.display = "block";
+                        nextBtn.style.display = "block";
+                        slider.style.transition = "transform 0.3s ease-in-out";
+                        slider.classList.remove("scrollable");
+                    }
                 }
-
-                _books.push(...books);
-
-                // A könyvek hozzáadása a sliderhez
-                books.forEach(book => {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-                    card.style.position = "relative";
-                    card.style.overflow = "hidden";
-
-                    card.innerHTML = `
-                        <img src="/bookshop/web/database/covers/${book.cover}.png" alt="${book.title}">
-                        <div class="card-info">
-                            <p class="title">${book.title}</p>
-                            <p class="price">${Math.floor(book.price)} Ft</p>
-                            <button class="buy-btn">Vásárlás</button>
-                        </div>
-                    `;
-
-                    slider.appendChild(card);
+        
+                nextBtn.addEventListener("click", () => {
+                    if (window.innerWidth >= 1201) {
+                        const maxScroll = (_books.length - 4) * scrollStep;
+                        if (scrollAmount < maxScroll) {
+                            scrollAmount += scrollStep;
+                            slider.style.transform = `translateX(-${scrollAmount}px)`;
+                        }
+                    }
                 });
-            })
-            .catch(error => {
-                console.error("Hiba a könyvek betöltésekor: ", error);
-            });
-
-        let scrollAmount = 0;
-        const scrollStep = 270;
-
-        function handleResize() {
-            if (window.innerWidth < 1201) {
-                prevBtn.style.display = "none";
-                nextBtn.style.display = "none";
-                slider.style.transition = "none";
-                slider.classList.add("scrollable");
-            } else {
-                prevBtn.style.display = "block";
-                nextBtn.style.display = "block";
-                slider.style.transition = "transform 0.3s ease-in-out";
-                slider.classList.remove("scrollable");
+        
+                prevBtn.addEventListener("click", () => {
+                    if (window.innerWidth >= 1201 && scrollAmount > 0) {
+                        scrollAmount -= scrollStep;
+                        slider.style.transform = `translateX(-${scrollAmount}px)`;
+                    }
+                });
+        
+                handleResize();
+                window.addEventListener("resize", handleResize);
             }
-        }
-
-        nextBtn.addEventListener("click", () => {
-            if (window.innerWidth >= 1201) {
-                const maxScroll = (_books.length - 4) * scrollStep;
-                if (scrollAmount < maxScroll) {
-                    scrollAmount += scrollStep;
-                    slider.style.transform = `translateX(-${scrollAmount}px)`;
-                }
-            }
-        });
-
-        prevBtn.addEventListener("click", () => {
-            if (window.innerWidth >= 1201 && scrollAmount > 0) {
-                scrollAmount -= scrollStep;
-                slider.style.transform = `translateX(-${scrollAmount}px)`;
-            }
-        });
-
-        handleResize();
-        window.addEventListener("resize", handleResize);
-    });
+        })
 
     // Dekoratív dobozok (animált)
     {

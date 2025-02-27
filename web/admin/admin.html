@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Könyv felvétele</h2>
-    <form action="data_up.php" method="POST" enctype="multipart/form-data">
+    <form action="upload_books.php" method="POST" enctype="multipart/form-data">
         <div class="input-group">
             <label for="title">Cím</label>
             <input type="text" name="title" id="title" class="input-field" required>
@@ -58,8 +58,6 @@
             <div id="category-container"></div>
             <select id="category" class="input-field">
                 <option value="">Válassz kategóriát</option>
-                <option value="1">Szépirodalom</option>
-                <option value="2">Fantasy</option>
             </select>
             <input type=text name="categories" value="" id="categories_input_hidden">
 
@@ -69,6 +67,17 @@
                     const categoryInput = document.getElementById('category')
                     /** @type {HTMLDivElement} */
                     const categoryContainer = document.getElementById('category-container')
+
+                    fetch('/bookshop/web/api/categories.php')
+                        .then(v => v.json())
+                        .then(v => {
+                            for (const category of v) {
+                                const option = document.createElement('option')
+                                option.value = category.category_id
+                                option.textContent = category.name
+                                categoryInput.appendChild(option)
+                            }
+                        })
 
                     function refreshCategoriesInputValue() {
                         const categoryItems = categoryContainer.getElementsByClassName('__category_item')
@@ -117,6 +126,16 @@
         
         <button type="submit" class="btn">Feltöltés</button>
 
+    </form>
+
+    <h2>Kategória felvétele</h2>
+    <form action="upload_category.php" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+            <label for="title">Név</label>
+            <input type="text" name="name" id="title" class="input-field" required>
+        </div>
+
+        <button type="submit" class="btn">Feltöltés</button>
     </form>
 </body>
 </html>

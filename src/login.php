@@ -15,7 +15,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password'])) {
-        $_SESSION['email'] = $email;
+        // $_SESSION['email'] = $email;
 
         // Ellenőrizd, van-e már érvényes token
         $checkTokenSql = "SELECT * FROM user_tokens WHERE user_id = ? AND expires_at > NOW() LIMIT 1";
@@ -44,16 +44,16 @@ if ($result->num_rows > 0) {
 
         // Cookie-k beállítása
         if ($remember) {
-            if (!isset($_COOKIE['email'])) {
-                setcookie('email', $email, time() + (86400 * 30), "/", "", false, true);
-            }
+            // if (!isset($_COOKIE['email'])) {
+            //     setcookie('email', $email, time() + (86400 * 30), "/", "", false, true);
+            // }
             if (!isset($_COOKIE['token'])) {
                 setcookie('token', $token, time() + (86400 * 30), "/", "", false, true);
             }
         } else {
-            if (isset($_COOKIE['email'])) {
-                setcookie('email', '', time() - 3600, "/");
-            }
+            // if (isset($_COOKIE['email'])) {
+            //     setcookie('email', '', time() - 3600, "/");
+            // }
             if (isset($_COOKIE['token'])) {
                 setcookie('token', '', time() - 3600, "/");
             }

@@ -21,18 +21,18 @@ session_start();
         <form action="../php/login.php" method="POST">
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="input-field" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" required>
+                <input type="email" name="email" id="email" class="input-field" value="" required>
             </div>
             
             <div class="input-group">
                 <label for="password">Jelszó</label>
-                <input type="password" name="password" id="password" class="input-field" value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>" required>
+                <input type="password" name="password" id="password" class="input-field" value="" required>
             </div>
 
             <div id="password-show-hide" onclick="togglePasswordVisibility()"><p class="no-margin">Jelszó megjelenítése</p></div>
 
             <div class="remember-me">
-                <input type="checkbox" name="remember" id="remember" <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
+                <input type="checkbox" name="remember" id="remember">
                 <label for="remember">Emlékezz rám</label>
             </div>
 

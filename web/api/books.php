@@ -5,7 +5,7 @@ include '../connect.php';
 $req = null;
 if (isset($_GET['category']))
 {
-    $sql = "SELECT * FROM books WHERE books.category = ?";
+    $sql = "SELECT * FROM books JOIN book_category ON book_category.book_id = books.book_id AND book_category.category_id = ?";
     $req = $conn->prepare($sql);
     $req->bind_param("s", $_GET['category']);
 }
