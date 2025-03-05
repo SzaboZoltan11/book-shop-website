@@ -49,7 +49,7 @@ body {
     font-family: 'Lato', 'sans-serif';
 }
 
-.navbar-nav .nav-link, 
+.navbar-nav .nav-link,
 .navbar-nav .nav-link:visited {
     color: white;
     text-decoration: none;
@@ -57,7 +57,7 @@ body {
 
 
 .navbar-nav .nav-link:hover {
-    color: #20c997 !important;  
+    color: #20c997 !important;
 }
 
 @media (max-width: 991px) {
@@ -91,6 +91,7 @@ body {
     padding: 10px 0;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     border: none;
+    z-index: 2;
 }
 
 .dropdown-item {
@@ -114,21 +115,22 @@ body {
 
 .navbar-toggler {
     border: none;
-  
+
 }
 
 .navbar-toggler {
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 
 
 
 
 
-.navbar-toggler:focus, .navbar-toggler:active {
-    outline: none !important; 
-    box-shadow: none !important;  
-    border: none !important; 
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 
@@ -297,7 +299,7 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-between; 
+    justify-content: space-between;
     text-align: left;
     margin-top: 20px;
     width: 100%;
@@ -319,7 +321,7 @@ footer {
 }
 
 .footer-follow {
-    margin-left: auto;  
+    margin-left: auto;
     font-size: 14px;
     color: #666;
     text-align: left;
@@ -470,12 +472,13 @@ footer {
     left: 0;
     right: 0;
     transition: transform 0.3s ease-in-out;
-    z-index: 1000; 
 }
 
 
+
+
 .hidden_nav {
-    transform: translateY(-100%); 
+    transform: translateY(-100%);
 }
 
 
@@ -485,13 +488,11 @@ footer {
 /* Felső navigáció */
 .navbar-light {
     position: relative;
-    z-index: 1; 
 }
 
 /* Alsó navigáció */
 .navbar-dark {
     position: relative;
-    z-index: 2; 
 }
 
 
@@ -506,14 +507,14 @@ footer {
 
 .search-bar .form-control {
     width: 100%;
-    padding-left: 30px; 
+    padding-left: 30px;
     margin-right: 10px;
 }
 
 
 .search-bar {
     max-width: 557px;
-    margin: 0 15px; 
+    margin: 0 15px;
     position: relative;
     margin: 0 !important;
 
@@ -526,30 +527,28 @@ footer {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: white; 
-    font-size: 20px; 
+    color: white;
+    font-size: 20px;
 }
 
 
 
 .navbar-light {
-    background-color: #4618ac; 
+    background-color: #4618ac;
     color: #fff;
     padding: 0;
 }
 
 
 .navbar-dark {
-    background-color:  #3c1f7d; 
-    color: #fff; 
+    background-color: #3c1f7d;
+    color: #fff;
 }
 
 .navbar-light .navbar-brand,
-.navbar-light .navbar-nav .nav-link 
-.navbar-dark .navbar-brand,
-.navbar-dark .navbar-nav .nav-link
-{
-    color: #fff; 
+.navbar-light .navbar-nav .nav-link .navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
 }
 
 
@@ -560,11 +559,11 @@ a {
 
 
 .search-bar .form-control {
-    background-color: transparent; 
-    border: 2px solid white; 
-    color: white; 
-    padding-left: 35px; 
-    height: 55px; 
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding-left: 35px;
+    height: 55px;
 }
 
 .search-bar .search-icon {
@@ -572,30 +571,30 @@ a {
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: white; 
-    font-size: 20px; 
+    color: white;
+    font-size: 20px;
 }
 
 
 
 .search-bar .form-control::placeholder {
-    color: #d3d3d3; 
+    color: #d3d3d3;
     font-weight: 700;
     font-size: 16px;
 }
 
 
 .navbar .container-xl {
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 @media (max-width: 991px) {
     .navbar .container-xl {
-        flex-wrap: nowrap; 
+        flex-wrap: nowrap;
     }
 
     .navbar .d-flex {
-        flex-wrap: nowrap; 
+        flex-wrap: nowrap;
     }
 }
 
@@ -607,23 +606,23 @@ a {
     .search-bar {
         flex-grow: 1;
         position: relative;
-        max-width: 100%; 
-        transition: width 0.3s ease-in-out; 
+        max-width: 100%;
+        transition: width 0.3s ease-in-out;
     }
 
     .search-bar input {
         transition: width 0.3s ease-in-out;
-        width: 100%; 
+        width: 100%;
     }
 
-    
+
     .search-bar.expanded {
-        width: 100% !important;  
+        width: 100% !important;
     }
 
-    
+
     .search-bar input.expanded {
-        width: 100% !important;  
+        width: 100% !important;
         position: absolute;
         left: 0;
         right: 0;
@@ -634,16 +633,20 @@ a {
 
 
 .navbar-toggler {
-    position: absolute; /* Fix it in place */
-    top: 50%; /* Center it vertically */
-    right: 10px; /* Position it towards the right */
-    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+    position: absolute;
+    /* Fix it in place */
+    top: 50%;
+    /* Center it vertically */
+    right: 10px;
+    /* Position it towards the right */
+    transform: translateY(-50%);
+    /* Adjust for perfect vertical centering */
 }
 
 /* Optionally, for better responsiveness */
 @media (max-width: 991px) {
     .navbar-toggler {
-   
+
         right: 10px;
     }
 }
@@ -654,7 +657,7 @@ a {
     padding-right: 100px;
 }
 
-#nav-hover:hover  {
+#nav-hover:hover {
     color: #20c997 !important;
     text-decoration: none;
 }
@@ -664,20 +667,20 @@ a {
     position: relative;
     overflow: hidden;
     max-width: 100%;
-    width: 100%; 
+    width: 100%;
 }
 
 .slider {
     display: flex;
     gap: 15px;
     transition: transform 0.3s ease-in-out;
-    width: 100%; 
-    box-sizing: border-box; 
+    width: 100%;
+    box-sizing: border-box;
     margin-bottom: 20px;
 }
 
 .card {
-    width: calc(25% - 15px); 
+    width: calc(25% - 15px);
     flex-shrink: 0;
     border: 1px solid #3c1f7d;
     border-radius: 8px;
@@ -689,10 +692,10 @@ a {
 }
 
 .card img {
-    width: 100%; 
-    min-width: 200px; 
-    height: 300px; 
-    margin-bottom: 10px; 
+    width: 100%;
+    min-width: 200px;
+    height: 300px;
+    margin-bottom: 10px;
 }
 
 .card-info {
@@ -700,12 +703,13 @@ a {
     bottom: 0;
     width: 100%;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    background-color: #3c1f7d;; 
+    background-color: #3c1f7d;
+    ;
 }
 
 .card-info p {
     margin: 5px 0;
-    font-size: 14px; 
+    font-size: 14px;
     color: #333;
 }
 
@@ -725,7 +729,8 @@ a {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.prev-btn, .next-btn {
+.prev-btn,
+.next-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -734,24 +739,26 @@ a {
     border: none;
     padding: 0;
     cursor: pointer;
-    border-radius: 50%; /* Kör alakú háttér */
+    border-radius: 50%;
+    /* Kör alakú háttér */
     width: 45px;
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px; /* Vastagabb nyíl */
+    font-size: 24px;
+    /* Vastagabb nyíl */
     font-weight: bold;
     line-height: 1;
 }
 
-.prev-btn { 
-    left: 10px; 
+.prev-btn {
+    left: 10px;
     z-index: 100;
 }
 
-.next-btn { 
-    right: 10px; 
+.next-btn {
+    right: 10px;
 }
 
 button:focus {
@@ -763,8 +770,8 @@ button:focus {
 /* Vásárlás gomb stílusa */
 .card .card-info .buy-btn {
     background-color: transparent;
-    border: 2px solid #fff; 
-    color: white; 
+    border: 2px solid #fff;
+    color: white;
     font-size: 16px;
     padding: 10px 20px;
     margin-top: 0;
@@ -775,7 +782,7 @@ button:focus {
 
 .card .card-info .buy-btn:hover {
     background-color: #3c1f7d;
-    color: white; 
+    color: white;
 }
 
 
@@ -785,7 +792,7 @@ button:focus {
 /* For screens less than 1201px */
 @media (max-width: 1200px) {
     .slider-container {
-        overflow-x: auto; 
+        overflow-x: auto;
         width: 100%;
     }
 
@@ -795,22 +802,23 @@ button:focus {
     }
 
     .card {
-        width: auto; 
+        width: auto;
         display: inline-block;
         margin-right: 15px;
     }
 
     .card img {
-        width: 100%; 
-        height: 200px; 
+        width: 100%;
+        height: 200px;
     }
 
     .scrollable {
         display: flex;
     }
 
-    .prev-btn, .next-btn {
-        display: none; 
+    .prev-btn,
+    .next-btn {
+        display: none;
     }
 }
 
@@ -836,4 +844,111 @@ button:focus {
 
 .card-info p {
     color: white;
+}
+
+
+
+/* Modal alapstílusai */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; 
+    top: 0;
+    left: 0; 
+    height: 100%;
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+.modal-content {
+    background-color: #3c1f7d;;
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+    position: absolute; 
+    top: 0;
+    bottom: 0; 
+    right: 0; 
+    overflow-y: auto; 
+
+}
+
+
+
+
+.modal.show {
+    display: flex; 
+}
+
+
+.close {
+    font-size: 30px;
+    color: #aaa;
+    cursor: pointer;
+    position: absolute;
+    height: max-content;
+    right: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+}
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative; 
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.cart-item-price {
+    color: #f00;
+    font-size: 1em;
+}
+
+
+.remove-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+
+.remove-btn:hover {
+    background-color: #e60000;
+}
+
+#cartModal .total-amount {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 10px;
 }

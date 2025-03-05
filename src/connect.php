@@ -1,13 +1,32 @@
 <?php
-$host = '127.0.0.1';
-$user = 'root';
-$password = '';
-$database = 'konyvwebaruhaz';
+class DatabaseConnection {
+    private $host = '127.0.0.1';
+    private $user = 'root';
+    private $password = '';
+    private $database = 'konyvwebaruhaz';
+    private $conn;
 
-$conn = new mysqli($host, $user, $password, $database);
+    public function __construct() {
+        $this->connect();
+    }
 
-if ($conn->connect_error) {
-    die("Hiba az adatbázishoz való csatlakozás közben: " . $conn->connect_error);
+    private function connect() {
+        try {
+            $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database);
+            if ($this->conn->connect_error) {
+                throw new Exception("Hiba az adatbázishoz való csatlakozás közben: " . $this->conn->connect_error);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getConnection() {
+        return $this->conn;
+    }
 }
+
+$db = new DatabaseConnection();
+$conn = $db->getConnection();
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include '../connect.php';
+include '../../src/connect.php';
 
 $req = null;
 if (isset($_GET['category']))

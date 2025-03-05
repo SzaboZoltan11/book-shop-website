@@ -1,6 +1,6 @@
 <?php
 
-include '../connect.php';
+include '../../src/connect.php';
 
 $sql = "SELECT * FROM category";
 $req = $conn->prepare($sql);

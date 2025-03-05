@@ -46,3 +46,13 @@ git config --global user.email "szabozola91@gmail.com"
 Indíccsd el a xampot
 
 Menj oda hogy http://localhost/bookshop/web/
+
+## Database
+
+:: Hozd létre az adatbázist
+
+CREATE DATABASE konyvwebaruhaz
+CHARACTER SET utf8
+COLLATE utf8_hungarian_ci;
+
+:: Importáld be a konyvwebaruhaz.sql file-t

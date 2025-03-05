@@ -1,8 +1,7 @@
-
 <?php
 session_start();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +17,13 @@ session_start();
     
     <div class="container">
         <h2>Bejelentkezés</h2>
+        <?php
+            if (isset($_SESSION['success'])) {
+                echo "<p style='color: green;'>" . $_SESSION['success'] . "</p>";
+                unset($_SESSION['success']); 
+            }
+        ?>
+
         <form action="../php/login.php" method="POST">
             <div class="input-group">
                 <label for="email">Email</label>
@@ -53,7 +59,6 @@ session_start();
     </div>
 
     <script src="./js/registration.js"></script>
-
 
 </body>
 </html>

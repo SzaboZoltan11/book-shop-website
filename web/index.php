@@ -1,3 +1,10 @@
+<?php
+
+include '../src/check_token.php';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="hu, en">
 <head>
@@ -78,114 +85,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
             
 
-        
-  
-      
+
+
 </head>
 <body>
-    <header>
-        <nav>
-           
+<header>
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-light">
+            <div class="container-xl d-flex justify-content-between align-items-center">
+                <!-- Logo -->
+                <a class="navbar-brand" href="index.php">
+                    <img src="img/logo.png" alt="Logo" height="40px">
+                </a>
+
+                <!-- Search Bar -->
+                <form class="form-inline search-bar m-0">
+                    <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
+                    <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
+                </form>
+
+                <div class="d-flex">
+    <a href="wishlist.html" class="mr-3" id="nav-hover">
+        <i class="fas fa-heart"></i> 
+    </a>
+
+    <!-- Kosár ikon -->
+    <a href="#" class="mr-3" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+</div>
+
+<!-- Modal -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <h2>Kosár tartalma</h2>
+        <p></p> 
+        <p class="total-amount">
+    </div>
+</div>
+
+
+
+                <?php if (isset($_SESSION['name'])): ?>
+                    <div class="dropdown">
+                        <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="profile.php">Profilom</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
+                    <a href="registration.php" id="nav-hover">Regisztráció</a>
+                <?php endif; ?>
+            </div>
+            </div>
         </nav>
 
-
-
-<!-- Top Navigation -->
-<nav class="navbar navbar-light">
-    <div class="container-xl d-flex justify-content-between align-items-center">
-        <!-- Logo -->
-        <a class="navbar-brand" href="index.html">
-            <img src="img/logo.png" alt="Logo" height="40px">
-        </a>
-
-        <!-- Search Bar -->
-        <form class="form-inline search-bar m-0">
-            <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-            <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
-        </form>
-
-        <!-- Wishlist -->
-        <div class="d-flex">
-            <a href="wishlist.html" class="mr-3" id="nav-hover">
-                <i class="fas fa-heart"></i> 
-            </a>
-            <a href="cart.html" class="mr-3" id="nav-hover">
-                <i class="fas fa-shopping-cart"></i> 
-            </a>
-            <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
-            <a href="registration.php" id="nav-hover">Regisztráció</a>
-        </div>
-    </div>
-</nav>
-
-
-
-
-<!-- Main Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-xl d-flex justify-content-center">
-        <!-- Navbar Content -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav justify-content-center"> <!-- Add justify-content-center here -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="index.html" id="booksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Ekönyvek
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="booksDropdown">
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <a class="dropdown-item" href="">asd</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="index.html">Összes Könyv</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Best Sellers
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                        <a class="dropdown-item" href="">Szépirodalmi</a>
-                        <a class="dropdown-item" href="">Ismeretterjesztő</a>
-                        <a class="dropdown-item" href="">Gyerekeknek</a>
-                        <a class="dropdown-item" href="">Angol könyvek</a>
-                        <a class="dropdown-item" href="">Ifjúsági</a>
-                        <a class="dropdown-item" href="">Különleges ajánlat</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="">Szépirodalmi</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Különleges ajánlat</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-
-        
-        
-        
-        
-        
-        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-xl d-flex justify-content-center">
+                <!-- Navbar Content -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ekönyvek
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="booksDropdown">
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Best Sellers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
+                                <a class="dropdown-item" href="">Szépirodalmi</a>
+                                <a class="dropdown-item" href="">Ismeretterjesztő</a>
+                                <a class="dropdown-item" href="">Gyerekeknek</a>
+                                <a class="dropdown-item" href="">Angol könyvek</a>
+                                <a class="dropdown-item" href="">Ifjúsági</a>
+                                <a class="dropdown-item" href="">Különleges ajánlat</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="">Szépirodalmi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Különleges ajánlat</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-
-
     <main class="container mt-5">
     </main>
     <a href="game://Game" target="_blank">Cuccos</a>
@@ -280,6 +294,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
     
+<!-- Add jQuery first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Add your custom JS file after jQuery -->
+<script src="./js/cart.js"></script>
+
     
     <script src="./js/index.js"></script>
 </body>

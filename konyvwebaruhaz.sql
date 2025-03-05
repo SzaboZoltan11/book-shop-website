@@ -146,6 +146,18 @@ CREATE TABLE `users` (
 -- A tábla adatainak kiíratása `users`
 --
 
+--
+-- Tábla szerkezet ehhez a táblához `user_tokens`
+--
+
+CREATE TABLE `user_tokens` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expires_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+
 INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `phone_number`, `reg_date`, `accept_newsletter`) VALUES
 (1, 'íyx', 'íyx', 'as11d@gmail.com', '$2y$10$2dXW/hE7sT/zRjvRfhA5muW6ru9LxJ2VS8AJmFKPhgMxRBFctpXVO', '+36(30)8468155', '2025-02-26 08:15:59', 1);
 
