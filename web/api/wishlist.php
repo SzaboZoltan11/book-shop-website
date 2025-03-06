@@ -19,12 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header("Content-Type: application/json");
     echo json_encode($wishlist);
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_POST["book_id"])) {
+    $entityBody = json_decode(file_get_contents('php://input'), true);
+    if (!isset($entityBody["book_id"])) {
         die ('Argument "book_id" is required');
     }
-    $sql = "INSERT INTO book_id (`user_id`, `book_id`) VALUES (?, ?)";
+    $sql = "INSERT INTO wishlist (user_id, book_id) VALUES (?, ?)";
     $req = $conn->prepare($sql);
-    $req->bind_param("ii", $authenticator->currentUserId, $_POST["book_id"]);
+    $req->bind_param("ii", $authenticator->currentUserId, $entityBody["book_id"]);
+    $req->execute();
+    
+    echo 'OK';
+} else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    $entityBody = json_decode(file_get_contents('php://input'), true);
+    if (!isset($entityBody["book_id"])) {
+        die ('Argument "book_id" is required');
+    }
+    $sql = "DELETE FROM wishlist WHERE user_id = ? AND book_id = ? LIMIT 1";
+    $req = $conn->prepare($sql);
+    $req->bind_param("ii", $authenticator->currentUserId, $entityBody["book_id"]);
     $req->execute();
 
     echo 'OK';

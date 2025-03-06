@@ -3,17 +3,21 @@
 include '../../src/connect.php';
 
 $req = null;
-if (isset($_GET['category']))
+if (isset($_GET['id']))
+{
+    $sql = "SELECT * FROM books WHERE books.book_id = ?";
+    $req = $conn->prepare($sql);
+    $req->bind_param("i", $_GET['id']);
+} else if (isset($_GET['category']))
 {
     $sql = "SELECT * FROM books JOIN book_category ON book_category.book_id = books.book_id AND book_category.category_id = ?";
     $req = $conn->prepare($sql);
     $req->bind_param("s", $_GET['category']);
-}
-else
-{
+} else {
     $sql = "SELECT * FROM books";
     $req = $conn->prepare($sql);
 }
+
 $req->execute();
 $result = $req->get_result();
 

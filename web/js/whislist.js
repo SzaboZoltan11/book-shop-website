@@ -5,48 +5,48 @@ document.addEventListener("DOMContentLoaded", function() {
     var wishlistItemsContainer = document.getElementById("wishlist-items");
     var wishlistCount = document.getElementById("wishlist-count");
 
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    window.WishlistManager.addEventListener('update', () => {
+        updateWishlistModal()
+    })
 
     function updateWishlistModal() {
         wishlistItemsContainer.innerHTML = "";
-        wishlistCount.textContent = wishlist.length;
+        wishlistCount.textContent = window.WishlistManager.wishlist.length;
 
-        if (wishlist.length === 0) {
+        if (window.WishlistManager.wishlist.length === 0) {
             wishlistItemsContainer.innerHTML = "<p>A kívánságlista üres.</p>";
             return;
         }
 
-        wishlist.forEach((item, index) => {
-            const wishlistItem = document.createElement("div");
-            wishlistItem.classList.add("wishlist-item");
-            wishlistItem.innerHTML = `
-                <img src="/bookshop/web/database/covers/${item.cover}.png" alt="${item.title}" class="wishlist-item-image">
-                <div class="wishlist-item-info">
-                    <p class="wishlist-item-title">${item.title}</p>
-                    <p class="wishlist-item-price">${item.price} Ft</p>
-                </div>
-                <button class="remove-wishlist-btn" data-index="${index}">Törlés</button>
-            `;
-
-            wishlistItem.querySelector(".remove-wishlist-btn").addEventListener("click", function() {
-                removeFromWishlist(index);
-            });
-
-            wishlistItemsContainer.appendChild(wishlistItem);
+        window.WishlistManager.wishlist.forEach((item) => {
+            fetch('/bookshop/web/api/books.php?id=' + item.book_id)
+                .then(v => v.json())
+                .then(v => {
+                    if (!v[0]) return
+                    const details = v[0]
+                    console.log(details)
+                    const wishlistItem = document.createElement("div");
+                    wishlistItem.classList.add("wishlist-item");
+                    wishlistItem.innerHTML = `
+                        <img src="/bookshop/web/database/covers/${details.cover}.png" alt="${details.title}" class="wishlist-item-image">
+                        <div class="wishlist-item-info">
+                            <p class="wishlist-item-title">${details.title}</p>
+                            <p class="wishlist-item-price">${details.price} Ft</p>
+                        </div>
+                        <button class="remove-wishlist-btn">Törlés</button>
+                    `;
+        
+                    wishlistItem.querySelector(".remove-wishlist-btn").addEventListener("click", function() {
+                        removeFromWishlist(item.book_id);
+                    });
+        
+                    wishlistItemsContainer.appendChild(wishlistItem);
+                })
         });
     }
 
-    function addToWishlist(cover, title, price) {
-        wishlist.push({ cover, title, price });
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-        updateWishlistModal();
-        wishlistModal.style.display = "block"; // Megnyitja a modált
-    }
-
-    function removeFromWishlist(index) {
-        wishlist.splice(index, 1);
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-        updateWishlistModal();
+    function removeFromWishlist(bookId) {
+        window.WishlistManager.remove(bookId);
     }
 
     wishlistIcon.addEventListener("click", function(event) {

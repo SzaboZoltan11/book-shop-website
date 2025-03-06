@@ -14,17 +14,21 @@ class TokenAuthenticator {
     }
 
     public function authenticate() {
-        if (!isset($_SESSION['email']) && isset($_COOKIE['token'])) {
-            $this->currentToken = $_COOKIE['token'];
-            
-            try {
-                $this->currentUserId = $this->validateToken($this->currentToken);
-                if ($this->currentUserId) {
-                    $this->setUserSession($this->currentUserId);
-                }
-            } catch (Exception $e) {
-                error_log("Authentication error: " . $e->getMessage());
+        if (!isset($_COOKIE['token'])) {
+            return false;
+        }
+
+        $this->currentToken = $_COOKIE['token'];
+        
+        try {
+            $this->currentUserId = $this->validateToken($this->currentToken);
+            if ($this->currentUserId) {
+                $this->setUserSession($this->currentUserId);
             }
+            return true;
+        } catch (Exception $e) {
+            error_log("Authentication error: " . $e->getMessage());
+            return false;
         }
     }
 

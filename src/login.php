@@ -94,15 +94,7 @@ class Auth {
     }
 
     private function setCookies($token, $remember) {
-        if ($remember) {
-            if (!isset($_COOKIE['token'])) {
-                setcookie('token', $token, time() + (86400 * 30), "*", "", false, true);
-            }
-        } else {
-            if (isset($_COOKIE['token'])) {
-                setcookie('token', '', time() - 3600, "*");
-            }
-        }
+        setcookie('token', $token, time() + (86400 * 30), "/");
     }
 }
 

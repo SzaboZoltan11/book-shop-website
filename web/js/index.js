@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const mediaQuery = window.matchMedia("(max-width: 1200px)");
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const wishlist = [];
-
 
     // URL tartalmazza a `sessionEnded=true` paramétert, töröljük a kosarat
     const urlParams = new URLSearchParams(window.location.search);
@@ -55,10 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
         searchInput.addEventListener("focus", toggleSearchState);
         searchInput.addEventListener("blur", toggleSearchState);
     }
-
-    fetch('/bookshop/web/api/wishlist.php')
-        .then(v => v.json())
-        .then(v => wishlist.push(...v))
 
     fetch('/bookshop/web/api/categories.php')
         .then(v => v.json())
@@ -190,12 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Wishlist kezelés
     function addToWishlist(bookId) {
-        fetch('/bookshop/web/api/wishlist.php', {
-            method: 'POST',
-            body: JSON.stringify({
-                book_id: bookId
-            }),
-        })
+        window.WishlistManager.add(bookId)
         // localStorage.setItem("wishlist", JSON.stringify(wishlist));
         // updateWishlistModal(); // Hívjuk itt is a frissítést, hogy a modal látható legyen
         // wishlistModal.style.display = "block"; // Megnyitja a modált

@@ -301,6 +301,7 @@ include '../src/check_token.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Add your custom JS file after jQuery -->
+    <script src="./js/wishlish_manager.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/whislist.js"></script>
 
