@@ -1,22 +1,26 @@
 <?php
 session_start();
-include 'connect.php';
+include_once 'connect.php';
 
 class TokenAuthenticator {
+    public string|null $currentToken;
+    public string|null $currentUserId;
     private $conn;
 
     public function __construct($dbConnection) {
         $this->conn = $dbConnection;
+        $this->currentToken = null;
+        $this->currentUserId = null;
     }
 
     public function authenticate() {
         if (!isset($_SESSION['email']) && isset($_COOKIE['token'])) {
-            $token = $_COOKIE['token'];
+            $this->currentToken = $_COOKIE['token'];
             
             try {
-                $userId = $this->validateToken($token);
-                if ($userId) {
-                    $this->setUserSession($userId);
+                $this->currentUserId = $this->validateToken($this->currentToken);
+                if ($this->currentUserId) {
+                    $this->setUserSession($this->currentUserId);
                 }
             } catch (Exception $e) {
                 error_log("Authentication error: " . $e->getMessage());

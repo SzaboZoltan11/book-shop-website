@@ -91,3 +91,9 @@ CREATE TABLE user_tokens (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE `wishlist`(
+  `user_id` INT(11) NOT NULL,
+  `book_id` INT(11) NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
+  FOREIGN KEY (`book_id`) REFERENCES `books`(`book_id`)
+);

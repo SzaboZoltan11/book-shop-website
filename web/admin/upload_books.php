@@ -4,7 +4,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     die ('Method not allowed');
 }
 
-include '../connect.php';
+
+include '../../src/connect.php';
 
 function make_dir(string $path)
 {

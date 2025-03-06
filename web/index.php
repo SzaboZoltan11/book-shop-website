@@ -33,18 +33,18 @@ include '../src/check_token.php';
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- Additional CSS -->
     <link rel="stylesheet" href="./css/index.css">
     <link href='https://fonts.googleapis.com/css?family=Oxanium' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy6aH97Mfjm4f3gR8J5bAf82bBEnr+6f9eM7Pp4a" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" integrity="sha384-9/reft7IGCVVvxGoR1H2m5lZjYt6HD7LHRZfXHt4q85aJ8Btbj5XkXjs25g0xL9GT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"  crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqKnBkm2k8QdFlbS5VfW53eUUYO6AOR2/3s/UzXlm8xkj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
     <!-- Oldal címe -->
     <title>Book Shop</title>
@@ -90,61 +90,67 @@ include '../src/check_token.php';
 </head>
 <body>
 <header>
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-light">
-            <div class="container-xl d-flex justify-content-between align-items-center">
-                <!-- Logo -->
-                <a class="navbar-brand" href="index.php">
-                    <img src="img/logo.png" alt="Logo" height="40px">
-                </a>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-light">
+        <div class="container-xl d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.php">
+                <img src="img/logo.png" alt="Logo" height="40px">
+            </a>
 
-                <!-- Search Bar -->
-                <form class="form-inline search-bar m-0">
-                    <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-                    <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
-                </form>
+            <!-- Search Bar -->
+            <form class="form-inline search-bar m-0">
+                <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
+                <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
+            </form>
 
-                <div class="d-flex">
-    <a href="wishlist.html" class="mr-3" id="nav-hover">
-        <i class="fas fa-heart"></i> 
-    </a>
-
-    <!-- Kosár ikon -->
-    <a href="#" class="mr-3" id="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-    </a>
-</div>
-
-<!-- Modal -->
-<div id="cartModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="close-modal">&times;</span>
-        <h2>Kosár tartalma</h2>
-        <p></p> 
-        <p class="total-amount">
-    </div>
-</div>
-
-
-
-                <?php if (isset($_SESSION['name'])): ?>
-                    <div class="dropdown">
-                        <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="profile.php">Profilom</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
-                        </div>
+            <div class="d-flex">
+                <div id="wishlistModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="close-wishlist">&times;</span>
+                        <h2>Kívánságlista</h2>
+                        <div id="wishlist-items"></div>
+                        <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
                     </div>
-                <?php else: ?>
-                    <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
-                    <a href="registration.php" id="nav-hover">Regisztráció</a>
-                <?php endif; ?>
+                </div>
+
+                <!-- tsuki ikon -->
+                <a href="#" class="mr-3" id="wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <!-- Kosár ikon -->
+                <a href="#" class="mr-3" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
             </div>
+
+            <!-- Modal -->
+            <div id="cartModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-modal">&times;</span>
+                    <h2>Kosár tartalma</h2>
+                    <p></p> 
+                    <p class="total-amount">
+                </div>
             </div>
-        </nav>
+
+            <?php if (isset($_SESSION['name'])): ?>
+            <div class="dropdown">
+                <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="profile.php">Profilom</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
+                </div>
+            </div>
+            <?php else: ?>
+            <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
+            <a href="registration.php" id="nav-hover">Regisztráció</a>
+            <?php endif; ?>
+        </div>
+    </nav>
 
         <!-- Main Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -200,107 +206,104 @@ include '../src/check_token.php';
             </div>
         </nav>
     </header>
-    <main class="container mt-5">
-    </main>
+
+    <main class="container mt-5"></main>
+
     <a href="game://Game" target="_blank">Cuccos</a>
-    
 
-
-<!--
-    <footer>
-        <div class="footer-links">
-            <div class="footer-links text-center">
-                <div class="dropdown d-inline-block">
-                    <a class="dropdown-toggle" href="#" id="kaszinokDropdownFooter" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Kaszinók
-                    </a>
-                    <div class="dropdown-menu text-center" aria-labelledby="kaszinokDropdownFooter">
-                        <a class="dropdown-item" href="../web/velemenyek/wonaco.html">Wonaco</a>
-                                <a class="dropdown-item" href="../web/velemenyek/dollycasino.html">DollyCasino</a>
-                                <a class="dropdown-item" href="../web/velemenyek/staxino.html">Staxino</a>
-                                <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Flappycasino</a>
-                                <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Wintopia</a>
-                                <a class="dropdown-item" href="../web/velemenyek/betflare.html">Betflare</a>
-                                <a class="dropdown-item" href="../web/velemenyek/casinoinfinity.html">Casinoinfinity</a>
-                                <a class="dropdown-item" href="../web/velemenyek/ninlay.html">Ninlay</a>
-                                <a class="dropdown-item" href="../web/velemenyek/spinsala.html">Spinsala</a>
-                                <a class="dropdown-item" href="../web/velemenyek/tsars.html">Tsars</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.html">Összes kaszinó</a>
-                    </div>
-                </div>
-                <a class="d-block" href="bonus/bonus.html">Bónuszok</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Nyerőgépek</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Sportfogadás</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Ingyenes pörgetés</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Fizetési Módok</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Új Kaszinók</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Rólunk</a>
-                <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Kapcsolat</a>
-            </div>
-        
-        
-            <div class="footer-info">
-                <div class="footer-images-help">
-                    <div class="footer-images">
-                        <img src="svg_img/icons8-18-plus-50.png" alt="18+" width="44px" height="44px" id="18plus"/>
-                        <img src="site_img/Gamble_Aware_White.png" alt="gambleAware" height="40px" width="120px" id="gambleAware"  onclick="window.open('https://www.gambleaware.org/', '_blank')" >
-                        <img src="site_img/care.png" alt="Gamcare" height="40px" width="100px" id="gamcare" onclick="window.open('https://www.gamcare.org.uk/', '_blank')" >
-                        <img src="site_img/dmca-badge-w250-2x1-03.png" alt="" width="90px" height="44px">
-                    </div>
-                    <p class="footer-help-text">Kérj szerencsejáték segítséget itt</p>
-                    <div class="footer-help-contact">
-                        <div class="footer-contact">
-                            <img src="svg_img/icons8-phone-50.png" alt="Telefon" width="20px" height="20px">
-                            <div class="contact-info">
-                                <span>36 1 299 40</span>
-                            </div>
+    <!--
+        <footer>
+            <div class="footer-links">
+                <div class="footer-links text-center">
+                    <div class="dropdown d-inline-block">
+                        <a class="dropdown-toggle" href="#" id="kaszinokDropdownFooter" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kaszinók
+                        </a>
+                        <div class="dropdown-menu text-center" aria-labelledby="kaszinokDropdownFooter">
+                            <a class="dropdown-item" href="../web/velemenyek/wonaco.html">Wonaco</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/dollycasino.html">DollyCasino</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/staxino.html">Staxino</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Flappycasino</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Wintopia</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/betflare.html">Betflare</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/casinoinfinity.html">Casinoinfinity</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/ninlay.html">Ninlay</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/spinsala.html">Spinsala</a>
+                                    <a class="dropdown-item" href="../web/velemenyek/tsars.html">Tsars</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="index.html">Összes kaszinó</a>
                         </div>
-                        <p class="addiction-warning">A szerencsejáték addiktív lehet. Játssz felelősséggel!</p>
                     </div>
+                    <a class="d-block" href="bonus/bonus.html">Bónuszok</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Nyerőgépek</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Sportfogadás</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Ingyenes pörgetés</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Fizetési Módok</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Új Kaszinók</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Rólunk</a>
+                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Kapcsolat</a>
                 </div>
-                <div class="footer-description-follow">
-                    <p class="footer-description">
-                        Az online kaszinók izgalmas és szórakoztató élményt nyújtanak, de mindig játssz felelősségteljesen! A casinoarena.hu oldalon található linkek egy része partneri megállapodások része, ami azt jelenti, hogy jutalékot kapunk, ha regisztrálsz és befizetsz rajtuk keresztül. Ez nem befolyásolja a bónuszokat vagy promóciókat, amelyeket igénybe vehetsz.
-                    </p>
-                    <div class="footer-follow">
-                        <p id="footer_follow_p">Kövess minket:</p>
-                        <p id="footer_follow_i"><i class="fa fa-twitch" onclick="window.open('https://www.twitch.tv/zolyy__', '_blank')"></i></p>
+            
+            
+                <div class="footer-info">
+                    <div class="footer-images-help">
+                        <div class="footer-images">
+                            <img src="svg_img/icons8-18-plus-50.png" alt="18+" width="44px" height="44px" id="18plus"/>
+                            <img src="site_img/Gamble_Aware_White.png" alt="gambleAware" height="40px" width="120px" id="gambleAware"  onclick="window.open('https://www.gambleaware.org/', '_blank')" >
+                            <img src="site_img/care.png" alt="Gamcare" height="40px" width="100px" id="gamcare" onclick="window.open('https://www.gamcare.org.uk/', '_blank')" >
+                            <img src="site_img/dmca-badge-w250-2x1-03.png" alt="" width="90px" height="44px">
+                        </div>
+                        <p class="footer-help-text">Kérj szerencsejáték segítséget itt</p>
+                        <div class="footer-help-contact">
+                            <div class="footer-contact">
+                                <img src="svg_img/icons8-phone-50.png" alt="Telefon" width="20px" height="20px">
+                                <div class="contact-info">
+                                    <span>36 1 299 40</span>
+                                </div>
+                            </div>
+                            <p class="addiction-warning">A szerencsejáték addiktív lehet. Játssz felelősséggel!</p>
+                        </div>
                     </div>
+                    <div class="footer-description-follow">
+                        <p class="footer-description">
+                            Az online kaszinók izgalmas és szórakoztató élményt nyújtanak, de mindig játssz felelősségteljesen! A casinoarena.hu oldalon található linkek egy része partneri megállapodások része, ami azt jelenti, hogy jutalékot kapunk, ha regisztrálsz és befizetsz rajtuk keresztül. Ez nem befolyásolja a bónuszokat vagy promóciókat, amelyeket igénybe vehetsz.
+                        </p>
+                        <div class="footer-follow">
+                            <p id="footer_follow_p">Kövess minket:</p>
+                            <p id="footer_follow_i"><i class="fa fa-twitch" onclick="window.open('https://www.twitch.tv/zolyy__', '_blank')"></i></p>
+                        </div>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
+                        <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
+                        <span>Copyright © 2025 casinoarena.hu | Minden jog fenntartva</span>
+                    </div>
+                    
                 </div>
-                <div class="footer-legal">
-                    <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
-                    <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
-                    <span>Copyright © 2025 casinoarena.hu | Minden jog fenntartva</span>
-                </div>
-                
             </div>
-        </div>
-    </footer>
-    -->
-    
-    
-    <!-- Include JS and jQuery after the body content -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy6aH97Mfjm4f3gR8J5bAf82bBEnr+6f9eM7Pp4a" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" integrity="sha384-9/reft7IGCVVvxGoR1H2m5lZjYt6HD7LHRZfXHt4q85aJ8Btbj5XkXjs25g0xL9GT" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqKnBkm2k8QdFlbS5VfW53eUUYO6AOR2/3s/UzXlm8xkj" crossorigin="anonymous"></script>
-    
-    
+        </footer>
+        -->
+        
+        
+        <!-- Include JS and jQuery after the body content -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        
     <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Popper.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+        
+    <!-- Add jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    
-<!-- Add jQuery first -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add your custom JS file after jQuery -->
+    <script src="./js/cart.js"></script>
+    <script src="./js/whislist.js"></script>
 
-<!-- Add your custom JS file after jQuery -->
-<script src="./js/cart.js"></script>
-
-    
     <script src="./js/index.js"></script>
 </body>
 </html>
