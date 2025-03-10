@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 27. 12:59
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Létrehozás ideje: 2025. Már 10. 10:49
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,10 +37,17 @@ CREATE TABLE `books` (
   `description` text DEFAULT NULL,
   `pages` int(4) NOT NULL,
   `electronic` tinyint(1) NOT NULL DEFAULT 0,
-  `release_date` date NOT NULL,
-  `cover` varchar(16) NOT NULL,
-  `category_id` int(11) DEFAULT NULL
+  `release_date` int(11) NOT NULL,
+  `cover` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `books`
+--
+
+INSERT INTO `books` (`book_id`, `title`, `price`, `isbn`, `author`, `status`, `description`, `pages`, `electronic`, `release_date`, `cover`) VALUES
+(10, 'asd', 10.00, '12345678912345523', 'aswd', 0, 'asd', 100, 0, 0, 'bb06c683b9c1681e'),
+(11, '0', 0.00, '0', '0', 0, '0', 0, 0, 0, '5ba8569e773c75f7');
 
 -- --------------------------------------------------------
 
@@ -52,6 +59,15 @@ CREATE TABLE `book_category` (
   `book_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `book_category`
+--
+
+INSERT INTO `book_category` (`book_id`, `category_id`) VALUES
+(10, 2),
+(11, 2),
+(11, 1);
 
 -- --------------------------------------------------------
 
@@ -146,6 +162,11 @@ CREATE TABLE `users` (
 -- A tábla adatainak kiíratása `users`
 --
 
+INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `phone_number`, `reg_date`, `accept_newsletter`) VALUES
+(1, 'íyx', 'íyx', 'as11d@gmail.com', '$2y$10$2dXW/hE7sT/zRjvRfhA5muW6ru9LxJ2VS8AJmFKPhgMxRBFctpXVO', '+36(30)8468155', '2025-02-26 08:15:59', 1);
+
+-- --------------------------------------------------------
+
 --
 -- Tábla szerkezet ehhez a táblához `user_tokens`
 --
@@ -157,10 +178,6 @@ CREATE TABLE `user_tokens` (
   `expires_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-
-INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `phone_number`, `reg_date`, `accept_newsletter`) VALUES
-(1, 'íyx', 'íyx', 'as11d@gmail.com', '$2y$10$2dXW/hE7sT/zRjvRfhA5muW6ru9LxJ2VS8AJmFKPhgMxRBFctpXVO', '+36(30)8468155', '2025-02-26 08:15:59', 1);
-
 --
 -- Indexek a kiírt táblákhoz
 --
@@ -170,8 +187,7 @@ INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `ph
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
-  ADD UNIQUE KEY `isbn` (`isbn`),
-  ADD KEY `category_id` (`category_id`);
+  ADD UNIQUE KEY `isbn` (`isbn`);
 
 --
 -- A tábla indexei `category`
@@ -222,7 +238,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `category`
@@ -257,12 +273,6 @@ ALTER TABLE `users`
 --
 -- Megkötések a kiírt táblákhoz
 --
-
---
--- Megkötések a táblához `books`
---
-ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
 -- Megkötések a táblához `delivery`

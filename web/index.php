@@ -39,12 +39,6 @@ include '../src/check_token.php';
     <link href='https://fonts.googleapis.com/css?family=Oxanium' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"  crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
     <!-- Oldal címe -->
     <title>Book Shop</title>
@@ -285,26 +279,22 @@ include '../src/check_token.php';
         -->
         
         
-        <!-- Include JS and jQuery after the body content -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-        
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
-        
-    <!-- Add jQuery first -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!-- jQuery (csak egyszer) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Add your custom JS file after jQuery -->
-    <script src="./js/wishlish_manager.js"></script>
-    <script src="./js/cart.js"></script>
-    <script src="./js/whislist.js"></script>
+<!-- Popper.js (szükséges a Bootstrap 4 dropdown és navbar működéséhez) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <script src="./js/index.js"></script>
+<!-- Bootstrap JS (csak egyszer) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+<!-- Saját JavaScript fájlok -->
+<script src="./js/wishlish_manager.js"></script>
+<script src="./js/cart.js"></script>
+<script src="./js/whislist.js"></script>
+<script src="./js/index.js"></script>
+
+
+
 </body>
 </html>
