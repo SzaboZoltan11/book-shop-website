@@ -69,7 +69,7 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
             <select id="category" class="input-field">
                 <option value="">Válassz kategóriát</option>
             </select>
-            <input type=text name="categories" value="" id="categories_input_hidden">
+            <input type=hidden name="categories" value="" id="categories_input_hidden">
 
             <script>
                 {

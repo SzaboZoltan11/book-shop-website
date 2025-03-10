@@ -20,7 +20,7 @@ CREATE TABLE `books` (
   `description` TEXT,
   `pages` INT(4) NOT NULL,
   `electronic` TINYINT(1) NOT NULL DEFAULT 0,
-  `release_date` DATE NOT NULL,
+  `release_date` INT(4) NOT NULL,
   `cover` VARCHAR(16) NOT NULL,
   `category_id` INT(11),
   FOREIGN KEY (`category_id`) REFERENCES `category`(`category_id`)
