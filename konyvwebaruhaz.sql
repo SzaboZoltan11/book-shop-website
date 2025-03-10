@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 10. 17:01
+-- Létrehozás ideje: 2025. Már 10. 17:36
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -42,6 +42,14 @@ CREATE TABLE `books` (
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `books`
+--
+
+INSERT INTO `books` (`book_id`, `title`, `price`, `isbn`, `author`, `status`, `description`, `pages`, `electronic`, `release_date`, `cover`, `category_id`) VALUES
+(5, '1', 1.00, '1', '1', 1, '1', 1, 1, '0000-00-00', '4306556a865658fb', NULL),
+(6, '2', 2.00, '2', '2', 2, '2', 2, 2, '0000-00-00', '1942d96bfd83f9f8', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +60,15 @@ CREATE TABLE `book_category` (
   `book_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `book_category`
+--
+
+INSERT INTO `book_category` (`book_id`, `category_id`) VALUES
+(5, 1),
+(5, 2),
+(6, 3);
 
 -- --------------------------------------------------------
 
@@ -176,6 +193,13 @@ CREATE TABLE `wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
+-- A tábla adatainak kiíratása `wishlist`
+--
+
+INSERT INTO `wishlist` (`user_id`, `book_id`) VALUES
+(1, 5);
+
+--
 -- Indexek a kiírt táblákhoz
 --
 
@@ -185,13 +209,6 @@ CREATE TABLE `wishlist` (
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
   ADD UNIQUE KEY `isbn` (`isbn`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- A tábla indexei `book_category`
---
-ALTER TABLE `book_category`
-  ADD PRIMARY KEY (`book_id`,`category_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -257,13 +274,13 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT a táblához `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `delivery`
@@ -304,13 +321,6 @@ ALTER TABLE `user_tokens`
 --
 ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
-
---
--- Megkötések a táblához `book_category`
---
-ALTER TABLE `book_category`
-  ADD CONSTRAINT `book_category_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  ADD CONSTRAINT `book_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
 -- Megkötések a táblához `delivery`

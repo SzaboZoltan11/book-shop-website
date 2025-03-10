@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     die ('Method not allowed');
 }
 
-include '../connect.php';
+include '../../src/connect.php';
 
 $name = $_POST['name'];
 
@@ -17,7 +17,11 @@ if (!$conn->query($sql)) {
     die;
 }
 
-echo "Kategória hozzáadva";
-
 $conn->close();
 ?>
+
+<h1>
+    Kategória hozzáadva
+</h1>
+
+<a href="/bookshop/web/admin/admin.php">OK</a>

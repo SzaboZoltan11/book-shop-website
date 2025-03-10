@@ -59,7 +59,11 @@ foreach ($categories as $category) {
     }
 }
 
-echo "Feltöltöttél egy könyvet";
-
 $conn->close();
 ?>
+
+<h1>
+    Könyv hozzáadva
+</h1>
+
+<a href="/bookshop/web/admin/admin.php">OK</a>
