@@ -14,11 +14,9 @@ class UserRegistration {
         $this->errors[] = $message;
     }
 
-    
     private function validateName($name) {
         return preg_match('/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ]+$/u', $name);
     }
-
 
     private function formatPhoneNumber($phone_number) {
         $phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
@@ -45,7 +43,6 @@ class UserRegistration {
         return preg_match($pattern, $password);
     }
 
-
     private function isEmailRegistered($email) {
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
@@ -66,7 +63,6 @@ class UserRegistration {
         return $isRegistered;
     }
 
-
     public function validateRegistration($data) {
         try {
             $surname = trim($data['surname']);
@@ -76,6 +72,7 @@ class UserRegistration {
             $password = $data['password'];
             $password_confirm = $data['password_confirm'];
             $accept_newsletter = isset($data['accept']) ? 1 : 0;
+            $isadmin = isset($data['isadmin']) ? (int)$data['isadmin'] : 0;
 
             if (!$this->validateName($surname)) {
                 $this->addError("A vezetéknév csak betűket tartalmazhat.");
@@ -107,22 +104,21 @@ class UserRegistration {
                 $this->addError("Ez a telefonszám már regisztrálva van.");
             }
 
-            return [$this->errors, $surname, $firstname, $email, $password, $phone_number, $accept_newsletter];
+            return [$this->errors, $surname, $firstname, $email, $password, $phone_number, $accept_newsletter, $isadmin];
 
         } catch (Exception $e) {
             $this->addError("Hiba történt a regisztrációs folyamat során: " . $e->getMessage());
-            return [$this->errors, null, null, null, null, null, null];
+            return [$this->errors, null, null, null, null, null, null, null];
         }
     }
 
-    public function registerUser($surname, $firstname, $email, $password, $phone_number, $accept_newsletter) {
+    public function registerUser($surname, $firstname, $email, $password, $phone_number, $accept_newsletter, $isadmin) {
         try {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $this->conn->prepare("INSERT INTO users (surname, firstname, email, password, phone_number, accept_newsletter) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssi", $surname, $firstname, $email, $hashed_password, $phone_number, $accept_newsletter);
+            $stmt = $this->conn->prepare("INSERT INTO users (surname, firstname, email, password, phone_number, accept_newsletter, isadmin) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssis", $surname, $firstname, $email, $hashed_password, $phone_number, $accept_newsletter, $isadmin);
     
             if ($stmt->execute()) {
-                session_start(); 
                 $_SESSION['success'] = 'Sikeres regisztráció! Most már bejelentkezhetsz.';
                 header("Location: /bookshop/web/logination.php");
                 exit;
@@ -141,10 +137,10 @@ class UserRegistration {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $registration = new UserRegistration($conn);
 
-    list($errors, $surname, $firstname, $email, $password, $phone_number, $accept_newsletter) = $registration->validateRegistration($_POST);
+    list($errors, $surname, $firstname, $email, $password, $phone_number, $accept_newsletter, $isadmin) = $registration->validateRegistration($_POST);
 
     if (empty($errors)) {
-        $registration->registerUser($surname, $firstname, $email, $password, $phone_number, $accept_newsletter);
+        $registration->registerUser($surname, $firstname, $email, $password, $phone_number, $accept_newsletter, $isadmin);
     } else {
         $_SESSION['errors'] = $errors;
         header("Location: /bookshop/web/registration.php");

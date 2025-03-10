@@ -1,3 +1,13 @@
+<?php
+include '../../src/check_token.php';
+
+if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
+    header("Location: index.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

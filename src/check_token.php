@@ -49,7 +49,7 @@ class TokenAuthenticator {
     }
 
     private function setUserSession($userId) {
-        $sql = "SELECT email, firstname FROM users WHERE user_id = ?";
+        $sql = "SELECT email, firstname, isadmin FROM users WHERE user_id = ?";
         
         if ($stmt = $this->conn->prepare($sql)) {
             $stmt->bind_param("i", $userId);
@@ -59,6 +59,7 @@ class TokenAuthenticator {
             if ($user = $result->fetch_assoc()) {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['name'] = $user['firstname'];
+                $_SESSION['isadmin'] = $user['isadmin']; 
             }
             $stmt->close();
         }

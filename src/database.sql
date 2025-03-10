@@ -45,7 +45,8 @@ CREATE TABLE `users` (
   `password` VARCHAR(60) NOT NULL,
   `phone_number` VARCHAR(20) NOT NULL,
   `reg_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `accept_newsletter` TINYINT(1) NOT NULL DEFAULT 0
+  `accept_newsletter` TINYINT(1) NOT NULL DEFAULT 0,
+  `isadmin` TINYINT(1) NOT NULL DEFAULT 0
 );
 
 
@@ -81,7 +82,7 @@ CREATE TABLE `game`(
   `user_id` INT(11) NOT NULL,
   `lastplayed` DATETIME,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
-)
+);
 
 CREATE TABLE user_tokens (
     id INT AUTO_INCREMENT PRIMARY KEY,

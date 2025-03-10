@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 10. 10:49
+-- Létrehozás ideje: 2025. Már 10. 17:01
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -37,17 +37,10 @@ CREATE TABLE `books` (
   `description` text DEFAULT NULL,
   `pages` int(4) NOT NULL,
   `electronic` tinyint(1) NOT NULL DEFAULT 0,
-  `release_date` int(11) NOT NULL,
-  `cover` varchar(16) NOT NULL
+  `release_date` date NOT NULL,
+  `cover` varchar(16) NOT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `books`
---
-
-INSERT INTO `books` (`book_id`, `title`, `price`, `isbn`, `author`, `status`, `description`, `pages`, `electronic`, `release_date`, `cover`) VALUES
-(10, 'asd', 10.00, '12345678912345523', 'aswd', 0, 'asd', 100, 0, 0, 'bb06c683b9c1681e'),
-(11, '0', 0.00, '0', '0', 0, '0', 0, 0, 0, '5ba8569e773c75f7');
 
 -- --------------------------------------------------------
 
@@ -60,15 +53,6 @@ CREATE TABLE `book_category` (
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
---
--- A tábla adatainak kiíratása `book_category`
---
-
-INSERT INTO `book_category` (`book_id`, `category_id`) VALUES
-(10, 2),
-(11, 2),
-(11, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -79,14 +63,6 @@ CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `category`
---
-
-INSERT INTO `category` (`category_id`, `name`) VALUES
-(1, 'Szépirodalom'),
-(2, 'Fantasy');
 
 -- --------------------------------------------------------
 
@@ -155,15 +131,17 @@ CREATE TABLE `users` (
   `password` varchar(60) NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `accept_newsletter` tinyint(1) NOT NULL DEFAULT 0
+  `accept_newsletter` tinyint(1) NOT NULL DEFAULT 0,
+  `isadmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `users`
 --
 
-INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `phone_number`, `reg_date`, `accept_newsletter`) VALUES
-(1, 'íyx', 'íyx', 'as11d@gmail.com', '$2y$10$2dXW/hE7sT/zRjvRfhA5muW6ru9LxJ2VS8AJmFKPhgMxRBFctpXVO', '+36(30)8468155', '2025-02-26 08:15:59', 1);
+INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `phone_number`, `reg_date`, `accept_newsletter`, `isadmin`) VALUES
+(1, 'Szabó', 'Zoltán', 'szabozola91@gmail.com', '$2y$10$725zyY7F0dsalhMADjlL0uiMlEu92bcLLk0FVw8Pft2P6q0VWpzky', '+36(30)8468143', '2025-03-10 16:46:18', 1, 1),
+(2, 'Bot', 'Mester', 'asd@gmail.com', '$2y$10$RLgQddMK1ZUAu2ZHE8O9jeVziUIWzSk5o0sR2PxKuKaL/jJvc3J/W', '+36(30)8774337', '2025-03-10 16:59:57', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -179,6 +157,25 @@ CREATE TABLE `user_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
+-- A tábla adatainak kiíratása `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `expires_at`) VALUES
+(1, 1, 'fbbb2f8fe9fc16721d9ac96e7a6532ce899c36bf4bd3e2c77380156af22dea17', '2025-04-09 16:52:17'),
+(2, 2, '4baf60d75aa2d3180a031ee4c0b124a64773a8597fc3eec9908eeef39ccc67be', '2025-04-09 17:00:07');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `user_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
 -- Indexek a kiírt táblákhoz
 --
 
@@ -187,7 +184,15 @@ CREATE TABLE `user_tokens` (
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
-  ADD UNIQUE KEY `isbn` (`isbn`);
+  ADD UNIQUE KEY `isbn` (`isbn`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- A tábla indexei `book_category`
+--
+ALTER TABLE `book_category`
+  ADD PRIMARY KEY (`book_id`,`category_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- A tábla indexei `category`
@@ -231,6 +236,20 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- A tábla indexei `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- A tábla indexei `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -238,13 +257,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `delivery`
@@ -268,11 +287,30 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT a táblához `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `books`
+--
+ALTER TABLE `books`
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
+
+--
+-- Megkötések a táblához `book_category`
+--
+ALTER TABLE `book_category`
+  ADD CONSTRAINT `book_category_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
+  ADD CONSTRAINT `book_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
 -- Megkötések a táblához `delivery`
@@ -297,6 +335,19 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Megkötések a táblához `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Megkötések a táblához `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

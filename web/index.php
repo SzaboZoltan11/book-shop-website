@@ -205,6 +205,11 @@ include '../src/check_token.php';
 
     <a href="game://Game" target="_blank">Cuccos</a>
 
+
+    <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
+        <a href="admin/admin.php">Admin page</a>
+    <?php endif; ?>
+
     <!--
         <footer>
             <div class="footer-links">
