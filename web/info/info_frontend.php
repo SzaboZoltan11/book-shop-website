@@ -1,6 +1,6 @@
 <?php
 
-include '../src/check_token.php';
+include '../../src/check_token.php';
 ?>
 
 
@@ -35,7 +35,7 @@ include '../src/check_token.php';
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- Additional CSS -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link href='https://fonts.googleapis.com/css?family=Oxanium' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,35 +44,7 @@ include '../src/check_token.php';
     <title>Book Shop</title>
     
 
-    
-    <!-- Open Graph a közösségi médiához -->
-    <meta property="og:locale" content="hu">
-    <meta property="og:site_name" content="Bookshop">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Best Online Bookstore for Book Lovers in 2025">
-    <meta property="og:description" content="Explore the best online bookstore for a wide selection of books, from bestsellers to rare editions. Stay updated with the latest book releases, offers, and recommendations. Join the community of readers today!">
-    <meta property="og:image" content="./img_head/bookstore_logo.png">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:image:width" content="335">
-    <meta property="og:image:height" content="281">
-    <meta property="og:site_name" content="">
-    <meta property="article:publisher" content="">
-
-
-
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta property="og:title" content="Best Online Bookstore for Book Lovers in 2025">
-    <meta property="og:description" content="Explore the best online bookstore for a wide selection of books, from bestsellers to rare editions. Stay updated with the latest book releases, offers, and recommendations. Join the community of readers today!">
-    <meta name="twitter:image" content="">
-    <meta name="twitter:creator" content="">
-    <meta name="twitter:domain" content="">
-    <meta name="twitter:label1" content="Bookshop Project">
-    <meta name="twitter:data1" content="The witcher">
-
-
+ 
     <!-- For better loading time -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,8 +60,8 @@ include '../src/check_token.php';
     <nav class="navbar navbar-light">
         <div class="container-xl d-flex justify-content-between align-items-center">
             <!-- Logo -->
-            <a class="navbar-brand" href="index.php">
-                <img src="img/logo.png" alt="Logo" height="40px">
+            <a class="navbar-brand" href="../index.php">
+                <img src="../img/logo.png" alt="Logo" height="40px">
             </a>
 
             <!-- Search Bar -->
@@ -136,10 +108,10 @@ include '../src/check_token.php';
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a href="game://Game" target="_blank" class="dropdown-item">Játék</a>
                     <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
-                        <a href="admin/admin.php" class="dropdown-item">Admin page</a>
+                        <a href="../admin/admin.php" class="dropdown-item">Admin page</a>
                     <?php endif; ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
+                    <a class="dropdown-item text-danger" href="../../php/logout.php">Kijelentkezés</a>
                 </div>
             </div>
             <?php else: ?>
@@ -204,7 +176,25 @@ include '../src/check_token.php';
         </nav>
     </header>
 
-    <main class="container mt-5"></main>
+    <div id="book-details">
+        <img id="book-cover" alt="Book cover" class="book-image">
+        <table>
+            <tr>
+                <th>Cím:</th>
+                <td><div id="book-title"></div></td>
+            </tr>
+
+            <tr>
+                <th>Ár:</th>
+                <td><div id="book-price"></div></td>
+            </tr>
+
+            <tr>
+                <th>Leírás:</th>
+                <td><div id="book-description"></div></td>
+            </tr>
+        </table>
+    </div>
 
    
 
@@ -294,13 +284,11 @@ include '../src/check_token.php';
 <!-- Bootstrap JS (csak egyszer) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
-<!-- Saját JavaScript fájlok -->
-<script src="./js/wishlish_manager.js"></script>
-<script src="./js/cart.js"></script>
-<script src="./js/whislist.js"></script>
-<script src="./js/index.js"></script>
+
+<script src="../js/info_ajax.js"></script>
 
 
 
 </body>
 </html>
+

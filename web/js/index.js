@@ -2,17 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /** @type {HTMLElement} */ const searchInput = document.querySelector(".search-bar input");
     /** @type {HTMLElement} */ const searchBar = document.querySelector(".search-bar");
     /** @type {HTMLElement} */ const logo = document.querySelector(".navbar-brand");
-    // ez a 4 element nincs sehol a htmlben
-    // const wishlist = document.querySelector("a[href='wishlist.html']");
-    // const cart = document.querySelector("a[href='cart.html']");
-    // const login = document.querySelector("a[href='logination.php']");
-    // const register = document.querySelector("a[href='registration.php']");
     /** @type {HTMLElement} */ const logout = document.querySelector(".dropdown-item.text-danger");
     const mediaQuery = window.matchMedia("(max-width: 1200px)");
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-    // URL tartalmazza a `sessionEnded=true` paramétert, töröljük a kosarat
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("sessionEnded") && urlParams.get("sessionEnded") === "true") {
         localStorage.removeItem("cartItems");
@@ -31,18 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mediaQuery.matches) {
             if (event.type === "focus") {
                 logo.style.display = "none";
-                // wishlist.style.display = "none";
-                // cart.style.display = "none";
-                // login.style.display = "none";
-                // register.style.display = "none";
                 searchInput.classList.add("expanded");
                 searchBar.style.width = "100%";
             } else if (event.type === "blur") {
                 logo.style.display = "";
-                // wishlist.style.display = "";
-                // cart.style.display = "";
-                // login.style.display = "";
-                // register.style.display = "";
                 searchInput.classList.remove("expanded");
                 searchBar.style.width = "";
             }
@@ -56,30 +42,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetch('/bookshop/web/api/categories.php')
         .then(v => v.json())
-        .then(v => {
+        .then(categories => {
             const main = document.getElementsByTagName('main').item(0);
-            for (const item of v) {
+            for (const category of categories) {
                 let container = document.createElement('div');
                 container.className = 'slider-container';
                 container.innerHTML = `
-                    <h2>${item.name}</h2>
+                    <h2>${category.name}</h2>
                     <button class="prev-btn">&#10094;</button>
-                    <div class="slider" id="slider-${item.category_id}"></div>
+                    <div class="slider" id="slider-${category.category_id}"></div>
                     <button class="next-btn">&#10095;</button>
                 `;
-                container = main.appendChild(container);
+                main.appendChild(container);
 
-                const slider = document.getElementById(`slider-${item.category_id}`);
+                const slider = document.getElementById(`slider-${category.category_id}`);
                 const prevBtn = container.querySelector(".prev-btn");
                 const nextBtn = container.querySelector(".next-btn");
 
                 const _books = [];
 
-                fetch(`/bookshop/web/api/books.php?category=${item.category_id}`)
+                fetch(`/bookshop/web/api/books.php?category=${category.category_id}`)
                     .then(res => res.json())
                     .then(books => {
                         if (!books || books.length === 0) {
-                            console.error(`Nincsenek könyvek a ${item.category_id} kategóriában.`);
+                            console.error(`Nincsenek könyvek a ${category.category_id} kategóriában.`);
                             return;
                         }
 
@@ -92,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             card.style.overflow = "hidden";
 
                             card.innerHTML = `
-                                <span class="wishlist-icon">&#9825;</span> <!-- Szív ikon -->
-                                <img src="/bookshop/web/database/covers/${book.cover}.png" alt="${book.title}">
+                                <span class="wishlist-icon">&#9825;</span>
+                                <img src="/bookshop/web/database/covers/${book.cover}.png" alt="${book.title}" class="book-image" data-id="${book.book_id}">
                                 <div class="card-info">
                                     <p class="title">${book.title}</p>
                                     <p class="price">${Math.floor(book.price)} Ft</p>
@@ -107,17 +93,63 @@ document.addEventListener("DOMContentLoaded", function () {
                                 addToCart(book.cover, book.title, book.price);
                             });
 
-                            // Wishlist ikon eseménykezelő
                             card.querySelector(".wishlist-icon").addEventListener("click", function () {
                                 addToWishlist(book.book_id);
                             });
+
+                            const bookImage = card.querySelector('.book-image');
+                            bookImage.addEventListener('click', function () {
+                                const bookId = bookImage.dataset.id;
+
+                                window.location.href = `/bookshop/web/info/info_frontend.php?bookId=${bookId}`;
+                            });
+                            
+                        });
+
+                        let currentPosition = 0;
+                        const cardWidth = slider.querySelector('.card') ? slider.querySelector('.card').offsetWidth : 0;
+                        const gap = 10;
+
+                        prevBtn.addEventListener('click', () => {
+                            if (!mediaQuery.matches && currentPosition > 0) {
+                                currentPosition -= (cardWidth + gap);
+                                slider.style.transform = `translateX(-${currentPosition}px)`;
+                            }
+                        });
+
+                        nextBtn.addEventListener('click', () => {
+                            if (!mediaQuery.matches && currentPosition < slider.scrollWidth - slider.offsetWidth) {
+                                currentPosition += (cardWidth + gap);
+                                slider.style.transform = `translateX(-${currentPosition}px)`;
+                            }
+                        });
+
+                        if (mediaQuery.matches) {
+                            slider.style.overflowX = "auto"; 
+                            prevBtn.style.display = "none";
+                            nextBtn.style.display = "none";
+                        }
+
+                        window.addEventListener('resize', () => {
+                            if (mediaQuery.matches) {
+                                slider.style.overflowX = "auto";
+                                prevBtn.style.display = "none";
+                                nextBtn.style.display = "none";
+                            } else {
+                                slider.style.overflowX = "hidden";
+                                prevBtn.style.display = "block";
+                                nextBtn.style.display = "block";
+                                slider.style.transform = "translateX(0px)"; 
+                                currentPosition = 0;
+                            }
                         });
                     })
                     .catch(error => {
                         console.error("Hiba a könyvek betöltésekor: ", error);
                     });
             }
-        });
+        })
+        .catch(error => console.error('Hiba a kategóriák betöltésekor:', error));
 
     function addToCart(cover, title, price) {
         cartItems.push({ cover, title, price });
@@ -182,18 +214,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCartModal();
 
-    // Wishlist kezelés
     function addToWishlist(bookId) {
-        window.WishlistManager.add(bookId)
-        // localStorage.setItem("wishlist", JSON.stringify(wishlist));
-        // updateWishlistModal(); // Hívjuk itt is a frissítést, hogy a modal látható legyen
-        // wishlistModal.style.display = "block"; // Megnyitja a modált
+        window.WishlistManager.add(bookId);
     }
-    
 
-
-
-    // Dekoratív dobozok (animált)
     {
         const boxes = []
         for (let i = 0; i < 10; i++) {
