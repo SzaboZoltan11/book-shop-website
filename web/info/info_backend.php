@@ -17,7 +17,12 @@ if (isset($_GET['bookId'])) {
             'cover' => $book['cover'],
             'title' => $book['title'],
             'price' => $book['price'],
-            'description' => $book['description']
+            'author' => $book['author'],
+            'description' => $book['description'],
+            'author' => $book['author'],
+            'pages' => $book['pages'],
+            'release_date' => $book['release_date'],
+            'isbn' => $book['isbn']
         ]);
     } else {
         echo json_encode(['error' => 'A könyv nem található.']);

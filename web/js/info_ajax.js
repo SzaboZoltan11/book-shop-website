@@ -7,10 +7,17 @@ function loadBook(bookId) {
             if (response.error) {
                 document.getElementById('book-details').innerHTML = response.error;
             } else {
-                document.getElementById('book-title').innerHTML = response.title;
+                
                 var coverPath = '/bookshop/web/database/covers/' + response.cover + '.png';
                 document.getElementById('book-cover').src = coverPath;
+                document.getElementById('book-title').innerHTML = response.title;
+                document.getElementById('book-price').innerHTML = response.price;
                 document.getElementById('book-description').innerHTML = response.description;
+                document.getElementById('book-author').innerHTML = response.author;
+                document.getElementById('book-pages').innerHTML = response.pages;
+                document.getElementById('book-release_date').innerHTML = response.release_date;
+                document.getElementById('book-isbn').innerHTML = response.isbn;
+               
             }
         } else {
             document.getElementById('book-details').innerHTML = "Hiba történt a könyv adatainak betöltésekor.";

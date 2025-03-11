@@ -36,6 +36,7 @@ include '../../src/check_token.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- Additional CSS -->
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/info.css">
     <link href='https://fonts.googleapis.com/css?family=Oxanium' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -177,24 +178,44 @@ include '../../src/check_token.php';
     </header>
 
     <div id="book-details">
-        <img id="book-cover" alt="Book cover" class="book-image">
-        <table>
-            <tr>
-                <th>Cím:</th>
-                <td><div id="book-title"></div></td>
-            </tr>
+    <img id="book-cover" alt="Book cover" class="info-book-image">
+    <table class="info-table">
+        <tr>
+            <th class="info-table-header">Cím:</th>
+            <td><div id="book-title" class="info-book-title"></div></td>
+        </tr>
 
-            <tr>
-                <th>Ár:</th>
-                <td><div id="book-price"></div></td>
-            </tr>
+        <tr>
+            <th class="info-table-header">Ár:</th>
+            <td><div id="book-price" class="info-book-price"></div></td>
+        </tr>
 
-            <tr>
-                <th>Leírás:</th>
-                <td><div id="book-description"></div></td>
-            </tr>
-        </table>
-    </div>
+        <tr>
+            <th class="info-table-header">Leírás:</th>
+            <td><div id="book-description" class="info-book-description"></div></td>
+        </tr>
+
+        <tr>
+            <th class="info-table-header">Szerző:</th>
+            <td><div id="book-author" class="info-book-author"></div></td>
+        </tr>
+
+        <tr>
+            <th class="info-table-header">Oldal szám:</th>
+            <td><div id="book-pages" class="info-book-pages"></div></td>
+        </tr>
+        
+        <tr>
+            <th class="info-table-header">Kiadás éve:</th>
+            <td><div id="book-release_date" class="info-book-release_date"></div></td>
+        </tr>
+
+        <tr>
+            <th class="info-table-header">ISBN:</th>
+            <td><div id="book-isbn" class="info-book-isbn"></div></td>
+        </tr>
+    </table>
+</div>
 
    
 

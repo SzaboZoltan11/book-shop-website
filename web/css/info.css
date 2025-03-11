@@ -1,0 +1,57 @@
+#book-details {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#book-cover {
+    width: 100%;
+    max-width: 150px;
+    display: block;
+    margin: 10px auto;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.info-table-header {
+    text-align: left;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.info-table td {
+    border-bottom: 1px solid #ddd;
+}
+
+.info-table-data {
+    padding: 8px;
+}
+
+
+
+.info-book-image {
+    width: 100%;
+    max-width: 150px;
+    display: block;
+    margin: 10px auto;
+}
+
+.info-book-title,
+.info-book-price,
+.info-book-description,
+.info-book-author,
+.info-book-pages,
+.info-book-release_date,
+.info-book-isbn {
+    padding: 8px;
+}
+
+.info-table-header {
+    font-weight: bold;
+    padding: 8px;
+}
