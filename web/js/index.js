@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let container = document.createElement('div');
                 container.className = 'slider-container';
                 container.innerHTML = `
-                    <h2>${category.name}</h2>
+                    <h2 class="h2-title">${category.name}</h2>
                     <button class="prev-btn">&#10094;</button>
                     <div class="slider" id="slider-${category.category_id}"></div>
                     <button class="next-btn">&#10095;</button>
@@ -107,20 +107,47 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
 
                         let currentPosition = 0;
-                        const cardWidth = slider.querySelector('.card') ? slider.querySelector('.card').offsetWidth : 0;
-                        const gap = 10;
+
+                        /**
+                         * @param {HTMLElement} scroller
+                         * @param {NodeListOf<HTMLElement>} cards
+                         */
+                        function cardScrollerStepLeft(scroller, cards) {
+                            for (let i = cards.length - 2; i >= 0; i--) {
+                                const card = cards.item(i)
+                                if (card.offsetLeft <= currentPosition - scroller.clientWidth) {
+                                    currentPosition = cards.item(i + 1).offsetLeft
+                                    scroller.style.transform = `translateX(-${currentPosition}px)`
+                                    return
+                                }
+                            }
+                            scroller.style.transform = `translateX(0px)`
+                        }
+
+                        /**
+                         * @param {HTMLElement} scroller
+                         * @param {NodeListOf<HTMLElement>} cards
+                         */
+                        function cardScrollerStepRight(scroller, cards) {
+                            for (let i = 1; i < cards.length; i++) {
+                                const card = cards.item(i)
+                                if (card.offsetLeft >= currentPosition + scroller.clientWidth) {
+                                    currentPosition = cards.item(i - 1).offsetLeft
+                                    scroller.style.transform = `translateX(-${currentPosition}px)`
+                                    return
+                                }
+                            }
+                        }
 
                         prevBtn.addEventListener('click', () => {
                             if (!mediaQuery.matches && currentPosition > 0) {
-                                currentPosition -= (cardWidth + gap);
-                                slider.style.transform = `translateX(-${currentPosition}px)`;
+                                cardScrollerStepLeft(slider, slider.querySelectorAll('.card'))
                             }
                         });
 
                         nextBtn.addEventListener('click', () => {
                             if (!mediaQuery.matches && currentPosition < slider.scrollWidth - slider.offsetWidth) {
-                                currentPosition += (cardWidth + gap);
-                                slider.style.transform = `translateX(-${currentPosition}px)`;
+                                cardScrollerStepRight(slider, slider.querySelectorAll('.card'))
                             }
                         });
 
@@ -136,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 prevBtn.style.display = "none";
                                 nextBtn.style.display = "none";
                             } else {
-                                slider.style.overflowX = "hidden";
+                                slider.style.overflowX = null;
                                 prevBtn.style.display = "block";
                                 nextBtn.style.display = "block";
                                 slider.style.transform = "translateX(0px)"; 

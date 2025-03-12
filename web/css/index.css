@@ -1009,3 +1009,9 @@ button:focus {
     text-decoration: none;
     color: #20c997;
 }
+
+h2.h2-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: default;
+}

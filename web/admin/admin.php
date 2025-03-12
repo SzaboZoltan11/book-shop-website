@@ -40,8 +40,12 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
 
         <div class="input-group">
             <label for="status">Státusz</label>
-            <input type="text" name="status" id="status" class="input-field" required>
+            <select name="status" id="status" class="input-field" required>
+                <option value="1">Elérhető</option>
+                <option value="0">Nem elérhető</option>
+            </select>
         </div>
+
 
         <div class="input-group">
             <label for="description">Leírás</label>
@@ -55,7 +59,10 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
 
         <div class="input-group">
             <label for="electronic">Elektronikus-e</label>
-            <input type="text" name="electronic" id="electronic" class="input-field" required>
+            <select name="electronic" id="electronic" class="input-field" required>
+                <option value="0">Nem</option>
+                <option value="1">Igen</option>
+            </select>
         </div>
 
         <div class="input-group">
