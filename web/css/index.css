@@ -189,7 +189,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 footer {
-    background-color: #36435c;
+    background-color: #3c1f7d;
     padding: 20px 0;
 }
 
@@ -218,7 +218,7 @@ footer {
     gap: 15px;
     margin-top: 20px;
     padding-bottom: 32px;
-    border-bottom: 2px solid #4c5d73;
+    border-bottom: 2px solid #20c997;
 }
 
 .footer-links a {
@@ -303,8 +303,8 @@ footer {
     text-align: left;
     margin-top: 20px;
     width: 100%;
-    border-top: 2px solid #4c5d73;
-    border-bottom: 2px solid #4c5d73;
+    border-top: 2px solid #20c997;
+    border-bottom: 2px solid #20c997;
     padding-top: 46px;
     padding-bottom: 35px;
 }
@@ -763,7 +763,7 @@ a {
 }
 
 .next-btn {
-    right: 10px;
+    right: 20px;
 }
 
 button:focus {
@@ -1014,4 +1014,9 @@ h2.h2-title {
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: default;
+}
+
+
+footer {
+    margin-top: 100px !important;
 }

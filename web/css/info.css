@@ -1,44 +1,79 @@
+/* Import Lato font */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 #book-details {
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', Arial, sans-serif; /* Updated font */
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    cursor: default;
+    margin-top: 40px; /* Add space at the top */
+    margin-bottom: 40px; /* Add space at the bottom */
 }
 
 #book-cover {
     width: 100%;
-    max-width: 150px;
+    max-width: 250px;
     display: block;
     margin: 10px auto;
+    border-radius: 12px; /* Rounded corners for the book cover image */
+    border: 2px solid #fff; /* White border around the image */
 }
 
 .info-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; /* Rounded corners for the table */
+    overflow: hidden; 
 }
 
-.info-table-header {
-    text-align: left;
-    font-weight: bold;
-    padding: 8px;
+.info-table th, .info-table td {
+    padding: 16px; 
+    text-align: left; 
+    font-size: 16px; 
+}
+
+.info-table th {
+    background-color: #2a1463;
+    color: #fff; 
+    font-weight: 700; 
+    border-bottom: 2px solid #ddd; 
+    /* Keep the header corners sharp */
 }
 
 .info-table td {
-    border-bottom: 1px solid #ddd;
+    background-color: #3c1f7d; 
+    color: #fff; 
+    border-bottom: 2px solid #eee; 
 }
 
-.info-table-data {
-    padding: 8px;
+.info-table td:hover {
+    background-color: #3c13a1; 
 }
 
+.info-table tr:hover {
+    background-color: #f1f1f1; 
+}
 
+.info-table td:first-child {
+    font-weight: 700; 
+}
+
+.info-table-header {
+    font-weight: bold;
+    padding: 12px;
+}
 
 .info-book-image {
     width: 100%;
-    max-width: 150px;
+    max-width: 250px;
     display: block;
     margin: 10px auto;
+    border-radius: 12px; /* Rounded corners for the book image */
+    border: 2px solid #fff; /* White border around the image */
 }
 
 .info-book-title,
@@ -48,10 +83,10 @@
 .info-book-pages,
 .info-book-release_date,
 .info-book-isbn {
-    padding: 8px;
+    padding: 12px;
 }
 
 .info-table-header {
     font-weight: bold;
-    padding: 8px;
+    padding: 12px;
 }
