@@ -965,16 +965,23 @@ button:focus {
 .cart-item-info {
     display: flex;
     flex-direction: column;
+    
 }
 
-.cart-item-title {
+.cart-item-title{
     font-weight: bold;
     font-size: 1.2em;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal;
+    cursor: default;
 }
+
 
 .cart-item-price {
     color: #f00;
     font-size: 1em;
+    cursor: default;
 }
 
 
@@ -986,7 +993,7 @@ button:focus {
     cursor: pointer;
     position: absolute;
     right: 10px; 
-    top: 50%; 
+    top: 70%; 
     transform: translateY(-50%); 
 }
 
@@ -1014,4 +1021,69 @@ h2.h2-title {
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: default;
+}
+
+h2 {
+    cursor: default;
+
+}
+
+
+
+.wishlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+
+.wishlist-item-image {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+.wishlist-item-info {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.wishlist-item-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #fff;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal;
+    cursor: default;
+}
+
+.wishlist-item-price {
+    font-size: 1rem;
+    color: red;
+}
+
+/* Remove Button Styling */
+.remove-wishlist-btn {
+    padding: 8px 12px;
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+
+}
+
+.remove-wishlist-btn:hover {
+    background-color: #d9363e;
 }

@@ -177,6 +177,10 @@ include '../../src/check_token.php';
         </nav>
     </header>
 
+    <div class="back-to-main">
+        <a href="../index.php">Vissza a főoldalra!</a>
+    </div>
+
     <div id="book-details">
     <img id="book-cover" alt="Book cover" class="info-book-image">
     <table class="info-table">
