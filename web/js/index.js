@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img src="/bookshop/web/database/covers/${item.cover}.png" alt="${item.title}" class="cart-item-image">
                     <div class="cart-item-info">
                         <p class="cart-item-title">${item.title}</p>
-                        <p class="cart-item-price">${item.price} Ft</p>
+                        <p class="cart-item-price">${Math.floor(item.price)} Ft</p>
                     </div>
                     <button class="remove-btn" data-index="${index}">Törlés</button>
                 `;
@@ -245,6 +245,16 @@ document.addEventListener("DOMContentLoaded", function () {
         window.WishlistManager.add(bookId);
     }
 
+<<<<<<< HEAD
+=======
+    
+
+    {
+        const boxes = []
+        for (let i = 0; i < 10; i++) {
+            const x = -170 + Math.random() * 300
+            const y = -170 + 155 + Math.random() * 300
+>>>>>>> c5f823c0aea1641ad1f87b5071ef07b479052c81
 
 
   

@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="/bookshop/web/database/covers/${details.cover}.png" alt="${details.title}" class="wishlist-item-image">
                         <div class="wishlist-item-info">
                             <p class="wishlist-item-title">${details.title}</p>
-                            <p class="wishlist-item-price">${details.price} Ft</p>
+                            <p class="wishlist-item-price">${Math.floor(details.price)} Ft</p>
+
                         </div>
                         <button class="remove-wishlist-btn">Törlés</button>
                     `;
