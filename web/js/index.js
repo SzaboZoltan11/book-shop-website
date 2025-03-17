@@ -245,5 +245,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.WishlistManager.add(bookId);
     }
 
+  
 
 });
