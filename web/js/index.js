@@ -245,17 +245,5 @@ document.addEventListener("DOMContentLoaded", function () {
         window.WishlistManager.add(bookId);
     }
 
-<<<<<<< HEAD
-=======
-    
 
-    {
-        const boxes = []
-        for (let i = 0; i < 10; i++) {
-            const x = -170 + Math.random() * 300
-            const y = -170 + 155 + Math.random() * 300
->>>>>>> c5f823c0aea1641ad1f87b5071ef07b479052c81
-
-
-  
 });
