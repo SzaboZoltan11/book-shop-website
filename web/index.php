@@ -211,50 +211,47 @@ include '../src/check_token.php';
 
   
 
-        <footer>
-            <div class="footer-links">
-              
-            
-            
-                <div class="footer-info">
-                    <div class="footer-images-help">
-                        <div class="footer-images">
-                            <img src="" alt="" width="44px" height="44px"/>
-                            <img src="" alt="" height="40px" width="120px">
-                            <img src="" height="40px" width="100px">
-                            <img src="" alt="" width="90px" height="44px">
-                        </div>
-                        <p class="footer-help-text">Vásárolj könyveket nálunk!</p>
-                        <div class="footer-help-contact">
-                            <div class="footer-contact">
-                                <img src="svg_img/icons8-phone-50.png" alt="Telefon" width="20px" height="20px">
-                                <div class="contact-info">
-                                    <span>36 2 129 66</span>
-                                </div>
-                            </div>
-                            <p class="addiction-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
+    <footer>
+    <div class="footer-links">
+        <div class="footer-info">
+            <div class="footer-images-help">
+                <div class="footer-images">
+                    <i class="fa fa-book" style="font-size: 44px;"></i> <!-- Könyv ikon -->
+                    <i class="fa fa-truck" style="font-size: 40px;"></i> <!-- Szállítás ikon -->
+                    <i class="fa fa-credit-card" style="font-size: 40px;"></i> <!-- Fizetés ikon -->
+                    <i class="fa fa-lock" style="font-size: 44px;"></i> <!-- Biztonság ikon -->
+                </div>
+                <p class="footer-help-text">Vásárolj könyveket nálunk!</p>
+                <div class="footer-help-contact">
+                    <div class="footer-contact">
+                        <i class="fa fa-phone" style="font-size: 20px;"></i> <!-- Telefon ikon -->
+                        <div class="contact-info">
+                            <span>36 2 129 66</span>
                         </div>
                     </div>
-                    <div class="footer-description-follow">
-                        <p class="footer-description">
-                            Merülj el a könyvek lenyűgöző világában, és találd meg a tökéletes olvasmányt a Bookshop.hu kínálatában! Akár a legújabb bestsellerekre, akár az örök klasszikusokra vágysz, nálunk mindent megtalálsz, hogy felfedezd a tudás, kaland és fantázia határtalan világát. Vásárolj most, és élvezd a könyvek varázslatos világát, ahol minden egyes oldal új élményt kínál!
-                        </p>
-                        <div class="footer-follow">
-                            <p id="footer_follow_p">Kövess minket:</p>
-                            <p id="footer_follow_i">
-                                <i class="fa fa-facebook"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="footer-legal">
-                        <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
-                        <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
-                        <span>Copyright © 2025 bookshop.hu | Minden jog fenntartva</span>
-                    </div>
-                    
+                    <p class="addiction-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
                 </div>
             </div>
-        </footer>
+            <div class="footer-description-follow">
+                <p class="footer-description">
+                    Merülj el a könyvek lenyűgöző világában, és találd meg a tökéletes olvasmányt a Bookshop.hu kínálatában! Akár a legújabb bestsellerekre, akár az örök klasszikusokra vágysz, nálunk mindent megtalálsz, hogy felfedezd a tudás, kaland és fantázia határtalan világát. Vásárolj most, és élvezd a könyvek varázslatos világát, ahol minden egyes oldal új élményt kínál!
+                </p>
+                <div class="footer-follow">
+                    <p id="footer_follow_p">Kövess minket:</p>
+                    <p id="footer_follow_i">
+                        <i class="fa fa-facebook"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
+                <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
+                <span>Copyright © 2025 bookshop.hu | Minden jog fenntartva</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
     
     <div id="decoration" style="
         position: fixed;

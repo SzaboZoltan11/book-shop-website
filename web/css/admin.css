@@ -57,10 +57,11 @@ select.input-field {
     display: block;
     width: 100%;
     text-align: center;
+    background-color: #3c1f7d ;
 }
 
 .btn:hover {
-    background: #3c1f7d;
+    background-color: #41248f !important;
 }
 
 #category-container {
