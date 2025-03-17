@@ -256,23 +256,31 @@ include '../src/check_token.php';
             </div>
         </footer>
     
-        
-        
- <!-- jQuery (csak egyszer) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div id="decoration" style="
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+        "></div>
+            
+    <!-- jQuery (csak egyszer) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Popper.js (szükséges a Bootstrap 4 dropdown és navbar működéséhez) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Popper.js (szükséges a Bootstrap 4 dropdown és navbar működéséhez) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-<!-- Bootstrap JS (csak egyszer) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS (csak egyszer) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
-<!-- Saját JavaScript fájlok -->
-<script src="./js/wishlish_manager.js"></script>
-<script src="./js/cart.js"></script>
-<script src="./js/whislist.js"></script>
-<script src="./js/index.js"></script>
-<script src="./js/decorate.js"></script>
+    <!-- Saját JavaScript fájlok -->
+    <script src="./js/wishlish_manager.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/whislist.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/decorate.js"></script>
 
 
 
