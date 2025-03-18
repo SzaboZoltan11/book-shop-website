@@ -2,8 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
     /** @type {HTMLElement} */ const searchInput = document.querySelector(".search-bar input");
     /** @type {HTMLElement} */ const searchBar = document.querySelector(".search-bar");
     /** @type {HTMLElement} */ const logo = document.querySelector(".navbar-brand");
+    /** @type {HTMLElement} */ const whislist = document.querySelector("#wishlist-icon");
+    /** @type {HTMLElement} */ const cart = document.querySelector("#cart-icon");
+    /** @type {HTMLElement} */ const userDropdown = document.querySelector("#userDropdown");
     /** @type {HTMLElement} */ const logout = document.querySelector(".dropdown-item.text-danger");
     const mediaQuery = window.matchMedia("(max-width: 1200px)");
+  
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -25,10 +29,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mediaQuery.matches) {
             if (event.type === "focus") {
                 logo.style.display = "none";
+                whislist.style.display = "none";
+                cart.style.display = "none";
+                userDropdown.style.display = "none";
                 searchInput.classList.add("expanded");
                 searchBar.style.width = "100%";
             } else if (event.type === "blur") {
                 logo.style.display = "";
+                whislist.style.display = "";
+                cart.style.display = "";
+                userDropdown.style.display = "";
                 searchInput.classList.remove("expanded");
                 searchBar.style.width = "";
             }

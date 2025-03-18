@@ -95,8 +95,10 @@ include '../src/check_token.php';
             <!-- Search Bar -->
             <form class="form-inline search-bar m-0">
                 <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-                <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
+                <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%" id="searchInput"> 
             </form>
+
+            
 
             <div class="d-flex">
                 <div id="wishlistModal" class="modal">
@@ -148,6 +150,15 @@ include '../src/check_token.php';
             <?php endif; ?>
         </div>
     </nav>
+
+            <!-- Keresési eredmények modál háttér -->
+<div id="bookResultsBackdrop"></div>
+
+<!-- Keresési eredmények modál -->
+<div id="bookResults">
+    <!-- A könyv találatok itt jelennek meg -->
+</div>
+
 
         <!-- Main Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -203,6 +214,7 @@ include '../src/check_token.php';
             </div>
         </nav>
     </header>
+
 
     <main class="container mt-5"></main>
 
@@ -278,6 +290,7 @@ include '../src/check_token.php';
     <script src="./js/whislist.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/decorate.js"></script>
+    <script src="./js/searchbar.js"></script>
 
 
 

@@ -85,6 +85,11 @@ body {
     }
 }
 
+
+
+
+
+
 .dropdown-menu {
     background-color: #3c1f7d;
     border-radius: 5px;
@@ -557,6 +562,54 @@ a {
     color: white;
 }
 
+#bookResults {
+    width: 100%;
+    max-width: 780px;
+    padding: 20px;
+    overflow-y: auto;
+    height: 400px;
+    display: none; 
+    visibility: hidden; 
+    opacity: 0; 
+    transition: opacity 0.3s ease, visibility 0s ease 0.3s; 
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-54%);
+    z-index: 9999;
+    background-color: #3c1f7d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+}
+
+#bookResults.visible {
+    display: block; 
+    visibility: visible; 
+    opacity: 1; 
+    transition: opacity 0.3s ease, visibility 0s ease 0s; /* Instant visibility change */
+}
+
+
+
+
+
+@media (max-width: 991px) {
+    #bookResults {
+        left: 0; 
+        transform: translateX(0); 
+        max-width: 80%;
+        max-width: 100%; 
+    }
+}
+
+
+@media (max-width: 520px) {
+    #bookResults {
+        max-width: 100%; 
+    }
+}
+
 
 .search-bar .form-control {
     background-color: transparent;
@@ -575,19 +628,13 @@ a {
     font-size: 20px;
 }
 
-
-
 .search-bar .form-control::placeholder {
     color: #d3d3d3;
     font-weight: 700;
     font-size: 16px;
 }
 
-
-.navbar .container-xl {
-    white-space: nowrap;
-}
-
+/* Média lekérdezések */
 @media (max-width: 991px) {
     .navbar .container-xl {
         flex-wrap: nowrap;
@@ -615,11 +662,9 @@ a {
         width: 100%;
     }
 
-
     .search-bar.expanded {
         width: 100% !important;
     }
-
 
     .search-bar input.expanded {
         width: 100% !important;
@@ -629,6 +674,7 @@ a {
         z-index: 10;
     }
 }
+
 
 
 
@@ -1098,3 +1144,29 @@ h2 {
     color: white;
 }
 
+
+.book-item-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
+.searched_image {
+    width: 100px; 
+    height: auto;
+    margin-right: 20px; 
+}
+
+.book-info {
+    flex: 1; 
+}
+
+.book-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.book-info p {
+    margin: 5px 0 0;
+    font-size: 1em;
+}
