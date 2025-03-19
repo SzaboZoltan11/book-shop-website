@@ -225,92 +225,55 @@ include '../../src/check_token.php';
 
 
   
-
-    <!--
-        <footer>
-            <div class="footer-links">
-                <div class="footer-links text-center">
-                    <div class="dropdown d-inline-block">
-                        <a class="dropdown-toggle" href="#" id="kaszinokDropdownFooter" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Kaszinók
-                        </a>
-                        <div class="dropdown-menu text-center" aria-labelledby="kaszinokDropdownFooter">
-                            <a class="dropdown-item" href="../web/velemenyek/wonaco.html">Wonaco</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/dollycasino.html">DollyCasino</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/staxino.html">Staxino</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Flappycasino</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/flappycasino.html">Wintopia</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/betflare.html">Betflare</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/casinoinfinity.html">Casinoinfinity</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/ninlay.html">Ninlay</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/spinsala.html">Spinsala</a>
-                                    <a class="dropdown-item" href="../web/velemenyek/tsars.html">Tsars</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="index.html">Összes kaszinó</a>
-                        </div>
-                    </div>
-                    <a class="d-block" href="bonus/bonus.html">Bónuszok</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Nyerőgépek</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Sportfogadás</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Ingyenes pörgetés</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Fizetési Módok</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Új Kaszinók</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Rólunk</a>
-                    <a class="d-block" href="hozzaferes/korlatozott_hozzaferes.html">Kapcsolat</a>
+<footer>
+    <div class="footer-links">
+        <div class="footer-info">
+            <div class="footer-images-help">
+                <div class="footer-images">
+                    <i class="fa fa-book" style="font-size: 44px;"></i> 
+                    <i class="fa fa-truck" style="font-size: 40px;"></i> 
+                    <i class="fa fa-credit-card" style="font-size: 40px;"></i> 
+                    <i class="fa fa-lock" style="font-size: 44px;"></i> 
                 </div>
-            
-            
-                <div class="footer-info">
-                    <div class="footer-images-help">
-                        <div class="footer-images">
-                            <img src="svg_img/icons8-18-plus-50.png" alt="18+" width="44px" height="44px" id="18plus"/>
-                            <img src="site_img/Gamble_Aware_White.png" alt="gambleAware" height="40px" width="120px" id="gambleAware"  onclick="window.open('https://www.gambleaware.org/', '_blank')" >
-                            <img src="site_img/care.png" alt="Gamcare" height="40px" width="100px" id="gamcare" onclick="window.open('https://www.gamcare.org.uk/', '_blank')" >
-                            <img src="site_img/dmca-badge-w250-2x1-03.png" alt="" width="90px" height="44px">
-                        </div>
-                        <p class="footer-help-text">Kérj szerencsejáték segítséget itt</p>
-                        <div class="footer-help-contact">
-                            <div class="footer-contact">
-                                <img src="svg_img/icons8-phone-50.png" alt="Telefon" width="20px" height="20px">
-                                <div class="contact-info">
-                                    <span>36 1 299 40</span>
-                                </div>
-                            </div>
-                            <p class="addiction-warning">A szerencsejáték addiktív lehet. Játssz felelősséggel!</p>
+                <p class="footer-help-text">Vásárolj könyveket nálunk!</p>
+                <div class="footer-help-contact">
+                    <div class="footer-contact">
+                        <i class="fa fa-phone" style="font-size: 20px;"></i> 
+                        <div class="contact-info">
+                            <span>36 2 129 66</span>
                         </div>
                     </div>
-                    <div class="footer-description-follow">
-                        <p class="footer-description">
-                            Az online kaszinók izgalmas és szórakoztató élményt nyújtanak, de mindig játssz felelősségteljesen! A casinoarena.hu oldalon található linkek egy része partneri megállapodások része, ami azt jelenti, hogy jutalékot kapunk, ha regisztrálsz és befizetsz rajtuk keresztül. Ez nem befolyásolja a bónuszokat vagy promóciókat, amelyeket igénybe vehetsz.
-                        </p>
-                        <div class="footer-follow">
-                            <p id="footer_follow_p">Kövess minket:</p>
-                            <p id="footer_follow_i"><i class="fa fa-twitch" onclick="window.open('https://www.twitch.tv/zolyy__', '_blank')"></i></p>
-                        </div>
-                    </div>
-                    <div class="footer-legal">
-                        <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
-                        <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
-                        <span>Copyright © 2025 casinoarena.hu | Minden jog fenntartva</span>
-                    </div>
-                    
+                    <p class="addiction-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
                 </div>
             </div>
-        </footer>
-        -->
+            <div class="footer-description-follow">
+                <p class="footer-description">
+                    Merülj el a könyvek lenyűgöző világában, és találd meg a tökéletes olvasmányt a Bookshop.hu kínálatában! Akár a legújabb bestsellerekre, akár az örök klasszikusokra vágysz, nálunk mindent megtalálsz, hogy felfedezd a tudás, kaland és fantázia határtalan világát. Vásárolj most, és élvezd a könyvek varázslatos világát, ahol minden egyes oldal új élményt kínál!
+                </p>
+                <div class="footer-follow">
+                    <p id="footer_follow_p">Kövess minket:</p>
+                    <p id="footer_follow_i">
+                        <i class="fa fa-facebook"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
+                <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
+                <span>Copyright © 2025 bookshop.hu | Minden jog fenntartva</span>
+            </div>
+        </div>
+    </div>
+</footer>
         
-        
- <!-- jQuery (csak egyszer) -->
+<div id="decoration"></div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Popper.js (szükséges a Bootstrap 4 dropdown és navbar működéséhez) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Bootstrap JS (csak egyszer) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
-
 <script src="../js/info_ajax.js"></script>
+<script src="../js/decorate.js"></script>
 
 
 
