@@ -55,10 +55,13 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                         <option value="0">Nem elérhető</option>
                     </select>
                 </div>
+
                 <div class="input-group">
                     <label for="description">Leírás</label>
-                    <input type="text" name="description" id="description" class="input-field" required>
+                    <textarea name="description" id="description" class="input-field" required></textarea>
                 </div>
+
+
                 <div class="input-group">
                     <label for="pages">Oldalak száma</label>
                     <input type="text" name="pages" id="pages" class="input-field" required>
