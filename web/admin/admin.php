@@ -60,6 +60,7 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                     <label for="description">Leírás</label>
                     <textarea name="description" id="description" class="input-field" required></textarea>
                 </div>
+                
 
 
                 <div class="input-group">
