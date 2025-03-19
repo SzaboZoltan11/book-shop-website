@@ -1,9 +1,8 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    die ('Method not allowed');
+    die('Method not allowed');
 }
-
 
 include '../../src/connect.php';
 
@@ -27,15 +26,12 @@ $categories = explode(',', $_POST['categories'] ?? '');
 $file_name = bin2hex(random_bytes(8)); //16
 
 chdir('..');
-$databaseConversDir = getcwd() . '\\database\\covers\\';
+$databaseConversDir = getcwd() . '/database/covers/';
 make_dir($databaseConversDir);
 move_uploaded_file($_FILES["cover"]['tmp_name'], $databaseConversDir . $file_name . ".png");
 
 $sql = "INSERT INTO books (title, price, isbn, author, status, description, pages, electronic, release_date, cover)
 VALUES ('$title', '$price', '$isbn', '$author', '$status', '$description', '$pages', '$electronic', '$release_date', '$file_name')";
-    
-echo $sql;
-echo "<br>";
 
 if (!$conn->query($sql)) {
     echo "Nem jó a könyv feltöltés: " . $sql . "<br>" . $conn->error;
@@ -47,10 +43,7 @@ $bookId = $conn->insert_id;
 
 foreach ($categories as $category) {
     $sql = "INSERT INTO book_category (book_id, category_id)
-    VALUES ('" . $bookId . "', '$category')";
-
-    echo $sql;
-    echo "<br>";
+    VALUES ('$bookId', '$category')";
 
     if (!$conn->query($sql)) {
         echo "Nem jó hozzáadni a $category kategóriához: " . $sql . "<br>" . $conn->error;
@@ -60,10 +53,8 @@ foreach ($categories as $category) {
 }
 
 $conn->close();
+
+
+header("Location: /bookshop/web/admin/admin.php?success=1");
+exit;
 ?>
-
-<h1>
-    Könyv hozzáadva
-</h1>
-
-<a href="/bookshop/web/admin/admin.php">OK</a>

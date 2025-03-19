@@ -126,3 +126,10 @@ select.input-field {
 .__category_item {
     margin-bottom: 10px;
 }
+
+.success-message {
+    color: ghostwhite;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+}

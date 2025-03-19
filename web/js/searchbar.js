@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(books => {
                 allBooks = books;
-                renderBooks(allBooks);
             })
             .catch(error => {
                 console.error('Error fetching books:', error);

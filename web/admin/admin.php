@@ -9,14 +9,26 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
 
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin.css">
     <title>Admin</title>
 </head>
+
 <body>
+    <?php
+        if (isset($_GET['success']) && $_GET['success'] == 1) {
+            echo "<p class='success-message'>Sikeres könyv feltöltés!</p>";
+        }
+        if (isset($_GET['success']) && $_GET['success'] == 2) {
+            echo "<p class='success-message'>Sikeres kategória feltöltés!</p>";
+        }
+    ?>
+
     <div class="container">
+
         <div class="form-box">
             <h2>Könyv felvétele</h2>
             <form action="upload_books.php" method="POST" enctype="multipart/form-data">
@@ -127,4 +139,5 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
         </div>
     </div>
 </body>
+
 </html>

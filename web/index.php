@@ -228,15 +228,15 @@ include '../src/check_token.php';
         <div class="footer-info">
             <div class="footer-images-help">
                 <div class="footer-images">
-                    <i class="fa fa-book" style="font-size: 44px;"></i> <!-- Könyv ikon -->
-                    <i class="fa fa-truck" style="font-size: 40px;"></i> <!-- Szállítás ikon -->
-                    <i class="fa fa-credit-card" style="font-size: 40px;"></i> <!-- Fizetés ikon -->
-                    <i class="fa fa-lock" style="font-size: 44px;"></i> <!-- Biztonság ikon -->
+                    <i class="fa fa-book" style="font-size: 44px;"></i> 
+                    <i class="fa fa-truck" style="font-size: 40px;"></i> 
+                    <i class="fa fa-credit-card" style="font-size: 40px;"></i> 
+                    <i class="fa fa-lock" style="font-size: 44px;"></i> 
                 </div>
                 <p class="footer-help-text">Vásárolj könyveket nálunk!</p>
                 <div class="footer-help-contact">
                     <div class="footer-contact">
-                        <i class="fa fa-phone" style="font-size: 20px;"></i> <!-- Telefon ikon -->
+                        <i class="fa fa-phone" style="font-size: 20px;"></i> 
                         <div class="contact-info">
                             <span>36 2 129 66</span>
                         </div>
@@ -265,26 +265,12 @@ include '../src/check_token.php';
 </footer>
 
     
-    <div id="decoration" style="
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: -1;
-        "></div>
+    <div id="decoration"></div>
             
-    <!-- jQuery (csak egyszer) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Popper.js (szükséges a Bootstrap 4 dropdown és navbar működéséhez) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Bootstrap JS (csak egyszer) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
-    <!-- Saját JavaScript fájlok -->
     <script src="./js/wishlish_manager.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/whislist.js"></script>
