@@ -18,10 +18,10 @@ if (!$conn->query($sql)) {
 }
 
 $conn->close();
+
+
+
+header("Location: /bookshop/web/admin/admin.php?success=2");
+exit;
 ?>
 
-<h1>
-    Kategória hozzáadva
-</h1>
-
-<a href="/bookshop/web/admin/admin.php">OK</a>
