@@ -568,8 +568,8 @@ a {
     padding: 20px;
     overflow-y: auto;
     height: 400px;
-    display: none; 
-    visibility: hidden; 
+    display: none;
+    visibility: hidden;
     opacity: 0; 
     transition: opacity 0.3s ease, visibility 0s ease 0.3s; 
     flex-direction: column;
