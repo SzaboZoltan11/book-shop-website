@@ -165,27 +165,10 @@ include '../src/check_token.php';
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Ekönyvek
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="booksDropdown">
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Ekönyvek</a></li>
+                     
+                        <li class="nav-item"><a class="nav-link" href="info/uj-konyvek-frontend.php">Új könyvek</a></li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -205,7 +188,26 @@ include '../src/check_token.php';
                         <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Különleges ajánlat</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Különleges ajánlat
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="booksDropdown">
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="">asd</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
