@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\game]
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\game\shell]
+[HKEY_CLASSES_ROOT\game\shell\open]
+[HKEY_CLASSES_ROOT\game\shell\open\command] 
+@="cmd /K \"cd /D C:\\Users\\Zola\\Documents\\book-shop-website\\desktop\\bin\\Debug\\net8.0-windows & WinFormsApp1.exe %1 \""

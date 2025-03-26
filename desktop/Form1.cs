@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private static Dictionary<Button, Rectangle> originalButtonSizes = new Dictionary<Button, Rectangle>();
-        public Form1()
+        static Dictionary<Button, Rectangle> originalButtonSizes = new Dictionary<Button, Rectangle>();
+        int? userId = 0;
+
+        public Form1(string? userid)
         {
+            userId = userid is null ? null : int.Parse(userid);
 
             InitializeComponent();
             InitializeButtons();
@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
 
         public void InitializeButtons()
         {
-
             for (int i = 0; i < Kartyak.Buttons.Length; i++)
             {
                 Kartyak.Buttons[i] = new Button
@@ -34,7 +33,6 @@ namespace WindowsFormsApp1
                 originalButtonSizes[Kartyak.Buttons[i]] = new Rectangle(Kartyak.Buttons[i].Location, Kartyak.Buttons[i].Size);
             }
         }
-
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -74,7 +72,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var result = new Connection().Building();
+            var result = new Connection(userId).Building();
             if (result == Playableresult.cantplay)
             {
                 this.Close();

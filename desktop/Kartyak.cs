@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
         public static string IMG_Path()
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string imagePath = Path.Combine(appDirectory, @"Img\kisebb hatlap.jpg");
+            string imagePath = Path.Combine(appDirectory, @"images\kisebb hatlap.jpg");
             return imagePath;
         }
 

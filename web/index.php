@@ -130,7 +130,7 @@ include '../src/check_token.php';
                             Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a href="game://Game" class="dropdown-item">Játék</a>
+                            <a href="game://Game/?userid=<?php echo $authenticator->currentUserId ?>" class="dropdown-item">Játék</a>
                             <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
                                 <a href="admin/admin.php" class="dropdown-item">Admin page</a>
                             <?php endif; ?>
