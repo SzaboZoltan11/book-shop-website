@@ -165,7 +165,7 @@ include '../src/check_token.php';
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item"><a class="nav-link" href="">Ekönyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/ekonyv_frontend.php">Ekönyvek</a></li>
                      
                         <li class="nav-item"><a class="nav-link" href="info/uj-konyvek-frontend.php">Új könyvek</a></li>
 
