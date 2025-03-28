@@ -175,7 +175,7 @@ include '../src/check_token.php';
                                 Best Sellers
                             </a>
                             <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                                <a class="dropdown-item" href="">Szépirodalmi</a>
+                                <a class="dropdown-item" href="p">Szépirodalmi</a>
                                 <a class="dropdown-item" href="">Ismeretterjesztő</a>
                                 <a class="dropdown-item" href="">Gyerekeknek</a>
                                 <a class="dropdown-item" href="">Angol könyvek</a>
@@ -183,7 +183,7 @@ include '../src/check_token.php';
                                 <a class="dropdown-item" href="">Különleges ajánlat</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="">Szépirodalmi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/szepirodalom_frontend.php">Szépirodalmi</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
