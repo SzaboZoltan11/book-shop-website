@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+}
+
+#szepirodalom-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto;
+}
+
+.book {
+    text-align: center;
+    background-color: #3c1f7d;
+    border-radius: 8px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    height: 100%;
+    width: 100%;
+
+}
+
+.book img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin: 0px !important; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.book h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.book p {
+    font-size: 1em;
+}
