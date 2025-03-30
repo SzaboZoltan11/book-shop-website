@@ -78,5 +78,10 @@
                 this.Close();
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var result = new Connection(userId).Building();
+        }
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace WindowsFormsApp1
 {
@@ -15,7 +17,7 @@ namespace WindowsFormsApp1
         private static bool[] IsFlipped = new bool[36];
         private static int Flipped = 0;
         private static bool end = false;
-        
+        public static int won = 0;
         public static void button_Click(object? sender, EventArgs e)
         {
             if (sender is not Button clickedButton) throw new ArgumentException("Button aint a button");
@@ -31,8 +33,8 @@ namespace WindowsFormsApp1
             if (!IsFlipped[index])
             {
                 clickedButton.BackgroundImage = null;
-                int won = Generator();
-                if( won > 0)
+                won = Generator();
+                if ( won > 0)
                 {
                     clickedButton.Text = $"A nyereményed:\n{won}% leárazás";
                     end = true;

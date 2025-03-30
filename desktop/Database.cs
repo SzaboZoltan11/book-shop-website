@@ -41,13 +41,20 @@ namespace WindowsFormsApp1
             var result = _context.game.SingleOrDefault(b => b.Id == userId);
             if (result != null)
             {
-                if (/*DateTime.Today < result.Lastplayed*/ false)
+                if (DateTime.Today < result.Lastplayed)
                 {
                     MessageBox.Show("Ma már játszottál!");
                     return Playableresult.cantplay;
                 }
+                if (result.Discount > 0)
+                {
+                    MessageBox.Show("Már van kuponod!\nHasználd el és játsz újra!");
+                    return Playableresult.cantplay;
+                }
 
                 result.Lastplayed = DateTime.UtcNow;
+                result.Discount = Kartyak.won;
+
                 _context.SaveChanges();
                 return Playableresult.ok;
             }
@@ -75,5 +82,7 @@ namespace WindowsFormsApp1
         public int Id { get; set; }
         [Column("lastplayed")]
         public DateTime Lastplayed { get; set; }
+        [Column("discount")]
+        public int Discount { get; set; }
     }
 }

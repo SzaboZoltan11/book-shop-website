@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(111, 22);
             exitToolStripMenuItem.Text = "Kilépés";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -111,6 +111,7 @@ namespace WindowsFormsApp1
             Name = "Form1";
             Text = "Játék";
             WindowState = FormWindowState.Maximized;
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
