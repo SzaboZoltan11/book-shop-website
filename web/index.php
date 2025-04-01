@@ -184,8 +184,8 @@ include '../src/check_token.php';
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="info/szepirodalom_frontend.php">Szépirodalmi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/ifjusagi_frontend.php">Gyerekeknek</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
                         <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
                         <li class="nav-item dropdown">

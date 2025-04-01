@@ -36,7 +36,7 @@ include '../../src/check_token.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <!-- Additional CSS -->
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/szepirodalom.css">
+    <link rel="stylesheet" href="../css/info_al.css">
     <link rel="stylesheet" href="../css/info.css">
     <link href='https://fonts.googleapis.com/css?family=Oxanium' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>

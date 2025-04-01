@@ -88,9 +88,7 @@
 
 .info-table-header {
     font-weight: bold;
-<<<<<<< HEAD
     padding: 12px;
-=======
     padding: 8px;
 }
 
@@ -115,5 +113,5 @@
 
 .back-to-main a:hover {
     background-color: #6442c2;
->>>>>>> c5f823c0aea1641ad1f87b5071ef07b479052c81
 }
+

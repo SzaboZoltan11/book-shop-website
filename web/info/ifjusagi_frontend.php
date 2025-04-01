@@ -182,8 +182,8 @@ include '../../src/check_token.php';
         <a href="../index.php">Vissza a főoldalra!</a>
     </div>
 
-    <h1>Ekönyvek</h1>
-    <div id="ekönyv-details">
+    <h1>Ifjusági könyvek</h1>
+    <div id="ifjusagi-details">
         <p>Könyvek betöltése...</p>
     </div>
 
@@ -243,7 +243,8 @@ include '../../src/check_token.php';
 <script src="../js/whislist.js"></script>
 <script src="../js/decorate.js"></script>
 <script src="../js/searchbar.js"></script>
-<script src="../js/info_ekonyvek.js"></script>
+<script src="../js/info_ifjusagi.js"></script>
+
 
 
 
