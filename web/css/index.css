@@ -343,7 +343,7 @@ footer {
     cursor: default;
 }
 
-.addiction-warning {
+.info-warning {
     font-size: 12px;
     color: #20c997;
     margin: 5px 0 0;
@@ -1179,4 +1179,16 @@ h2 {
         height: 100%;
         overflow: hidden;
         z-index: -1;
+}
+
+.fa-book, .fa-lock {
+    font-size: 44px;
+}
+
+.fa-truck, .fa-credit-card {
+    font-size: 40px;
+}
+
+.fa-phone {
+    font-size: 20px;
 }

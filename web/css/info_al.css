@@ -92,3 +92,15 @@ h1 {
     max-width: 1200px !important;
     margin: 0 auto;
 }
+
+
+#kepregeny-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto;
+}

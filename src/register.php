@@ -115,23 +115,45 @@ class UserRegistration {
     public function registerUser($surname, $firstname, $email, $password, $phone_number, $accept_newsletter, $isadmin) {
         try {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+            // Kezdjük tranzakcióval, hogy mindkét beszúrás sikeres legyen, vagy egyik se
+            $this->conn->begin_transaction();
+    
+            // Felhasználó beszúrása
             $stmt = $this->conn->prepare("INSERT INTO users (surname, firstname, email, password, phone_number, accept_newsletter, isadmin) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssssis", $surname, $firstname, $email, $hashed_password, $phone_number, $accept_newsletter, $isadmin);
     
-            if ($stmt->execute()) {
-                $_SESSION['success'] = 'Sikeres regisztráció! Most már bejelentkezhetsz.';
-                header("Location: /bookshop/web/logination.php");
-                exit;
-            } else {
-                $this->addError("Hiba történt: " . $stmt->error);
+            if (!$stmt->execute()) {
+                throw new Exception("Hiba történt: " . $stmt->error);
+            }
+    
+            // Az új felhasználó ID-jának lekérdezése
+            $user_id = $this->conn->insert_id;
+            $stmt->close();
+    
+            // Beszúrás a game táblába
+            $stmt = $this->conn->prepare("INSERT INTO game (user_id, lastplayed, discount) VALUES (?, '2000-01-01 00:00:00', 0)");
+            $stmt->bind_param("i", $user_id);
+    
+            if (!$stmt->execute()) {
+                throw new Exception("Hiba történt a game tábla frissítésekor: " . $stmt->error);
             }
     
             $stmt->close();
     
+            // Ha minden sikeres, akkor véglegesítjük a tranzakciót
+            $this->conn->commit();
+    
+            $_SESSION['success'] = 'Sikeres regisztráció! Most már bejelentkezhetsz.';
+            header("Location: /bookshop/web/logination.php");
+            exit;
+    
         } catch (Exception $e) {
-            $this->addError("Hiba történt a regisztrációs adatbázisba íráskor: " . $e->getMessage());
+            $this->conn->rollback(); // Ha hiba történik, visszavonjuk az adatbázisműveleteket
+            $this->addError($e->getMessage());
         }
     }
+    
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

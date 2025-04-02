@@ -12,21 +12,19 @@ include '../src/check_token.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="max-image-preview:large">
-    <meta name="keywords"
-        content="Online bookstore, Book purchase, New books, Best books, Special editions, E-books, Discounted books, Book recommendations, Reading, Literature, Adult books, Children's books, Classic books, Most popular books, Online book shopping, Textbooks, Bookstore promotions, Bookstore offers">
-    <meta name="description"
-        content="Discover the best online bookstore where you can find a wide selection of books in various genres, including the latest releases, bestsellers, classics, and special editions. Our platform offers detailed and honest reviews of books, as well as updated information on discounts, special offers, and promotions. Whether you're looking for fiction, non-fiction, children's books, or textbooks, we have something for everyone. Enjoy a seamless shopping experience with secure payments and fast delivery options. Start exploring our collection today and find your next great read at the best prices. Join now and enjoy reading like never before!">
+    <meta name="keywords" content="Online könyváruház, Könyvvásárlás, Új könyvek, Legjobb könyvek, E-könyvek, Akciós könyvek, Könyvajánlók, Olvasás, Irodalom, Tankönyvek">
+    <meta name="description" content="Fedezd fel a legjobb online könyváruházat, ahol széles könyvválaszték, akciók és gyors szállítás vár! Vásárolj biztonságosan és élvezd az olvasást!">
     <meta name="author" content="Taylor Team">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Hungarian">
 
     <!-- Link -->
-    <link rel="canonical" href="">
-    <link rel="alternate" href="" hreflang="hu">
-    <link rel="alternate" href="" hreflang="en">
+    <link rel="canonical" href="https://bookshop.hu">
+    <link rel="alternate" href="https://bookshop.hu" hreflang="hu">
+    <link rel="alternate" href="https://bookshop.hu" hreflang="en">
     <link rel="icon" href="" sizes="32x32" type="image/png">
     <link rel="icon" href="" sizes="16x16" type="image/png">
-    <link rel="apple-touch-icon" href="">
+    <link rel="apple-touch-icon" href="https://bookshop.hu">
     <link rel="preload" href="./css/index.css" as="style" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
@@ -46,27 +44,27 @@ include '../src/check_token.php';
     <meta property="og:locale" content="hu">
     <meta property="og:site_name" content="Bookshop">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Best Online Bookstore for Book Lovers in 2025">
+    <meta property="og:title" content="Legjobb online könyvesbolt 2025-ben">
     <meta property="og:description"
-        content="Explore the best online bookstore for a wide selection of books, from bestsellers to rare editions. Stay updated with the latest book releases, offers, and recommendations. Join the community of readers today!">
+        content="Fedezd fel a legjobb online könyváruházat! Bestseller és ritka könyvek, friss megjelenések, akciók és ajánlások egy helyen. Csatlakozz most!">
     <meta property="og:image" content="./img_head/bookstore_logo.png">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="https://bookshop.hu">
     <meta property="og:type" content="website">
     <meta property="og:image:width" content="335">
     <meta property="og:image:height" content="281">
-    <meta property="og:site_name" content="">
-    <meta property="article:publisher" content="">
+    <meta property="og:site_name" content="Bookshop">
+    <meta property="article:publisher" content="Taylor Team">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta property="og:title" content="Best Online Bookstore for Book Lovers in 2025">
+    <meta property="og:title" content="Legjobb online könyvesbolt 2025-ben">
     <meta property="og:description"
-        content="Explore the best online bookstore for a wide selection of books, from bestsellers to rare editions. Stay updated with the latest book releases, offers, and recommendations. Join the community of readers today!">
-    <meta name="twitter:image" content="">
-    <meta name="twitter:creator" content="">
-    <meta name="twitter:domain" content="">
+        content="Fedezd fel a legjobb online könyváruházat! Bestseller és ritka könyvek, friss megjelenések, akciók és ajánlások egy helyen. Csatlakozz most!">
+    <meta name="twitter:image" content="./img_head/bookstore_logo.png">
+    <meta name="twitter:creator" content="Taylor Team">
+    <meta name="twitter:domain" content="https://bookshop.hu">
     <meta name="twitter:label1" content="Bookshop Project">
-    <meta name="twitter:data1" content="">
+    <meta name="twitter:data1" content="Szépirodalom">
 
     <!-- For better loading time -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,6 +91,7 @@ include '../src/check_token.php';
                         id="searchInput">
                 </form>
 
+                <!-- Modal (Whislist) -->
                 <div class="d-flex">
                     <div id="wishlistModal" class="modal">
                         <div class="modal-content">
@@ -113,7 +112,7 @@ include '../src/check_token.php';
                     </a>
                 </div>
 
-                <!-- Modal -->
+                <!-- Modal (Cart) -->
                 <div id="cartModal" class="modal">
                     <div class="modal-content">
                         <span class="close" id="close-modal">&times;</span>
@@ -123,6 +122,7 @@ include '../src/check_token.php';
                     </div>
                 </div>
 
+                <!-- Logged in user drop down Menu -->
                 <?php if (isset($_SESSION['name'])): ?>
                     <div class="dropdown">
                         <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown"
@@ -149,9 +149,7 @@ include '../src/check_token.php';
         <div id="bookResultsBackdrop"></div>
 
         <!-- Results -->
-        <div id="bookResults">
-
-        </div>
+        <div id="bookResults"></div>
 
 
         <!-- Main Navigation -->
@@ -166,8 +164,8 @@ include '../src/check_token.php';
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
                         <li class="nav-item"><a class="nav-link" href="info/ekonyv_frontend.php">Ekönyvek</a></li>
-                     
                         <li class="nav-item"><a class="nav-link" href="info/uj-konyvek-frontend.php">Új könyvek</a></li>
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button"
@@ -175,7 +173,7 @@ include '../src/check_token.php';
                                 Best Sellers
                             </a>
                             <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                                <a class="dropdown-item" href="p">Szépirodalmi</a>
+                                <a class="dropdown-item" href="">Szépirodalmi</a>
                                 <a class="dropdown-item" href="">Ismeretterjesztő</a>
                                 <a class="dropdown-item" href="">Gyerekeknek</a>
                                 <a class="dropdown-item" href="">Angol könyvek</a>
@@ -183,11 +181,14 @@ include '../src/check_token.php';
                                 <a class="dropdown-item" href="">Különleges ajánlat</a>
                             </div>
                         </li>
+
+
                         <li class="nav-item"><a class="nav-link" href="info/szepirodalom_frontend.php">Szépirodalmi</a></li>
                         <li class="nav-item"><a class="nav-link" href="info/ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
                         <li class="nav-item"><a class="nav-link" href="info/ifjusagi_frontend.php">Gyerekeknek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/kepregeny_frontend.php">Képregények</a></li>
+                   
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -216,27 +217,34 @@ include '../src/check_token.php';
 
     <main class="container mt-5"></main>
 
+
+    <!-- Footer-->
     <footer>
         <div class="footer-links">
             <div class="footer-info">
                 <div class="footer-images-help">
+                    <!-- Footer Ikons-->
                     <div class="footer-images">
-                        <i class="fa fa-book" style="font-size: 44px;"></i>
-                        <i class="fa fa-truck" style="font-size: 40px;"></i>
-                        <i class="fa fa-credit-card" style="font-size: 40px;"></i>
-                        <i class="fa fa-lock" style="font-size: 44px;"></i>
+                        <i class="fa fa-book"></i>
+                        <i class="fa fa-truck"></i>
+                        <i class="fa fa-credit-card"></i>
+                        <i class="fa fa-lock"></i>
                     </div>
+
+                    <!-- Info box -->
                     <p class="footer-help-text">Vásárolj könyveket nálunk!</p>
                     <div class="footer-help-contact">
                         <div class="footer-contact">
-                            <i class="fa fa-phone" style="font-size: 20px;"></i>
+                            <i class="fa fa-phone"></i>
                             <div class="contact-info">
                                 <span>36 2 129 66</span>
                             </div>
                         </div>
-                        <p class="addiction-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
+                        <p class="info-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
                     </div>
                 </div>
+
+                <!-- Footer motivation description -->
                 <div class="footer-description-follow">
                     <p class="footer-description">
                         Merülj el a könyvek lenyűgöző világában, és találd meg a tökéletes olvasmányt a Bookshop.hu
@@ -244,6 +252,8 @@ include '../src/check_token.php';
                         megtalálsz, hogy felfedezd a tudás, kaland és fantázia határtalan világát. Vásárolj most, és
                         élvezd a könyvek varázslatos világát, ahol minden egyes oldal új élményt kínál!
                     </p>
+
+                    <!-- Links -->
                     <div class="footer-follow">
                         <p id="footer_follow_p">Kövess minket:</p>
                         <p id="footer_follow_i">
@@ -251,6 +261,8 @@ include '../src/check_token.php';
                         </p>
                     </div>
                 </div>
+
+                <!-- Contracts, infos -->
                 <div class="footer-legal">
                     <a href="#"> Cookie tájékoztató</a> |
                     <a href="#"> Általános szerződési feltételek</a> |
@@ -263,19 +275,17 @@ include '../src/check_token.php';
 
     <div id="decoration"></div>
 
+     <!-- Query, popper and bootstrap cdn-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
+     <!-- JS -->
     <script src="./js/wishlish_manager.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/whislist.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/decorate.js"></script>
     <script src="./js/searchbar.js"></script>
-
-
-
 </body>
-
 </html>
