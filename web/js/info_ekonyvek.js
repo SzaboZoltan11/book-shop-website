@@ -130,8 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 wishlistIcons.forEach(function(icon) {
                     icon.addEventListener("click", function() {
                         const bookId = icon.getAttribute("data-id");
-                        window.WishlistManager.add(bookId);
-                        updateWishlistModal();
+                        // Check if the book is already in the wishlist
+                        if (!isBookInWishlist(bookId)) {
+                            window.WishlistManager.add(bookId);
+                            updateWishlistModal();
+                        }
                     });
                 });
             })
@@ -142,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadBooks(1);
-    
+
     // Kívánságlista modal frissítése
     function updateWishlistModal() {
         var wishlistItemsContainer = document.getElementById("wishlist-items");
@@ -187,22 +190,33 @@ document.addEventListener("DOMContentLoaded", function () {
         updateWishlistModal();
     }
 
+   
     document.getElementById("wishlist-icon").addEventListener("click", function(event) {
         event.preventDefault();
         document.getElementById("wishlistModal").style.display = "block";
         updateWishlistModal();
     });
 
+
     document.getElementById("close-wishlist").addEventListener("click", function() {
         document.getElementById("wishlistModal").style.display = "none";
     });
 
+  
     window.addEventListener("click", function(event) {
         if (event.target == document.getElementById("wishlistModal")) {
             document.getElementById("wishlistModal").style.display = "none";
         }
     });
 
-    window.WishlistManager.addEventListener('update', updateWishlistModal);
+
+    window.addEventListener('update', updateWishlistModal);
+
+    
     updateWishlistModal();
+    
+    // Ellenőrzi, hogy a könyv már a kívánságlistán van-e
+    function isBookInWishlist(bookId) {
+        return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
+    }
 });
