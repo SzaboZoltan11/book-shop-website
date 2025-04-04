@@ -18,7 +18,8 @@ if ($result->num_rows > 0) {
             'description' => $book['description'],
             'pages' => $book['pages'],
             'release_date' => $book['release_date'],
-            'isbn' => $book['isbn']
+            'isbn' => $book['isbn'],
+            'id' => $book['book_id']
         ];
     }
     echo json_encode($books);

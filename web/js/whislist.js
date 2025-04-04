@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         <div class="wishlist-item-info">
                             <p class="wishlist-item-title">${details.title}</p>
                             <p class="wishlist-item-price">${Math.floor(details.price)} Ft</p>
-
                         </div>
                         <button class="remove-wishlist-btn">Törlés</button>
                     `;
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     wishlistIcon.addEventListener("click", function(event) {
         event.preventDefault();
-        wishlistModal.style.display = "block"; // Megnyitja a modált
+        wishlistModal.style.display = "block";
         updateWishlistModal();
     });
 

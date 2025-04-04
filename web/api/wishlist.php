@@ -28,7 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $req->bind_param("ii", $authenticator->currentUserId, $entityBody["book_id"]);
     $req->execute();
     
-    echo 'OK';
+    echo json_encode([
+        'a' => $authenticator->currentUserId,
+        'b' =>  $entityBody["book_id"],
+    ]);
 } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $entityBody = json_decode(file_get_contents('php://input'), true);
     if (!isset($entityBody["book_id"])) {
