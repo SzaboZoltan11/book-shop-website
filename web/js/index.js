@@ -166,15 +166,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         if (mediaQuery.matches) {
                             slider.style.overflowX = "auto"; 
-                       
+                            prevBtn.style.display = "none";
+                            nextBtn.style.display = "none";
                         }
 
                         window.addEventListener('resize', () => {
                             if (mediaQuery.matches) {
-                        
+                                slider.style.overflowX = "auto";
+                                prevBtn.style.display = "none";
+                                nextBtn.style.display = "none";
                             } else {
                                 slider.style.overflowX = null;
-                            
+                                prevBtn.style.display = "block";
+                                nextBtn.style.display = "block";
                                 slider.style.transform = "translateX(0px)"; 
                                 currentPosition = 0;
                             }
