@@ -56,7 +56,7 @@
 
             // Minimum méret biztosítása
             buttonWidth = Math.Max(buttonWidth, 100);
-            buttonHeight = Math.Max(buttonHeight, 150);
+            buttonHeight = Math.Max(buttonHeight, 155);
 
             for (int i = 0; i < Kartyak.Buttons.Length; i++)
             {
@@ -72,7 +72,7 @@
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var result = new Connection(userId).Building();
+            var result = new Connection(userId).Building(true);
             if (result == Playableresult.cantplay)
             {
                 this.Close();
@@ -81,7 +81,7 @@
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            var result = new Connection(userId).Building();
+            var result = new Connection(userId).Building(false);
         }
     }
 }

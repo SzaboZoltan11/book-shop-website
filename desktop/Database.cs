@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
 
         }
 
-        public Playableresult Building()
+        public Playableresult Building(bool load)
         {
             // Create ConfigurationBuilder to read from appsettings.json
             var configuration = new ConfigurationBuilder()
@@ -41,12 +41,12 @@ namespace WindowsFormsApp1
             var result = _context.game.SingleOrDefault(b => b.Id == userId);
             if (result != null)
             {
-                if (DateTime.Today < result.Lastplayed)
+                if (DateTime.Today < result.Lastplayed && load==true)
                 {
                     MessageBox.Show("Ma már játszottál!");
                     return Playableresult.cantplay;
                 }
-                if (result.Discount > 0)
+                if (result.Discount > 0 && load==true)
                 {
                     MessageBox.Show("Már van kuponod!\nHasználd el és játsz újra!");
                     return Playableresult.cantplay;
