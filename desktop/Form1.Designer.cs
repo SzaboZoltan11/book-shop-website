@@ -42,10 +42,11 @@ namespace WindowsFormsApp1
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F);
             label1.Location = new Point(4, 0);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(89, 15);
+            label1.Size = new Size(147, 25);
             label1.TabIndex = 2;
             label1.Text = "Válasz 3 kártyát!";
             // 
@@ -59,7 +60,7 @@ namespace WindowsFormsApp1
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(111, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Kilépés";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -80,7 +81,7 @@ namespace WindowsFormsApp1
             flowLayoutPanel1.Location = new Point(0, 24);
             flowLayoutPanel1.Margin = new Padding(4, 3, 4, 3);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(960, 24);
+            flowLayoutPanel1.Size = new Size(960, 26);
             flowLayoutPanel1.TabIndex = 3;
             // 
             // flowLayoutPanel2
@@ -91,11 +92,11 @@ namespace WindowsFormsApp1
             flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel2.BackColor = Color.SteelBlue;
             flowLayoutPanel2.Dock = DockStyle.Fill;
-            flowLayoutPanel2.Location = new Point(0, 48);
+            flowLayoutPanel2.Location = new Point(0, 50);
             flowLayoutPanel2.Margin = new Padding(0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(0, 0, 0, 23);
-            flowLayoutPanel2.Size = new Size(960, 460);
+            flowLayoutPanel2.Size = new Size(960, 458);
             flowLayoutPanel2.TabIndex = 4;
             // 
             // Form1
