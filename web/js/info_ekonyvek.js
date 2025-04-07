@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Kosár kezelés - kosárba adás, frissítés
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
     const cart = document.querySelector("#cart-icon");
@@ -12,11 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("A felhasználó kijelentkezett, kosár törölve.");
     }
 
-    // Kosárba adás funkció
     function addToCart(cover, title, price) {
-        // Győződjünk meg róla, hogy a price számként van kezelve
-        const numericPrice = parseFloat(price.replace(/[^\d.-]/g, '')); // eltávolítja a nem szám karaktereket (pl. Ft)
-        
+        const numericPrice = parseFloat(price.replace(/[^\d.-]/g, '')); 
         if (isNaN(numericPrice)) {
             console.error('Hibás ár formátum');
             return;
@@ -27,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartModal();
     }
 
-    // Kosár modal frissítése
     function updateCartModal() {
         const cartModalContent = document.querySelector("#cartModal .modal-content p");
         const totalAmountElement = document.querySelector("#cartModal .total-amount");
@@ -65,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const formattedTotalAmount = Math.floor(totalAmount).toLocaleString();
-
             if (totalAmountElement) {
                 totalAmountElement.textContent = `Teljes összeg: ${formattedTotalAmount} Ft`;
             }
@@ -77,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Kosárból való törlés
+    //Kosárból való törlés
     function removeFromCart(index) {
         cartItems.splice(index, 1);
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -100,16 +94,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (const book of v) {
                     const coverPath = '/bookshop/web/database/covers/' + book.cover + '.png';
                     booksHtml += `
-                        <div class="card">
-                            <span class="wishlist-icon" data-id="${book.id}">&#9825;</span>
-                            <img src="${coverPath}" alt="${book.title}" class="book-image"/>
-                            <div class="card-info">
-                                <p class="title">${book.title}</p>
-                                <p class="price">${book.price}</p>
-                                <button class="buy-btn">Vásárlás</button>
-                            </div>
+                    <div class="card">
+                    ${isLoggedIn === 'true' ? `<span class="wishlist-icon" data-id="${book.id}">&#9825;</span>` : ""}
+                        <img src="${coverPath}" alt="${book.title}" class="book-image"/>
+                        <div class="card-info">
+                            <p class="title">${book.title}</p>
+                            <p class="price">${book.price}</p>
+                            <button class="buy-btn">Vásárlás</button>
                         </div>
-                    `;
+                    </div>
+                `;
+                
                 }
                 document.getElementById('ekönyv-details').innerHTML = booksHtml;
 
@@ -133,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Check if the book is already in the wishlist
                         if (!isBookInWishlist(bookId)) {
                             window.WishlistManager.add(bookId);
-                            updateWishlistModal();
                         }
                     });
                 });
@@ -151,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var wishlistItemsContainer = document.getElementById("wishlist-items");
         var wishlistCount = document.getElementById("wishlist-count");
         wishlistItemsContainer.innerHTML = "";
-        wishlistCount.textContent = window.WishlistManager.wishlist.length;
+        wishlistCount.textContent = window.WishlistManager.wishlist.length + '';
 
         if (window.WishlistManager.wishlist.length === 0) {
             wishlistItemsContainer.innerHTML = "<p>A kívánságlista üres.</p>";
@@ -187,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function removeFromWishlist(bookId) {
         window.WishlistManager.remove(bookId);
-        updateWishlistModal();
     }
 
    
@@ -209,10 +202,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    window.WishlistManager.addEventListener('update', updateWishlistModal);
 
-    window.addEventListener('update', updateWishlistModal);
-
-    
     updateWishlistModal();
     
     // Ellenőrzi, hogy a könyv már a kívánságlistán van-e

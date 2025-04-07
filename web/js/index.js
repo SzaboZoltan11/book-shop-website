@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /** @type {HTMLElement} */ const userDropdown = document.querySelector("#userDropdown");
     /** @type {HTMLElement} */ const logout = document.querySelector(".dropdown-item.text-danger");
     const mediaQuery = window.matchMedia("(max-width: 1200px)");
-  
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -65,9 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
                 main.appendChild(container);
 
-                const slider = document.getElementById(`slider-${category.category_id}`);
-                const prevBtn = container.querySelector(".prev-btn");
-                const nextBtn = container.querySelector(".next-btn");
+                /** @type {HTMLElement} */ const slider = document.getElementById(`slider-${category.category_id}`);
+                /** @type {HTMLElement} */ const prevBtn = container.querySelector(".prev-btn");
+                /** @type {HTMLElement} */ const nextBtn = container.querySelector(".next-btn");
                 
        
 
@@ -106,9 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
                                 addToCart(book.cover, book.title, book.price);
                             });
 
-                            card.querySelector(".wishlist-icon").addEventListener("click", function () {
-                                addToWishlist(book.book_id);
-                            });
+                           
+                            if (isLoggedIn === 'true') {
+                                card.querySelector(".wishlist-icon").style.display = "block";
+                                card.querySelector(".wishlist-icon").addEventListener("click", function () {
+                                    addToWishlist(book.book_id);
+                                });
+                            } else {
+                                card.querySelector(".wishlist-icon").style.display = "none";
+                            }
+
+                            
 
                             const bookImage = card.querySelector('.book-image');
                             bookImage.addEventListener('click', function () {
@@ -255,9 +262,13 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartModal();
 
     function addToWishlist(bookId) {
-        window.WishlistManager.add(bookId);
+        if (!isBookInWishlist(bookId)) {
+            window.WishlistManager.add(bookId);
+        }
     }
-
-  
-
+    
+    // Ellenőrzi, hogy a könyv már a kívánságlistán van-e
+    function isBookInWishlist(bookId) {
+        return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
+    }
 });

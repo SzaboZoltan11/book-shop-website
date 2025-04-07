@@ -1,92 +1,41 @@
-
 h1 {
     text-align: center;
+    cursor: default;
+    padding: 20px;
+}
+
+#ekönyv-details, #ujkonyv-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    justify-items: center; 
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px !important;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .card {
-    text-align: center;
-    background-color: #3c1f7d;
-    border-radius: 8px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center; 
-    height: 100%;
-    width: 100%;
-
+    width: 100% !important;
 }
 
 
-
-
-#ekönyv-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
+@media (max-width: 1200px) {
+    #ekönyv-details, #ujkonyv-details {
+        grid-template-columns: repeat(3, 1fr); 
+    }
 }
 
-#ismeretterjeszto-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
+@media (max-width: 768px) {
+    #ekönyv-details, #ujkonyv-details {
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
 
-/*ujkonyvek*/
-#book-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
+@media (max-width: 480px) {
+    #ekönyv-details, #ujkonyv-details {
+        grid-template-columns: 1fr; 
+    }
 }
-
-#szepirodalom-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
-}
-
-
-#ifjusagi-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
-}
-
-
-#kepregeny-details {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px !important;
-    margin: 0 auto;
-}
-
-
 

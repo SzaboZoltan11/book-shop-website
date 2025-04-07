@@ -74,76 +74,99 @@ include '../src/check_token.php';
         rel="stylesheet">
 </head>
 
+
+
 <body>
+
+<?php 
+    //Beloginolt állapot
+    $isLoggedIn = isset($_SESSION['name']) ? 'true' : 'false';
+?>
+
+<script>
+    //php átadja a jsnek (szerencsére csak így lehet megoldani)
+    var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    console.log(isLoggedIn); 
+</script>
+
+
+
+
+
     <header>
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-light">
-            <div class="container-xl d-flex justify-content-between align-items-center">
-                <!-- Logo -->
-                <a class="navbar-brand" href="index.php">
-                    <img src="img/logo.png" alt="Logo" height="40px">
-                </a>
+<!-- Top Navigation -->
+<nav class="navbar navbar-light">
+    <div class="container-xl d-flex justify-content-between align-items-center">
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.php">
+            <img src="img/logo.png" alt="Logo" height="40px">
+        </a>
 
-                <!-- Search Bar -->
-                <form class="form-inline search-bar m-0">
-                    <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-                    <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%"
-                        id="searchInput">
-                </form>
+        <!-- Search Bar -->
+        <form class="form-inline search-bar m-0">
+            <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
+            <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%"
+                id="searchInput">
+        </form>
 
-                <!-- Modal (Whislist) -->
-                <div class="d-flex">
-                    <div id="wishlistModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" id="close-wishlist">&times;</span>
-                            <h2>Kívánságlista</h2>
-                            <div id="wishlist-items"></div>
-                            <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
-                        </div>
-                    </div>
-
-                    <!-- Whislist ikon -->
-                    <a href="#" class="mr-3" id="wishlist-icon">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                    <!-- Kosár ikon -->
-                    <a href="#" class="mr-3" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                </div>
-
-                <!-- Modal (Cart) -->
-                <div id="cartModal" class="modal">
+        <!-- Ikonok és modalok -->
+        <div class="d-flex">
+            <?php if (isset($_SESSION['name'])): ?>
+                <!-- Modal (Wishlist) -->
+                <div id="wishlistModal" class="modal">
                     <div class="modal-content">
-                        <span class="close" id="close-modal">&times;</span>
-                        <h2>Kosár tartalma</h2>
-                        <p></p>
-                        <p class="total-amount">
+                        <span class="close" id="close-wishlist">&times;</span>
+                        <h2>Kívánságlista</h2>
+                        <div id="wishlist-items"></div>
+                        <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
                     </div>
                 </div>
 
-                <!-- Logged in user drop down Menu -->
-                <?php if (isset($_SESSION['name'])): ?>
-                    <div class="dropdown">
-                        <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a href="game://Game/?userid=<?php echo $authenticator->currentUserId ?>" class="dropdown-item">Játék</a>
-                            <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
-                                <a href="admin/admin.php" class="dropdown-item">Admin page</a>
-                            <?php endif; ?>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
-                    <a href="registration.php" id="nav-hover">Regisztráció</a>
-                <?php endif; ?>
+                <!-- Wishlist ikon -->
+                <a href="#" class="mr-3" id="wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                </a>
+            <?php endif; ?>
+
+            <!-- Kosár ikon (mindig látható) -->
+            <a href="#" class="mr-3" id="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <!-- Modal (Cart) -->
+        <div id="cartModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <h2>Kosár tartalma</h2>
+                <p></p>
+                <p class="total-amount">
             </div>
-        </nav>
+        </div>
+
+        <!-- Logged in user drop down Menu -->
+        <?php if (isset($_SESSION['name'])): ?>
+            <div class="dropdown">
+                <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a href="game://Game/?userid=<?php echo $authenticator->currentUserId ?>" class="dropdown-item">Játék</a>
+                    <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
+                        <a href="admin/admin.php" class="dropdown-item">Admin page</a>
+                    <?php endif; ?>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="../php/logout.php">Kijelentkezés</a>
+                </div>
+            </div>
+        <?php else: ?>
+            <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
+            <a href="registration.php" id="nav-hover">Regisztráció</a>
+        <?php endif; ?>
+    </div>
+</nav>
+
 
         <!-- MODAL -->
         <div id="bookResultsBackdrop"></div>

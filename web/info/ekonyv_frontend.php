@@ -37,7 +37,7 @@ include '../../src/check_token.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Oldal címe -->
-    <title>Book Shop</title>
+    <title>Elektronikus Könyvek | Bookshop</title>
     
 
  
@@ -45,12 +45,21 @@ include '../../src/check_token.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-            
-
-
-
 </head>
 <body>
+
+<?php 
+    //Beloginolt állapot
+    $isLoggedIn = isset($_SESSION['name']) ? 'true' : 'false';
+?>
+
+<script>
+    //php átadja a jsnek (szerencsére csak így lehet megoldani)
+    var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    console.log(isLoggedIn); 
+</script>
+
+
 <header>
         <!-- Top Navigation -->
         <nav class="navbar navbar-light">
@@ -66,22 +75,23 @@ include '../../src/check_token.php';
                     <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%"
                         id="searchInput">
                 </form>
-
-                <!-- Modal (Whislist) -->
                 <div class="d-flex">
-                    <div id="wishlistModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" id="close-wishlist">&times;</span>
-                            <h2>Kívánságlista</h2>
-                            <div id="wishlist-items"></div>
-                            <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
-                        </div>
+            <?php if (isset($_SESSION['name'])): ?>
+                <!-- Modal (Wishlist) -->
+                <div id="wishlistModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="close-wishlist">&times;</span>
+                        <h2>Kívánságlista</h2>
+                        <div id="wishlist-items"></div>
+                        <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
                     </div>
+                </div>
 
-                    <!-- Whislist ikon -->
-                    <a href="#" class="mr-3" id="wishlist-icon">
-                        <i class="fas fa-heart"></i>
-                    </a>
+                <!-- Wishlist ikon -->
+                <a href="#" class="mr-3" id="wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                </a>
+            <?php endif; ?>
                     <!-- Kosár ikon -->
                     <a href="#" class="mr-3" id="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
