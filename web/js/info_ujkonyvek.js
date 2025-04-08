@@ -204,7 +204,7 @@ window.WishlistManager.addEventListener('update', updateWishlistModal);
 
 updateWishlistModal();
 
-// Ellenőrzi, hogy a könyv már a kívánságlistán van-e
+
 function isBookInWishlist(bookId) {
     return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
 }

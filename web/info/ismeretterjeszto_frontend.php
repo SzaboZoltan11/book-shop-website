@@ -1,9 +1,6 @@
 <?php
-
 include '../../src/check_token.php';
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="hu, en">
@@ -13,21 +10,19 @@ include '../../src/check_token.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="max-image-preview:large">
-    <meta name="keywords" content="Online bookstore, Book purchase, New books, Best books, Special editions, E-books, Discounted books, Book recommendations, Reading, Literature, Adult books, Children's books, Classic books, Most popular books, Online book shopping, Textbooks, Bookstore promotions, Bookstore offers">
-    <meta name="description" content="Discover the best online bookstore where you can find a wide selection of books in various genres, including the latest releases, bestsellers, classics, and special editions. Our platform offers detailed and honest reviews of books, as well as updated information on discounts, special offers, and promotions. Whether you're looking for fiction, non-fiction, children's books, or textbooks, we have something for everyone. Enjoy a seamless shopping experience with secure payments and fast delivery options. Start exploring our collection today and find your next great read at the best prices. Join now and enjoy reading like never before!">
+    <meta name="keywords" content="Ismeretterjesztő könyvek, Tudományos könyvek, Oktató könyvek, Történelmi könyvek, Természettudományos könyvek, Képregények ismeretterjesztéshez, Művészetek könyvei, Felfedező könyvek, Társadalomtudományi könyvek, Népszerű ismeretterjesztő könyvek">
+    <meta name="description" content="Fedezd fel a legjobb ismeretterjesztő könyvek széles választékát, beleértve tudományos, történelmi, és oktató műveket.">
     <meta name="author" content="Taylor Team">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Hungarian">
 
     <!-- Link -->
-    <link rel="canonical" href="">
-    <link rel="alternate" href="" hreflang="hu">
-    <link rel="alternate" href="" hreflang="en">
-    <link rel="icon" href="" sizes="32x32" type="image/png">
-    <link rel="icon" href="" sizes="16x16" type="image/png">
     <link rel="apple-touch-icon" href="">
-    <link rel="preload" href="./css/index.css" as="style" type="text/css">
+    <link rel="preload" href="../css/index.css" as="style" type="text/css">
+    <link rel="preload" href="../css/info.css" as="style" type="text/css">
+    <link rel="preload" href="../css/info_al.css" as="style" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 
 
 
@@ -43,7 +38,7 @@ include '../../src/check_token.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Oldal címe -->
-    <title>Book Shop</title>
+    <title>Ismeretterjesztő Könyvek | Bookshop</title>
     
 
  
@@ -57,22 +52,38 @@ include '../../src/check_token.php';
 
 </head>
 <body>
+
+<?php 
+    //Beloginolt állapot
+    $isLoggedIn = isset($_SESSION['name']) ? 'true' : 'false';
+?>
+
+<script>
+    //php átadja a jsnek (szerencsére csak így lehet megoldani)
+    var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    console.log(isLoggedIn); 
+</script>
+
+
+
 <header>
-    <!-- Top Navigation -->
-    <nav class="navbar navbar-light">
-        <div class="container-xl d-flex justify-content-between align-items-center">
-            <!-- Logo -->
-            <a class="navbar-brand" href="../index.php">
-                <img src="../img/logo.png" alt="Logo" height="40px">
-            </a>
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-light">
+            <div class="container-xl d-flex justify-content-between align-items-center">
+                <!-- Logo -->
+                <a class="navbar-brand" href="../index.php">
+                    <img src="../img/logo.png" alt="Logo" height="40px">
+                </a>
 
-            <!-- Search Bar -->
-            <form class="form-inline search-bar m-0">
-                <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-                <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
-            </form>
-
-            <div class="d-flex">
+                <!-- Search Bar -->
+                <form class="form-inline search-bar m-0">
+                    <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
+                    <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%"
+                        id="searchInput">
+                </form>
+                <div class="d-flex">
+            <?php if (isset($_SESSION['name'])): ?>
+                <!-- Modal (Wishlist) -->
                 <div id="wishlistModal" class="modal">
                     <div class="modal-content">
                         <span class="close" id="close-wishlist">&times;</span>
@@ -82,60 +93,98 @@ include '../../src/check_token.php';
                     </div>
                 </div>
 
-                <!-- Whislist ikon -->
+                <!-- Wishlist ikon -->
                 <a href="#" class="mr-3" id="wishlist-icon">
                     <i class="fas fa-heart"></i>
                 </a>
-                <!-- Kosár ikon -->
-                <a href="#" class="mr-3" id="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-            </div>
-
-            <!-- Modal -->
-            <div id="cartModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="close-modal">&times;</span>
-                    <h2>Kosár tartalma</h2>
-                    <p></p> 
-                    <p class="total-amount">
-                </div>
-            </div>
-
-            <?php if (isset($_SESSION['name'])): ?>
-            <div class="dropdown">
-                <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                    Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a href="game://Game" target="_blank" class="dropdown-item">Játék</a>
-                    <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
-                        <a href="../admin/admin.php" class="dropdown-item">Admin page</a>
-                    <?php endif; ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="../../php/logout.php">Kijelentkezés</a>
-                </div>
-            </div>
-            <?php else: ?>
-            <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
-            <a href="registration.php" id="nav-hover">Regisztráció</a>
             <?php endif; ?>
-        </div>
-    </nav>
+                    <!-- Kosár ikon -->
+                    <a href="#" class="mr-3" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+
+                <!-- Modal (Cart) -->
+                <div id="cartModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="close-modal">&times;</span>
+                        <h2>Kosár tartalma</h2>
+                        <p></p>
+                        <p class="total-amount">
+                    </div>
+                </div>
+
+                <!-- Logged in user drop down Menu -->
+                <?php if (isset($_SESSION['name'])): ?>
+                    <div class="dropdown">
+                        <a href="#" class="mr-3 dropdown-toggle" id="userDropdown" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Üdv, <?php echo htmlspecialchars($_SESSION['name']); ?>!
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a href="game://Game/?userid=<?php echo $authenticator->currentUserId ?>" class="dropdown-item">Játék</a>
+                            <?php if (isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1): ?>
+                                <a href="../admin/admin.php" class="dropdown-item">Admin page</a>
+                            <?php endif; ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="../../php/logout.php">Kijelentkezés</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="../logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
+                    <a href="../registration.php" id="nav-hover">Regisztráció</a>
+                <?php endif; ?>
+            </div>
+        </nav>
+
+        <!-- MODAL -->
+        <div id="bookResultsBackdrop"></div>
+
+        <!-- Results -->
+        <div id="bookResults"></div>
+
 
         <!-- Main Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-xl d-flex justify-content-center">
                 <!-- Navbar Content -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="../info/ekonyv_frontend.php">Ekönyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../info/uj-konyvek-frontend.php">Új könyvek</a></li>
+
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Ekönyvek
+                            <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Best Sellers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
+                                <a class="dropdown-item" href="">Szépirodalmi</a>
+                                <a class="dropdown-item" href="">Ismeretterjesztő</a>
+                                <a class="dropdown-item" href="">Gyerekeknek</a>
+                                <a class="dropdown-item" href="">Angol könyvek</a>
+                                <a class="dropdown-item" href="">Ifjúsági</a>
+                                <a class="dropdown-item" href="">Különleges ajánlat</a>
+                            </div>
+                        </li>
+
+
+                        <li class="nav-item"><a class="nav-link" href="../info/szepirodalom_frontend.php">Szépirodalmi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../info/ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../info/ifjusagi_frontend.php">Gyerekeknek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../info/kepregeny_frontend.php">Képregények</a></li>
+                   
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Különleges ajánlat
                             </a>
                             <div class="dropdown-menu" aria-labelledby="booksDropdown">
                                 <a class="dropdown-item" href="">asd</a>
@@ -149,29 +198,9 @@ include '../../src/check_token.php';
                                 <a class="dropdown-item" href="">asd</a>
                                 <a class="dropdown-item" href="">asd</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
+                                <a class="dropdown-item" href="../index.php">Összes Könyv</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Best Sellers
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                                <a class="dropdown-item" href="">Szépirodalmi</a>
-                                <a class="dropdown-item" href="">Ismeretterjesztő</a>
-                                <a class="dropdown-item" href="">Gyerekeknek</a>
-                                <a class="dropdown-item" href="">Angol könyvek</a>
-                                <a class="dropdown-item" href="">Ifjúsági</a>
-                                <a class="dropdown-item" href="">Különleges ajánlat</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="">Szépirodalmi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Különleges ajánlat</a></li>
                     </ul>
                 </div>
             </div>
@@ -191,7 +220,7 @@ include '../../src/check_token.php';
 
 
   
-<footer>
+    <footer>
     <div class="footer-links">
         <div class="footer-info">
             <div class="footer-images-help">
@@ -238,13 +267,12 @@ include '../../src/check_token.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
+
 <script src="../js/wishlish_manager.js"></script>
 <script src="../js/cart.js"></script>
-<script src="../js/whislist.js"></script>
 <script src="../js/decorate.js"></script>
 <script src="../js/searchbar.js"></script>
 <script src="../js/info_ismeretterjeszto.js"></script>
-
 
 
 
