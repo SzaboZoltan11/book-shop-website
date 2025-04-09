@@ -80,16 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartModal();
 
     function loadBooks(startYear, endYear) {
-        fetch(`uj-konyvek-backend.php?startYear=${startYear}&endYear=${endYear}`)
+        fetch(`books.php?startYear=${startYear}&endYear=${endYear}`)
             .then(v => v.json())
             .then(v => {
-                if (!v || v.error) {
+                if (!v.books || v.error) {
                     document.getElementById('ujkonyv-details').innerHTML = "Nem található ilyen évszámú könyv.";
                     return;
                 }
 
                 let booksHtml = '';
-                for (const book of v) {
+                for (const book of v.books) {
                     const coverPath = '/bookshop/web/database/covers/' + book.cover + '.png';
                     booksHtml += `
                         <div class="card">

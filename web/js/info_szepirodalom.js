@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ---------- SZÉPIRODALOM BETÖLTÉSE ----------
     function loadBooks(categoryId) {
-        fetch('szepirodalom_backend.php?category_id=' + encodeURIComponent(categoryId))
+        fetch('books.php?category_id=' + encodeURIComponent(categoryId))
             .then(response => {
                 if (!response.ok) {
                     document.getElementById('szepirodalom-details').innerHTML = "Hiba történt a könyvek adatainak betöltésekor.";
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     icon.addEventListener("click", () => {
                         const book = data.books[index];
                         if (!isBookInWishlist(book.id)) {
-                            window.WishlistManager.add({ book_id: book.id });
+                            window.WishlistManager.add(book.id);
                             updateWishlistModal();
                         }
                     });

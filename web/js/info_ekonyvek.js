@@ -81,17 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartModal();
 
     // Vásárlás gomb eseménykezelő
-    function loadBooks(electronic) { 
-        fetch('ekonyv_backend.php?electronic=' + electronic)
+    function loadBooks() { 
+        fetch('books.php?electronic')
             .then(v => v.json())
             .then(v => {
-                if (!v || v.error) {
+                if (!v.books || v.error) {
                     document.getElementById('ekönyv-details').innerHTML = "Nem található ilyen típusú könyv.";
                     return;
                 }
                 
                 let booksHtml = '';
-                for (const book of v) {
+                for (const book of v.books) {
                     const coverPath = '/bookshop/web/database/covers/' + book.cover + '.png';
                     booksHtml += `
                     <div class="card">
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    loadBooks(1);
+    loadBooks();
 
     // Kívánságlista modal frissítése
     function updateWishlistModal() {

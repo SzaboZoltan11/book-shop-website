@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? categoryIds.map(id => `category_id[]=${encodeURIComponent(id)}`).join('&')
             : `category_id=${encodeURIComponent(categoryIds)}`;
 
-        fetch('ismeretterjeszto_backend.php?' + queryString)
+        fetch('books.php?' + queryString)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Hiba történt a szerver válaszában.");

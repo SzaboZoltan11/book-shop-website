@@ -749,7 +749,7 @@ a {
     display: flex;
     flex-direction: column;
     background-color: #3c1f7d;
-    
+    overflow: hidden;
 }
 
 

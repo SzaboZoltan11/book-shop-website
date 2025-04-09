@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? categoryIds.map(id => `category_id[]=${encodeURIComponent(id)}`).join('&')
             : `category_id=${encodeURIComponent(categoryIds)}`;
 
-        fetch('ifjusagi_backend.php?' + queryString)
+        fetch('books.php?' + queryString)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Hiba történt a szerver válaszában.");
@@ -113,6 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
                 }
                 document.getElementById('ifjusagi-details').innerHTML = booksHtml;
+                
+                const wishlistIcons = document.querySelectorAll(".wishlist-icon");
+                wishlistIcons.forEach(function(icon) {
+                    icon.addEventListener("click", function() {
+                        const bookId = icon.getAttribute("data-id");
+                        // Check if the book is already in the wishlist
+                        if (!isBookInWishlist(bookId)) {
+                            window.WishlistManager.add(bookId);
+                        }
+                    });
+                });
 
                 const buyButtons = document.querySelectorAll(".buy-btn");
                 buyButtons.forEach(function(button) {
