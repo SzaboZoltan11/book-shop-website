@@ -64,13 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
                 main.appendChild(container);
 
-                /** @type {HTMLElement} */ const slider = document.getElementById(`slider-${category.category_id}`);
-                /** @type {HTMLElement} */ const prevBtn = container.querySelector(".prev-btn");
-                /** @type {HTMLElement} */ const nextBtn = container.querySelector(".next-btn");
+                const slider = document.getElementById(`slider-${category.category_id}`);
+                const prevBtn = container.querySelector(".prev-btn");
+                const nextBtn = container.querySelector(".next-btn");
                 
-       
-
-
                 const _books = [];
 
                 fetch(`/bookshop/web/api/books.php?category=${category.category_id}`)
@@ -105,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 addToCart(book.cover, book.title, book.price);
                             });
 
-                           
                             if (isLoggedIn === 'true') {
                                 card.querySelector(".wishlist-icon").style.display = "block";
                                 card.querySelector(".wishlist-icon").addEventListener("click", function () {
@@ -115,59 +111,47 @@ document.addEventListener("DOMContentLoaded", function () {
                                 card.querySelector(".wishlist-icon").style.display = "none";
                             }
 
-                            
-
                             const bookImage = card.querySelector('.book-image');
                             bookImage.addEventListener('click', function () {
                                 const bookId = bookImage.dataset.id;
-
                                 window.location.href = `/bookshop/web/info/info_frontend.php?bookId=${bookId}`;
                             });
-                            
                         });
 
                         let currentPosition = 0;
 
-                        /**
-                         * @param {HTMLElement} scroller
-                         * @param {NodeListOf<HTMLElement>} cards
-                         */
                         function cardScrollerStepLeft(scroller, cards) {
                             for (let i = cards.length - 2; i >= 0; i--) {
-                                const card = cards.item(i)
+                                const card = cards.item(i);
                                 if (card.offsetLeft <= currentPosition - scroller.clientWidth) {
-                                    currentPosition = cards.item(i + 1).offsetLeft
-                                    scroller.style.transform = `translateX(-${currentPosition}px)`
-                                    return
+                                    currentPosition = cards.item(i + 1).offsetLeft;
+                                    scroller.style.transform = `translateX(-${currentPosition}px)`;
+                                    return;
                                 }
                             }
-                            scroller.style.transform = `translateX(0px)`
+                            scroller.style.transform = `translateX(0px)`;
                         }
 
-                        /**
-                         * @param {HTMLElement} scroller
-                         * @param {NodeListOf<HTMLElement>} cards
-                         */
                         function cardScrollerStepRight(scroller, cards) {
                             for (let i = 1; i < cards.length; i++) {
-                                const card = cards.item(i)
+                                const card = cards.item(i);
                                 if (card.offsetLeft >= currentPosition + scroller.clientWidth) {
-                                    currentPosition = cards.item(i - 1).offsetLeft
-                                    scroller.style.transform = `translateX(-${currentPosition}px)`
-                                    return
+                                    currentPosition = cards.item(i - 1).offsetLeft;
+                                    scroller.style.transform = `translateX(-${currentPosition}px)`;
+                                    return;
                                 }
                             }
                         }
 
                         prevBtn.addEventListener('click', () => {
                             if (!mediaQuery.matches && currentPosition > 0) {
-                                cardScrollerStepLeft(slider, slider.querySelectorAll('.card'))
+                                cardScrollerStepLeft(slider, slider.querySelectorAll('.card'));
                             }
                         });
 
                         nextBtn.addEventListener('click', () => {
                             if (!mediaQuery.matches && currentPosition < slider.scrollWidth - slider.offsetWidth) {
-                                cardScrollerStepRight(slider, slider.querySelectorAll('.card'))
+                                cardScrollerStepRight(slider, slider.querySelectorAll('.card'));
                             }
                         });
 
@@ -205,15 +189,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateCartModal() {
-        const cartModalContent = document.querySelector("#cartModal .modal-content p");
+        const cartItemsContainer = document.querySelector("#cartModal .modal-content #cart-items");
         const totalAmountElement = document.querySelector("#cartModal .total-amount");
+        const checkoutBtn = document.querySelector("#checkout-btn");
 
-        if (!cartModalContent) {
-            console.error('A kosár modal nem található!');
+        if (!cartItemsContainer || !totalAmountElement || !checkoutBtn) {
+            console.error('Néhány kosár elem nem található!');
             return;
         }
 
-        cartModalContent.innerHTML = "";
+        cartItemsContainer.innerHTML = ""; 
 
         let totalAmount = 0;
 
@@ -235,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     removeFromCart(index);
                 });
 
-                cartModalContent.appendChild(cartItem);
+                cartItemsContainer.appendChild(cartItem);
 
                 totalAmount += parseFloat(item.price) || 0;
             });
@@ -245,11 +230,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (totalAmountElement) {
                 totalAmountElement.textContent = `Teljes összeg: ${formattedTotalAmount} Ft`;
             }
+
+            checkoutBtn.style.display = "block";
         } else {
-            cartModalContent.innerHTML = "A kosár üres.";
+            cartItemsContainer.innerHTML = "A kosár üres.";
             if (totalAmountElement) {
                 totalAmountElement.textContent = "Teljes összeg: 0 Ft";
             }
+            checkoutBtn.style.display = "none";
         }
     }
 
@@ -266,8 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.WishlistManager.add(bookId);
         }
     }
-    
-    // Ellenőrzi, hogy a könyv már a kívánságlistán van-e
+
     function isBookInWishlist(bookId) {
         return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
     }

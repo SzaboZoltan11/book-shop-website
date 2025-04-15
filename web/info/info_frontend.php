@@ -91,15 +91,18 @@ include '../../src/check_token.php';
                 </a>
             </div>
 
-            <!-- Modal -->
-            <div id="cartModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="close-modal">&times;</span>
-                    <h2>Kosár tartalma</h2>
-                    <p></p> 
-                    <p class="total-amount">
+                  <!-- Modal (Cart) -->
+                  <div id="cartModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" id="close-modal">&times;</span>
+                        <h2>Kosár tartalma</h2>
+                        <div id="cart-items">
+                            <p></p>
+                        </div>
+                        <p class="total-amount"></p>
+                        <button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button>
+                    </div>
                 </div>
-            </div>
 
             <?php if (isset($_SESSION['name'])): ?>
             <div class="dropdown">
@@ -272,9 +275,14 @@ include '../../src/check_token.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
+
+<script src="../js/wishlish_manager.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/whislist.js"></script>
+
 <script src="../js/info_ajax.js"></script>
 <script src="../js/decorate.js"></script>
-
+<script src="../js/searchbar.js"></script>
 
 
 </body>

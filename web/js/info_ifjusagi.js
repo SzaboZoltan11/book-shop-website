@@ -26,9 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateCartModal() {
         const cartModalContent = document.querySelector("#cartModal .modal-content p");
         const totalAmountElement = document.querySelector("#cartModal .total-amount");
+        const checkoutBtn = document.querySelector("#checkout-btn");
 
-        if (!cartModalContent) {
-            console.error('A kosár modal nem található!');
+        if (!cartItemsContainer || !totalAmountElement || !checkoutBtn) {
+            console.error('Néhány kosár elem nem található!');
             return;
         }
 
@@ -63,11 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (totalAmountElement) {
                 totalAmountElement.textContent = `Teljes összeg: ${formattedTotalAmount} Ft`;
             }
+            checkoutBtn.style.display = "block";
         } else {
-            cartModalContent.innerHTML = "A kosár üres.";
+            cartItemsContainer.innerHTML = "A kosár üres.";
             if (totalAmountElement) {
                 totalAmountElement.textContent = "Teljes összeg: 0 Ft";
             }
+            checkoutBtn.style.display = "none";
         }
     }
 

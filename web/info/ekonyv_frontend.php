@@ -98,15 +98,19 @@ include '../../src/check_token.php';
                     </a>
                 </div>
 
-                <!-- Modal (Cart) -->
+                   <!-- Modal (Cart) -->
                 <div id="cartModal" class="modal">
                     <div class="modal-content">
                         <span class="close" id="close-modal">&times;</span>
                         <h2>Kosár tartalma</h2>
-                        <p></p>
-                        <p class="total-amount">
+                        <div id="cart-items">
+                            <p></p>
+                        </div>
+                        <p class="total-amount"></p>
+                        <button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button>
                     </div>
                 </div>
+
 
                 <!-- Logged in user drop down Menu -->
                 <?php if (isset($_SESSION['name'])): ?>

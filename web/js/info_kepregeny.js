@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     loadBooks([4]);
 
-    // Kívánságlista modal frissítése
     function updateWishlistModal() {
         var wishlistItemsContainer = document.getElementById("wishlist-items");
         var wishlistCount = document.getElementById("wishlist-count");
@@ -191,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateWishlistModal();
     
-    // Ellenőrzi, hogy a könyv már a kívánságlistán van-e
+
     function isBookInWishlist(bookId) {
         return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
     }
