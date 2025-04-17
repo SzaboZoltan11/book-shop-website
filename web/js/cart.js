@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var cartIcon = document.getElementById('cart-icon');
-    var cartModal = document.getElementById('cartModal');
-    var closeModal = document.getElementById('close-modal');
-    var checkoutBtn = document.getElementById('checkout-btn');
-    var cartItemsContainer = document.getElementById('cart-items');
-    var addToCartBtn = document.getElementById('buy-btn');
+    const cartIcon = document.getElementById('cart-icon');
+    const cartModal = document.getElementById('cartModal');
+    const closeModal = document.getElementById('close-modal');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const addToCartBtn = document.getElementsByClassName('buy-btn').item(0);
 
     function toggleCheckoutButton() {
         if (cartItemsContainer.children.length > 0) {
@@ -30,12 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Dinamikus hozzáadás a kosárhoz
-    addToCartBtn.addEventListener('click', function () {
-        var newItem = document.createElement('div');
-        newItem.classList.add('cart-item');
-        newItem.textContent = 'Könyv neve'; // Dinamikus név is lehet
-        cartItemsContainer.appendChild(newItem);
-        toggleCheckoutButton(); // Ez frissíti a gombot
-    });
+    // addToCartBtn.addEventListener('click', function () {
+    //     var newItem = document.createElement('div');
+    //     newItem.classList.add('cart-item');
+    //     newItem.textContent = 'Könyv neve'; 
+    //     cartItemsContainer.appendChild(newItem);
+    //     toggleCheckoutButton(); 
+    // });
 });

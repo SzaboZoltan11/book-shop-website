@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var wishlistIcon = document.getElementById("wishlist-icon");
-    var wishlistModal = document.getElementById("wishlistModal");
-    var closeWishlist = document.getElementById("close-wishlist");
-    var wishlistItemsContainer = document.getElementById("wishlist-items");
-    var wishlistCount = document.getElementById("wishlist-count");
+    const wishlistIcon = document.getElementById("wishlist-icon");
+    const wishlistModal = document.getElementById("wishlistModal");
+    const closeWishlist = document.getElementById("close-wishlist");
+    const wishlistItemsContainer = document.getElementById("wishlist-items");
+    const wishlistCount = document.getElementById("wishlist-count");
 
     window.WishlistManager.addEventListener('update', () => {
         updateWishlistModal()
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then(v => {
                     if (!v[0]) return
                     const details = v[0]
-                    console.log(details)
                     const wishlistItem = document.createElement("div");
                     wishlistItem.classList.add("wishlist-item");
                     wishlistItem.innerHTML = `

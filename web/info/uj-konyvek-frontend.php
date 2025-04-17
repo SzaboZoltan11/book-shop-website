@@ -268,8 +268,10 @@ include '../../src/check_token.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
 
+<script src="../js/books.js"></script>
 <script src="../js/wishlish_manager.js"></script>
 <script src="../js/cart.js"></script>
+<script src="../js/whislist.js"></script>
 <script src="../js/decorate.js"></script>
 <script src="../js/searchbar.js"></script>
 <script src="../js/info_ujkonyvek.js"></script>

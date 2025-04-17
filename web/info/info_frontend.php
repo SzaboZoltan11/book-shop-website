@@ -186,6 +186,8 @@ include '../../src/check_token.php';
 
     <div id="book-details">
     <img id="book-cover" alt="Book cover" class="info-book-image">
+    <button id="button-add-wishlist">Wishlist</button>
+    <button id="button-add-cart">Cart</button>
     <table class="info-table">
         <tr>
             <th class="info-table-header">Cím:</th>
@@ -276,6 +278,7 @@ include '../../src/check_token.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
 
 
+<script src="../js/books.js"></script>
 <script src="../js/wishlish_manager.js"></script>
 <script src="../js/cart.js"></script>
 <script src="../js/whislist.js"></script>
