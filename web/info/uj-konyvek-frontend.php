@@ -114,7 +114,7 @@ include '../../src/check_token.php';
                             <p></p>
                         </div>
                         <p class="total-amount"></p>
-                        <a href="checkout.php"><button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button></a>
+                        <a href="../checkout.php"><button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button></a>
                     </div>
                 </div>
 
