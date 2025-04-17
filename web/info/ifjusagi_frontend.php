@@ -107,7 +107,7 @@ include '../../src/check_token.php';
                             <p></p>
                         </div>
                         <p class="total-amount"></p>
-                        <button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button>
+                        <button id="checkout-btn" class="checkout-btn" style="display: none;"><a href="../checkout.php">Tovább a fizetéshez</a></button>
                     </div>
                 </div>
 
@@ -250,9 +250,10 @@ include '../../src/check_token.php';
                 </div>
             </div>
             <div class="footer-legal">
-                <a href="casinoarena/feltetel.html"> Cookie tájékoztató</a> | 
-                <a href="casinoarena/altalanos_szerzodes.html"> Általános szerződési feltételek</a> | 
-                <span>Copyright © 2025 bookshop.hu | Minden jog fenntartva</span>
+                    <a href="../cookie.php"> Cookie tájékoztató</a> |
+                    <a href="../adatvedelem.php">Adatvédelem</a> |
+                    <a href="../aszf.php"> Általános szerződési feltételek</a> |
+                    <span>Copyright © 2025 bookshop.hu | Minden jog fenntartva</span>
             </div>
         </div>
     </div>
