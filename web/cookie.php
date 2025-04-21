@@ -207,31 +207,31 @@ include '../src/check_token.php';
     <p>
         A böngésző beállításaiban bármikor letilthatja vagy törölheti a cookie-kat. Ez azonban bizonyos funkciók működését befolyásolhatja.
     </p>
-
     <h3>Az Ön jogai</h3>
-<div class="rights-list">
-    <div class="right-box">Hozzáférni a személyes adataihoz</div>
-    <div class="right-box">Kérni azok helyesbítését vagy törlését</div>
-    <div class="right-box">Tiltakozni az adatkezelés ellen</div>
-    <div class="right-box">Panaszt tenni a NAIH-nál</div>
-</div>
-
-<div class="info-box">
-    További információkat az <a href="adatvedelem.php">Adatvédelmi tájékoztatóban</a> talál.
-</div>
-
+    <ul>
+        <li><strong>Hozzáférés joga:</strong> Ön jogosult tájékoztatást kapni a kezelt személyes adatairól.</li>
+        <li><strong>Helyesbítés joga:</strong> Kérheti a pontatlan adatok helyesbítését.</li>
+        <li><strong>Törlés joga („az elfeledtetéshez való jog”):</strong> Kérheti adatainak törlését bizonyos feltételek mellett.</li>
+        <li><strong>Adatkezelés korlátozásának joga:</strong> Bizonyos esetekben kérheti az adatkezelés korlátozását.</li>
+        <li><strong>Adathordozhatósághoz való jog:</strong> Kérheti adatai kiadását vagy továbbítását más szolgáltatóhoz.</li>
+        <li><strong>Tiltakozás joga:</strong> Tiltakozhat személyes adatainak kezelése ellen.</li>
+        <li><strong>Panasztétel joga:</strong> Panaszt nyújthat be a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH).</li>
+    </ul>
 
 
-    <!-- TOVÁBBI INFÓK -->
+
+
+    <!-- Adatvédelmi tájékoztató gomb-stílusban -->
     <div class="info-box mt-4">
-        📄 További információkat az <a href="adatvedelem.php">Adatvédelmi tájékoztatóban</a> talál.
+        📄 További információkat az 
+        <a href="adatvedelem.php" class="btn-link">Adatvédelmi tájékoztatóban</a> talál.
     </div>
 
+    <!-- Jobbra igazított vissza gomb -->
     <div class="button-container">
         <button class="btn" onclick="window.history.back();">Vissza</button>
     </div>
 </main>
-
 
 
  <!-- Footer-->

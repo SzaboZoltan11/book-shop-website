@@ -29,43 +29,52 @@ main h3 {
     font-size: 22px;
     margin-top: 25px;
     margin-bottom: 10px;
+    max-height: 40px;
 }
 
 main p {
     margin-bottom: 15px;
+    width: 820px;
 }
 
 main ul {
     list-style-type: disc;
     margin-left: 20px;
     margin-bottom: 15px;
+    width: 800px;
 }
 
 main ul li {
     margin-bottom: 10px;
 }
 
-.alert-info {
-    background-color: #eaf7ff;
-    color: #007bff;
-    border-left: 5px solid #007bff;
-    padding: 15px;
-    margin-top: 20px;
+
+
+
+/* Adatvédelmi link gombként */
+.btn-link {
+    background-color: #007bff;
+    color: #fff !important;
+    border: none;
     border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
 }
 
-.alert-info a {
-    color: #007bff;
-    text-decoration: underline;
-}
-
-.alert-info a:hover {
+.btn-link:hover {
+    background-color: #0056b3;
     text-decoration: none;
 }
 
+/* Vissza gomb jobb szélre */
 .button-container {
     margin-top: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
 }
 
 button.btn {
