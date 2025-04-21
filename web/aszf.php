@@ -16,7 +16,6 @@ include '../src/check_token.php';
 
 <body>
 
-    <!-- Header csak logóval és visszalépési lehetőséggel -->
     <header class="bg-light py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="index.php">
@@ -103,7 +102,6 @@ include '../src/check_token.php';
         <button class="btn btn-primary mt-3" onclick="window.history.back();">Vissza</button>
     </main>
 
-    <!-- Footer (egyszerűsített) -->
     <footer class="bg-light text-center py-4">
         <div class="container">
             <p class="mb-1">© 2025 Bookshop.hu | Minden jog fenntartva.</p>

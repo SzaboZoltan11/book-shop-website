@@ -47,8 +47,10 @@ session_start();
                 <select name="payment" id="payment" class="input-field" required>
                     <option value="">Válassz...</option>
                     <option value="utanvet">Utánvét</option>
+                    <!--
                     <option value="bankkartya">Bankkártya</option>
                     <option value="paypal">PayPal</option>
+                    -->
                 </select>
             </div>
 
