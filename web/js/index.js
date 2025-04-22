@@ -24,29 +24,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function toggleSearchState(event) {
+    function hideNavItems() {
         if (mediaQuery.matches) {
-            if (event.type === "focus") {
-                logo.style.display = "none";
-                whislist.style.display = "none";
-                cart.style.display = "none";
-                userDropdown.style.display = "none";
-                searchInput.classList.add("expanded");
-                searchBar.style.width = "100%";
-            } else if (event.type === "blur") {
-                logo.style.display = "";
-                whislist.style.display = "";
-                cart.style.display = "";
-                userDropdown.style.display = "";
-                searchInput.classList.remove("expanded");
-                searchBar.style.width = "";
-            }
+            logo?.classList.add("hide-on-search");
+            wishlist?.classList.add("hide-on-search");
+            cart?.classList.add("hide-on-search");
+            userDropdown?.classList.add("hide-on-search");
         }
     }
 
-    if (searchInput && searchBar) {
-        searchInput.addEventListener("focus", toggleSearchState);
-        searchInput.addEventListener("blur", toggleSearchState);
+    function showNavItems() {
+        logo?.classList.remove("hide-on-search");
+        wishlist?.classList.remove("hide-on-search");
+        cart?.classList.remove("hide-on-search");
+        userDropdown?.classList.remove("hide-on-search");
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("focus", hideNavItems);
+        searchInput.addEventListener("blur", showNavItems);
     }
 
     fetch('/bookshop/web/api/categories.php')

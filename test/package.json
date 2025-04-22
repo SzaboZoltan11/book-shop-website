@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "login_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "selenium-webdriver": "^4.31.0"
+  },
+  "devDependencies": {
+    "fetch-mock": "^12.5.2",
+    "jest": "^29.7.0",
+    "jsdom": "^26.1.0"
+  }
+}

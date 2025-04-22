@@ -200,12 +200,12 @@ include '../src/check_token.php';
                                 Best Sellers
                             </a>
                             <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                                <a class="dropdown-item" href="">Szépirodalmi</a>
-                                <a class="dropdown-item" href="">Ismeretterjesztő</a>
-                                <a class="dropdown-item" href="">Gyerekeknek</a>
-                                <a class="dropdown-item" href="">Angol könyvek</a>
-                                <a class="dropdown-item" href="">Ifjúsági</a>
-                                <a class="dropdown-item" href="">Különleges ajánlat</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=34">Vaják I.</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=53">Egy Jomsviking története</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=100">Batman Fehér Lovag</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=261">A Pékmesterség Nagykönyve</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=40">A Hobbit</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=9">Az inkvizíció</a>
                             </div>
                         </li>
 
@@ -222,16 +222,16 @@ include '../src/check_token.php';
                                 Különleges ajánlat
                             </a>
                             <div class="dropdown-menu" aria-labelledby="booksDropdown">
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=45">A Pál utcai fiúk</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=163">2084</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=307">Idő - Khronosz megölésének álma</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=226">A háború művészete</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=204">Baranyavármegye nemesei</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=72">A kis herceg - kartonált</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=258">A borkezelésről</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=297">Az ég atlasza</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=199">A mohácsi csata</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=288">A PI története</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="index.php">Összes Könyv</a>
                             </div>

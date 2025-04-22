@@ -1200,3 +1200,10 @@ h2 {
     color: #fff;
     text-decoration: none;
 }
+
+
+@media (max-width: 1199.98px) {
+    .hide-on-search {
+      display: none !important;
+    }
+  }

@@ -125,55 +125,63 @@ include '../../src/check_token.php';
         </div>
     </nav>
 
-        <!-- Main Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
+ <!-- Main Navigation -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-xl d-flex justify-content-center">
                 <!-- Navbar Content -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="info/ekonyv_frontend.php">Ekönyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/uj-konyvek-frontend.php">Új könyvek</a></li>
+
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Ekönyvek
+                            <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Best Sellers
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=34">Vaják I.</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=53">Egy Jomsviking története</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=100">Batman Fehér Lovag</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=261">A Pékmesterség Nagykönyve</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=40">A Hobbit</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=9">Az inkvizíció</a>
+                            </div>
+                        </li>
+
+
+                        <li class="nav-item"><a class="nav-link" href="info/szepirodalom_frontend.php">Szépirodalmi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/ifjusagi_frontend.php">Gyerekeknek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="info/kepregeny_frontend.php">Képregények</a></li>
+                   
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php" id="booksDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Különleges ajánlat
                             </a>
                             <div class="dropdown-menu" aria-labelledby="booksDropdown">
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
-                                <a class="dropdown-item" href="">asd</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=45">A Pál utcai fiúk</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=163">2084</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=307">Idő - Khronosz megölésének álma</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=226">A háború művészete</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=204">Baranyavármegye nemesei</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=72">A kis herceg - kartonált</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=258">A borkezelésről</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=297">Az ég atlasza</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=199">A mohácsi csata</a>
+                                <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=288">A PI története</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="index.php">Összes Könyv</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="">Új könyvek</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="bestsellersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Best Sellers
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="bestsellersDropdown">
-                                <a class="dropdown-item" href="">Szépirodalmi</a>
-                                <a class="dropdown-item" href="">Ismeretterjesztő</a>
-                                <a class="dropdown-item" href="">Gyerekeknek</a>
-                                <a class="dropdown-item" href="">Angol könyvek</a>
-                                <a class="dropdown-item" href="">Ifjúsági</a>
-                                <a class="dropdown-item" href="">Különleges ajánlat</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="">Szépirodalmi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ismeretterjesztő</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Gyerekeknek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Angol könyvek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Ifjúsági</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Különleges ajánlat</a></li>
                     </ul>
                 </div>
             </div>
