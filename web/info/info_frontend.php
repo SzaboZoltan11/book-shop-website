@@ -194,8 +194,12 @@ include '../../src/check_token.php';
 
     <div id="book-details">
     <img id="book-cover" alt="Book cover" class="info-book-image">
-    <button id="button-add-wishlist">Wishlist</button>
-    <button id="button-add-cart">Cart</button>
+
+    <div class="button-container">
+        <button id="button-add-cart" class="button-cart styled-button">Kosárba</button>
+        <button id="button-add-wishlist" class="button-wish styled-button">Kívánságlistába</button>
+    </div>
+
     <table class="info-table">
         <tr>
             <th class="info-table-header">Cím:</th>
