@@ -233,7 +233,7 @@ include '../src/check_token.php';
                                 <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=199">A mohácsi csata</a>
                                 <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=288">A PI története</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
+
                             </div>
                         </li>
                     </ul>

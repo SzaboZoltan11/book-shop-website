@@ -153,8 +153,8 @@ include '../../src/check_token.php';
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item"><a class="nav-link" href="info/ekonyv_frontend.php">Ekönyvek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="info/uj-konyvek-frontend.php">Új könyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./ekonyv_frontend.php">Ekönyvek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./uj-konyvek-frontend.php">Új könyvek</a></li>
 
 
                         <li class="nav-item dropdown">
@@ -173,10 +173,10 @@ include '../../src/check_token.php';
                         </li>
 
 
-                        <li class="nav-item"><a class="nav-link" href="info/szepirodalom_frontend.php">Szépirodalmi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="info/ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
-                        <li class="nav-item"><a class="nav-link" href="info/ifjusagi_frontend.php">Gyerekeknek</a></li>
-                        <li class="nav-item"><a class="nav-link" href="info/kepregeny_frontend.php">Képregények</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./szepirodalom_frontend.php">Szépirodalmi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./ismeretterjeszto_frontend.php">Ismeretterjesztő</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./ifjusagi_frontend.php">Gyerekeknek</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./kepregeny_frontend.php">Képregények</a></li>
                    
 
                         <li class="nav-item dropdown">
@@ -196,7 +196,7 @@ include '../../src/check_token.php';
                                 <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=199">A mohácsi csata</a>
                                 <a class="dropdown-item" href="/bookshop/web/info/info_frontend.php?bookId=288">A PI története</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.php">Összes Könyv</a>
+
                             </div>
                         </li>
                     </ul>
@@ -236,7 +236,7 @@ include '../../src/check_token.php';
                             <span>36 2 129 66</span>
                         </div>
                     </div>
-                    <p class="addiction-warning">Könyveink ára tartalmazza az ÁFÁ-t!</p>
+                    <p class="afa">Könyveink ára tartalmazza az ÁFÁ-t!</p>
                 </div>
             </div>
             <div class="footer-description-follow">

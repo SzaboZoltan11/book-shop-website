@@ -10,6 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playtest", "Playtest\Playtest.csproj", "{3B3CCC5D-9D58-4C3E-89F2-3E5B3BC07DB5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A78412F6-6B74-4EB5-8AEA-D4541B5BAEDA} = {A78412F6-6B74-4EB5-8AEA-D4541B5BAEDA}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +25,10 @@ Global
 		{A78412F6-6B74-4EB5-8AEA-D4541B5BAEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A78412F6-6B74-4EB5-8AEA-D4541B5BAEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A78412F6-6B74-4EB5-8AEA-D4541B5BAEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B3CCC5D-9D58-4C3E-89F2-3E5B3BC07DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3CCC5D-9D58-4C3E-89F2-3E5B3BC07DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3CCC5D-9D58-4C3E-89F2-3E5B3BC07DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3CCC5D-9D58-4C3E-89F2-3E5B3BC07DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

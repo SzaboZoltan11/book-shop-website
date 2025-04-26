@@ -2,8 +2,9 @@
 using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Web;
+using WindowsFormsApp1;
 
-namespace WindowsFormsApp1
+namespace WinFormsApp1
 {
     static class Program
     {

@@ -52,10 +52,14 @@ namespace WindowsFormsApp1
                     return Playableresult.cantplay;
                 }
 
-                result.Lastplayed = DateTime.UtcNow;
-                result.Discount = Kartyak.won;
+                if (result.Discount==0 && DateTime.Today > result.Lastplayed && load==false)
+                {
+                    result.Lastplayed = DateTime.UtcNow;
+                    result.Discount = Kartyak.won;
+                    _context.SaveChanges();
+                }
 
-                _context.SaveChanges();
+                
                 return Playableresult.ok;
             }
             else
