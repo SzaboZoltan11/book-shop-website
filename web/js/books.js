@@ -1,18 +1,19 @@
 // @ts-check
 
 /**
+ * @param {number} bookId
  * @param {string} cover
  * @param {string} title
  * @param {string} price
  */
-function addToCart(cover, title, price) {
+function addToCart(bookId, cover, title, price) {
     const numericPrice = parseFloat(price.replace(/[^\d.-]/g, '')); 
     if (isNaN(numericPrice)) {
         console.error('Hibás ár formátum');
         return;
     }
 
-    cartItems.push({ cover, title, price: numericPrice });
+    cartItems.push({ book_id: bookId, cover, title, price: numericPrice });
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     updateCartModal();
 }
@@ -85,12 +86,12 @@ function loadBooks(container, filter = null) {
                     const price = card.querySelector(".price").textContent;
 
                     // Kosárba adás
-                    addToCart(cover, title, price);
+                    addToCart(book.id, cover, title, price);
                     toggleCheckoutButton(); 
                 });
 
                 const wishlistButton = cardDiv.querySelector(".wishlist-icon");
-                wishlistButton.addEventListener("click", function () {
+                wishlistButton?.addEventListener("click", function () {
                     // Check if the book is already in the wishlist
                     if (!isBookInWishlist(book.id)) {
                         window.WishlistManager.add(book.id);

@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             slider.appendChild(card);
 
                             card.querySelector(".buy-btn").addEventListener("click", function () {
-                                addToCart(book.cover, book.title, book.price);
+                                addToCart(book.book_id, book.cover, book.title, book.price);
                             });
 
                             if (isLoggedIn === 'true') {
@@ -178,8 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error('Hiba a kategóriák betöltésekor:', error));
 
-    function addToCart(cover, title, price) {
-        cartItems.push({ cover, title, price });
+    function addToCart(bookId, cover, title, price) {
+        cartItems.push({ book_id: bookId, cover, title, price });
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         updateCartModal();
     }

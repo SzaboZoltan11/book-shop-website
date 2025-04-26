@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 06. 13:33
+-- Létrehozás ideje: 2025. Ápr 26. 16:01
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -735,20 +735,6 @@ INSERT INTO `category` (`category_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `delivery`
---
-
-CREATE TABLE `delivery` (
-  `delivery_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `delivery_type` enum('standard','express','same_day') NOT NULL,
-  `location` varchar(255) NOT NULL,
-  `delivery_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `game`
 --
 
@@ -764,7 +750,32 @@ CREATE TABLE `game` (
 
 INSERT INTO `game` (`user_id`, `lastplayed`, `discount`) VALUES
 (3, '2025-03-30 11:44:43', 10),
-(4, '2025-04-03 14:08:49', 0);
+(4, '2025-04-03 14:08:49', 0),
+(5, '2025-04-10 17:04:32', 0),
+(6, '2000-01-01 00:00:00', 0),
+(7, '2000-01-01 00:00:00', 0),
+(8, '2000-01-01 00:00:00', 0),
+(9, '2000-01-01 00:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `ordered_book`
+--
+
+CREATE TABLE `ordered_book` (
+  `order_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `ordered_book`
+--
+
+INSERT INTO `ordered_book` (`order_id`, `book_id`) VALUES
+(3, 1),
+(3, 4),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -773,11 +784,20 @@ INSERT INTO `game` (`user_id`, `lastplayed`, `discount`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `order_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` enum('pending','completed','shipped','cancelled') NOT NULL
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `address` varchar(420) NOT NULL,
+  `postal_code` int(11) NOT NULL,
+  `city` varchar(420) NOT NULL,
+  `payment` varchar(420) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `address`, `postal_code`, `city`, `payment`) VALUES
+(3, NULL, '5', 5, 'asd', 'utanvet');
 
 -- --------------------------------------------------------
 
@@ -820,7 +840,12 @@ INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `ph
 (1, 'Szabó', 'Zoltán', 'szabozola91@gmail.com', '$2y$10$725zyY7F0dsalhMADjlL0uiMlEu92bcLLk0FVw8Pft2P6q0VWpzky', '+36(30)8468143', '2025-03-10 16:46:18', 1, 1),
 (2, 'Bot', 'Mester', 'asd@gmail.com', '$2y$10$RLgQddMK1ZUAu2ZHE8O9jeVziUIWzSk5o0sR2PxKuKaL/jJvc3J/W', '+36(30)8774337', '2025-03-10 16:59:57', 1, 0),
 (3, 'szabo', 'apo', 'cencebence@freemail.com', '$2y$10$QXZvQctUgWk6/GyioPdiH.4mSJOS6aiDZjmIN7W//q/DrpvlGzRJC', '+36(20)4206969', '2025-03-10 17:41:53', 1, 1),
-(4, 'Mata', 'Gyurika', 'matagyurika@gmail.com', '$2y$10$DOhW8ZKDp.wITwTjWQf0Uuuz9JtVk0OlBqapq2kIIQs/UHpdLLWfm', '+36(20)1111222', '2025-04-02 15:58:59', 1, 0);
+(4, 'Mata', 'Gyurika', 'matagyurika@gmail.com', '$2y$10$DOhW8ZKDp.wITwTjWQf0Uuuz9JtVk0OlBqapq2kIIQs/UHpdLLWfm', '+36(20)1111222', '2025-04-02 15:58:59', 1, 0),
+(5, 'Tar', 'Attila', 'tar.attila1970@gmail.com', '$2y$10$rci16DVpser6BB1Zaln08OxRYSGgvkJqK2bjDKEX.PGydmLy1cVB6', '+36(30)8468100', '2025-04-10 18:59:08', 1, 0),
+(6, 'teszt', 'teszt', 'teszt@example.com', '$2y$10$QMEmyb/BqND0KhKlCmMpAOdqArozJa9EoXAJS88czKUojHd2.lpRu', '+36(30)8468155', '2025-04-22 09:59:05', 1, 0),
+(7, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310192936@example.com', '$2y$10$8FUpQQ6SOic6p77nIoMO7eoPxLh/GuV9SH7/kAe01koyupXCoA.Dy', '+36(20)1234567', '2025-04-22 10:23:13', 1, 0),
+(8, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310686715@example.com', '$2y$10$Pr/4AtR2OvnwXrU09QnXz.9/gg6GnITWFlLIlmpVLrfy7vWW2z6TS', '+36(30)6667777', '2025-04-22 10:31:26', 1, 0),
+(9, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310779370@example.com', '$2y$10$d6SvLGIS0dItgRHp2j9vHuuhs4/.9XtQfNOO2S/r9S1U5Z.RRIH.i', '+36(30)6667778', '2025-04-22 10:32:59', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -843,7 +868,10 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `expires_at`) VALUES
 (1, 1, 'fbbb2f8fe9fc16721d9ac96e7a6532ce899c36bf4bd3e2c77380156af22dea17', '2025-04-09 16:52:17'),
 (2, 2, '4baf60d75aa2d3180a031ee4c0b124a64773a8597fc3eec9908eeef39ccc67be', '2025-04-09 17:00:07'),
 (3, 3, '6e37aa2a0f8fbc1e037bf1e39da0210e8543f5765de268044c76d1667d8b0aa7', '2025-04-09 17:42:03'),
-(4, 4, '410368ffe6111a1f56b4488ad01dbf64f18515f49c71b131e2f0058d81e18071', '2025-05-02 15:59:18');
+(4, 4, '410368ffe6111a1f56b4488ad01dbf64f18515f49c71b131e2f0058d81e18071', '2025-05-02 15:59:18'),
+(5, 5, 'e2bb0eb4dd6d8daf0d05bb6a8a089333e7921916283a22daf74beb591898b263', '2025-05-10 18:59:24'),
+(6, 1, 'e41d014048bbdb85b54eee78bb943bdeffbc7ec075f258202fd9fee2529a09ed', '2025-05-17 11:19:48'),
+(7, 6, 'b1de8a0e80338412cbdbb2c8040b3587f407999225c443b83b2bacde3656fc12', '2025-05-22 09:59:18');
 
 -- --------------------------------------------------------
 
@@ -855,6 +883,13 @@ CREATE TABLE `wishlist` (
   `user_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `wishlist`
+--
+
+INSERT INTO `wishlist` (`user_id`, `book_id`) VALUES
+(5, 4);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -882,24 +917,23 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- A tábla indexei `delivery`
---
-ALTER TABLE `delivery`
-  ADD PRIMARY KEY (`delivery_id`),
-  ADD KEY `order_id` (`order_id`);
-
---
 -- A tábla indexei `game`
 --
 ALTER TABLE `game`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- A tábla indexei `ordered_book`
+--
+ALTER TABLE `ordered_book`
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
 -- A tábla indexei `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `transactions`
@@ -947,16 +981,10 @@ ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT a táblához `delivery`
---
-ALTER TABLE `delivery`
-  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `transactions`
@@ -968,13 +996,13 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT a táblához `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -994,22 +1022,17 @@ ALTER TABLE `book_category`
   ADD CONSTRAINT `book_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
--- Megkötések a táblához `delivery`
---
-ALTER TABLE `delivery`
-  ADD CONSTRAINT `delivery_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
-
---
 -- Megkötések a táblához `game`
 --
 ALTER TABLE `game`
   ADD CONSTRAINT `game_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Megkötések a táblához `orders`
+-- Megkötések a táblához `ordered_book`
 --
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `ordered_book`
+  ADD CONSTRAINT `ordered_book_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `ordered_book_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
 
 --
 -- Megkötések a táblához `transactions`
