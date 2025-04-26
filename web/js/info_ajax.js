@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
 
             document.getElementById('button-add-cart').addEventListener('click', () => {
-                addToCart(v.cover, v.title, v.price)
+                addToCart(v.book_id, v.cover, v.title, v.price)
             })
 
             const coverPath = '/bookshop/web/database/covers/' + v.cover + '.png';

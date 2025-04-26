@@ -25,8 +25,9 @@ session_start();
             }
         ?>
 
-        <form action="../php/order_process.php" method="POST">
-
+        <form action="../php/order_process.php" method="POST" onsubmit="
+            window.localStorage.setItem('cartItems', JSON.stringify([]))
+        ">
             <div class="input-group">
                 <label for="address">Szállítási cím</label>
                 <input type="text" name="address" id="address" class="input-field" required>
@@ -53,6 +54,12 @@ session_start();
                     -->
                 </select>
             </div>
+
+            <input type="hidden" name="cart" id="input_cart">
+            <script>
+                const inputCart = document.getElementById('input_cart')
+                inputCart.value = window.localStorage.getItem('cartItems')
+            </script>
 
             <?php
                 if (isset($_SESSION['error'])) {

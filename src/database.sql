@@ -61,13 +61,13 @@ CREATE TABLE `transactions` (
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
 );
 
-CREATE TABLE `orders` (
-  `order_id` INT(11) AUTO_INCREMENT PRIMARY KEY,
-  `user_id` INT(11) NOT NULL,
-  `order_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` ENUM('pending', 'completed', 'shipped', 'cancelled') NOT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
-);
+-- CREATE TABLE `orders` (
+--   `order_id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+--   `user_id` INT(11) NOT NULL,
+--   `order_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `status` ENUM('pending', 'completed', 'shipped', 'cancelled') NOT NULL,
+--   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
+-- );
 
 
 CREATE TABLE `delivery` (
@@ -92,9 +92,25 @@ CREATE TABLE user_tokens (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE `wishlist`(
+CREATE TABLE `wishlist` (
   `user_id` INT(11) NOT NULL,
   `book_id` INT(11) NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`),
+  FOREIGN KEY (`book_id`) REFERENCES `books`(`book_id`)
+);
+
+CREATE TABLE `orders` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT(11),
+  `address` VARCHAR(420) NOT NULL,
+  `postal_code` INT(11) NOT NULL,
+  `city` VARCHAR(420) NOT NULL,
+  `payment` VARCHAR(420) NOT NULL
+);
+
+CREATE TABLE `ordered_book` (
+  `order_id` INT NOT NULL,
+  `book_id` INT NOT NULL,
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`),
   FOREIGN KEY (`book_id`) REFERENCES `books`(`book_id`)
 );
