@@ -12,7 +12,7 @@ session_start();
 </head>
 <body>
     <div class="logo">
-        <img src="./img/logo.png" alt="Bookshop logo" width="100px" onclick="window.location.href='./index.html';">
+        <img src="./img/logo.png" alt="Bookshop logo" width="100px" onclick="window.location.href='./index.php';">
     </div>
     
     <div class="container">
@@ -28,6 +28,11 @@ session_start();
         <form action="../php/order_process.php" method="POST" onsubmit="
             window.localStorage.setItem('cartItems', JSON.stringify([]))
         ">
+              <div class="input-group">
+                <label for="city">Számlázási név</label>
+                <input type="text" name="name" id="name" class="input-field" required>
+            </div>
+
             <div class="input-group">
                 <label for="address">Szállítási cím</label>
                 <input type="text" name="address" id="address" class="input-field" required>
@@ -48,11 +53,10 @@ session_start();
                 <select name="payment" id="payment" class="input-field" required>
                     <option value="">Válassz...</option>
                     <option value="utanvet">Utánvét</option>
-                    <!--
-                    <option value="bankkartya">Bankkártya</option>
-                    <option value="paypal">PayPal</option>
-                    -->
                 </select>
+            </div>
+
+            <div class="input-group" id="discounts">
             </div>
 
             <input type="hidden" name="cart" id="input_cart">
@@ -67,15 +71,16 @@ session_start();
                     unset($_SESSION['error']); 
                 }
             ?>
-            
+
             <button type="submit" class="btn">Megrendelés leadása</button>
         </form>
 
         <div class="form-footer">
-            <p id="footer-p"><a href="./index.html" id="footer-a">Vissza a főoldalra</a></p>
+            <p id="footer-p"><a href="./index.php" id="footer-a">Vissza a főoldalra</a></p>
         </div>
     </div>
 
     <script src="./js/registration.js"></script>
+    <script src="./js/discount.js"></script>
 </body>
 </html>

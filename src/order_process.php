@@ -8,17 +8,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die;
     }
 
+    $name = $_POST['name'];
     $user_id = $authenticator->currentUserId;
     $address = $_POST['address'];
     $postal_code = $_POST['postal_code'];
     $city = $_POST['city'];
     $payment = $_POST['payment'];
+    $discountId = $_POST['discount'];
+    $discount = 0;
 
-    $stmt1 = $conn->prepare("INSERT INTO orders (user_id, address, postal_code, city, payment) VALUES (?, ?, ?, ?, ?)");
-    $stmt1->bind_param("isiss", $user_id, $address, $postal_code, $city, $payment);
+    if (strlen($discountId)) {
+        $discountQueryStatement = $conn->prepare("SELECT discount FROM game WHERE id = ?");
+        $discountQueryStatement->bind_param("i", $discountId);
 
-    if (!$stmt1->execute()) {
-        throw new Exception("Hiba történt: " . $stmt1->error);
+        if (!$discountQueryStatement->execute()) {
+            throw new Exception("Hiba történt: " . $discountQueryStatement->error);
+        }
+
+        $result = $discountQueryStatement->get_result();
+        while ($v = $result->fetch_assoc()) {
+            $discount = $v['discount'];
+        }
+
+        if (!$discount) {
+            throw new Exception("Hiba történt: A kupon értéke 0%");
+        }
+    }
+    
+    $insertStatement = $conn->prepare("INSERT INTO orders (user_id, name, address, postal_code, city, payment, discount) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $insertStatement->bind_param("isssssi", $user_id, $name, $address, $postal_code, $city, $payment, $discount);
+
+    if (!$insertStatement->execute()) {
+        throw new Exception("Hiba történt: " . $insertStatement->error);
     }
 
     $cart = json_decode($_POST['cart']);
@@ -31,7 +52,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
+    // Ha volt kedvezmény, törlés a game táblából
+    if (strlen($discountId)) {
+        $deleteStatement = $conn->prepare("DELETE FROM game WHERE id = ?");
+        $deleteStatement->bind_param("i", $discountId);
+
+        if (!$deleteStatement->execute()) {
+            throw new Exception("Hiba történt: " . $deleteStatement->error);
+        }
+    }
+
     header("Location: /bookshop/web");
 } else {
-    print('Method not alloved');
+    print('Method not allowed');
 }
+?>

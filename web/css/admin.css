@@ -16,7 +16,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: 20px auto;
+    margin: 0 auto;
 }
 
 .input-group {
@@ -47,7 +47,7 @@ select.input-field {
 }
 
 .btn {
-
+    background-color: #3c1f7d;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -57,7 +57,6 @@ select.input-field {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #3c1f7d ;
 }
 
 .btn:hover {
@@ -79,31 +78,13 @@ select.input-field {
     font-size: 14px;
     display: inline-block;
     position: relative;
+    margin-bottom: 10px;
 }
 
 .__category_item span {
     margin-left: 5px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.form-box {
-    flex: 1;
-}
-
-@media (max-width: 1200px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 .category_style {
@@ -123,10 +104,6 @@ select.input-field {
     background-color: #c0392b;
 }
 
-.__category_item {
-    margin-bottom: 10px;
-}
-
 .success-message {
     color: ghostwhite;
     font-weight: bold;
@@ -135,6 +112,37 @@ select.input-field {
 }
 
 #description {
-
     resize: vertical; 
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    grid-template-areas:
+        "add-book add-category"
+        "delete-book delete-category";
+}
+
+.form-box:nth-child(1) { grid-area: add-book; }
+.form-box:nth-child(2) { grid-area: add-category; }
+.form-box:nth-child(3) { grid-area: delete-book; }
+.form-box:nth-child(4) { grid-area: delete-category; }
+
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "add-book"
+            "add-category"
+            "delete-book"
+            "delete-category";
+    }
+
+    form {
+        max-width: 100%;
+    }
 }

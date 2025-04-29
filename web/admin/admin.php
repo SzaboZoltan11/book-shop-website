@@ -19,16 +19,17 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
 
 <body>
     <?php
-        if (isset($_GET['success']) && $_GET['success'] == 1) {
-            echo "<p class='success-message'>Sikeres könyv feltöltés!</p>";
-        }
-        if (isset($_GET['success']) && $_GET['success'] == 2) {
-            echo "<p class='success-message'>Sikeres kategória feltöltés!</p>";
+        if (isset($_GET['success'])) {
+            if ($_GET['success'] == 1) echo "<p class='success-message'>Sikeres könyv feltöltés!</p>";
+            if ($_GET['success'] == 2) echo "<p class='success-message'>Sikeres kategória feltöltés!</p>";
+            if ($_GET['success'] == 3) echo "<p class='success-message'>Sikeres könyvtörlés!</p>";
+            if ($_GET['success'] == 4) echo "<p class='success-message'>Sikeres kategóriatörlés! Az összes hozzá tartozó könyv törölve lett.</p>";
         }
     ?>
 
     <div class="container">
 
+        <!-- Könyv feltöltés -->
         <div class="form-box">
             <h2>Könyv felvétele</h2>
             <form action="upload_books.php" method="POST" enctype="multipart/form-data">
@@ -55,14 +56,10 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                         <option value="0">Nem elérhető</option>
                     </select>
                 </div>
-
                 <div class="input-group">
                     <label for="description">Leírás</label>
                     <textarea name="description" id="description" class="input-field" required></textarea>
                 </div>
-                
-
-
                 <div class="input-group">
                     <label for="pages">Oldalak száma</label>
                     <input type="text" name="pages" id="pages" class="input-field" required>
@@ -131,6 +128,8 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                 <button type="submit" class="btn">Feltöltés</button>
             </form>
         </div>
+
+        <!-- Kategória feltöltés -->
         <div class="form-box">
             <h2>Kategória felvétele</h2>
             <form action="upload_category.php" method="POST" enctype="multipart/form-data">
@@ -141,7 +140,96 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                 <button type="submit" class="btn">Feltöltés</button>
             </form>
         </div>
-    </div>
-</body>
 
+        <!-- Könyv törlés -->
+        <div class="form-box">
+            <h2>Könyv törlése ISBN alapján</h2>
+            <form action="delete_books.php" method="POST">
+                <div class="input-group">
+                    <label for="delete_isbn">ISBN</label>
+                    <input type="text" name="isbn" id="delete_isbn" class="input-field" required>
+                </div>
+                <button type="submit" class="btn">Törlés</button>
+            </form>
+        </div>
+
+<!-- Kategória törlés -->
+<div class="form-box">
+    <h2>Kategória törlése</h2>
+    <form action="delete_category.php" method="POST" id="deleteCategoryForm">
+        <div class="input-group">
+            <label for="delete_category">Kategória</label>
+            <select name="category_id" id="delete_category" class="input-field" required>
+                <option value="">Válassz kategóriát</option>
+                <!-- Kategóriák dinamikusan kerülnek ide -->
+            </select>
+        </div>
+        <button type="button" class="btn" id="deleteButton">Törlés</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('deleteButton').addEventListener('click', function() {
+        const categoryId = document.getElementById('delete_category').value;
+        
+        if (!categoryId) {
+            alert("Válassz kategóriát!");
+            return;
+        }
+
+        // Kérdezzük meg, hogy a felhasználó biztosan törölni akarja-e a kategóriát.
+        fetch(`/bookshop/web/api/categories.php?category_id=${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.has_books) {
+                    const confirmDelete = confirm("Ez a kategória könyveket is tartalmaz. Biztosan törölni szeretnéd a kategóriát és a benne lévő könyveket?");
+                    if (confirmDelete) {
+                        document.getElementById('deleteCategoryForm').submit();
+                    }
+                } else {
+                    const confirmDelete = confirm("Biztosan törölni szeretnéd a kategóriát?");
+                    if (confirmDelete) {
+                        document.getElementById('deleteCategoryForm').submit();
+                    }
+                }
+            })
+            .catch(error => {
+                alert("Hiba történt a kategória ellenőrzése során.");
+            });
+    });
+</script>
+
+
+    </div>
+
+    <script>
+        fetch('/bookshop/web/api/categories.php')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.getElementById('delete_category');
+                data.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.category_id;
+                    option.textContent = cat.name;
+                    select.appendChild(option);
+                });
+            });
+
+        function confirmDeleteCategory() {
+            const select = document.getElementById('delete_category');
+            const selectedText = select.options[select.selectedIndex].text;
+
+            if (!select.value) {
+                alert("Válassz egy kategóriát!");
+                return;
+            }
+
+            const confirmed = confirm(`Biztosan törölni szeretnéd a(z) "${selectedText}" kategóriát?\nFIGYELEM: Az ebben a kategóriában lévő könyvek is törlődnek!`);
+            if (confirmed) {
+                document.getElementById('delete-category-form').action = 'delete_category.php';
+                document.getElementById('delete-category-form').submit();
+            }
+        }
+    </script>
+</body>
 </html>

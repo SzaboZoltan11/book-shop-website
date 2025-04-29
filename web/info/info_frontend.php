@@ -56,6 +56,18 @@ include '../../src/check_token.php';
 
 </head>
 <body>
+
+<?php 
+    //Beloginolt állapot
+    $isLoggedIn = isset($_SESSION['name']) ? 'true' : 'false';
+?>
+
+<script>
+    //php átadja a jsnek (szerencsére csak így lehet megoldani)
+    var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    console.log(isLoggedIn); 
+</script>
+
 <header>
     <!-- Top Navigation -->
     <nav class="navbar navbar-light">
@@ -65,32 +77,41 @@ include '../../src/check_token.php';
                 <img src="../img/logo.png" alt="Logo" height="40px">
             </a>
 
-            <!-- Search Bar -->
-            <form class="form-inline search-bar m-0">
-                <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
-                <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%">
-            </form>
 
+             <!-- Search Bar -->
+        <form class="form-inline search-bar m-0">
+            <i class="fas fa-search search-icon"></i> <!-- Search Icon -->
+            <input class="form-control" type="search" placeholder="Keresés" aria-label="Search" width="100%"
+                id="searchInput">
+        </form>
+
+            <!-- Ikonok és modalok -->
+             
             <div class="d-flex">
-                <div id="wishlistModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="close-wishlist">&times;</span>
-                        <h2>Kívánságlista</h2>
-                        <div id="wishlist-items"></div>
-                        <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
+            <div>
+                <?php if (isset($_SESSION['name'])): ?>
+                    <!-- Modal (Wishlist) -->
+                    <div id="wishlistModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="close-wishlist">&times;</span>
+                            <h2>Kívánságlista</h2>
+                            <div id="wishlist-items"></div>
+                            <p class="total-items">Összesen: <span id="wishlist-count">0</span> termék</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Whislist ikon -->
-                <a href="#" class="mr-3" id="wishlist-icon">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <!-- Kosár ikon -->
+                    <!-- Wishlist ikon -->
+                    <a href="#" class="mr-3" id="wishlist-icon">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                <?php endif; ?>
+
+                <!-- Kosár ikon (mindig látható) -->
                 <a href="#" class="mr-3" id="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
-
+          
                   <!-- Modal (Cart) -->
                   <div id="cartModal" class="modal">
                     <div class="modal-content">
@@ -100,8 +121,8 @@ include '../../src/check_token.php';
                             <p></p>
                         </div>
                         <p class="total-amount"></p>
-                        <a href="../checkout.php"><button id="checkout-btn" class="checkout-btn" style="display: none;">Tovább a fizetéshez</button></a>
-                    </div>
+                        <button id="checkout-btn" class="checkout-btn" style="display: none;"><a href="checkout.php">Tovább a fizetéshez</a></button>
+                        </div>
                 </div>
 
             <?php if (isset($_SESSION['name'])): ?>
@@ -119,9 +140,13 @@ include '../../src/check_token.php';
                 </div>
             </div>
             <?php else: ?>
-            <a href="logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
-            <a href="registration.php" id="nav-hover">Regisztráció</a>
+                <div>
+            <a href="../logination.php" class="mr-3" id="nav-hover">Bejelentkezés</a>
+            <a href="../registration.php" id="nav-hover">Regisztráció</a>
+            </div>
+            </div>
             <?php endif; ?>
+            </div>
         </div>
     </nav>
 
@@ -187,6 +212,13 @@ include '../../src/check_token.php';
             </div>
         </nav>
     </header>
+
+    <!-- MODAL -->
+    <div id="bookResultsBackdrop"></div>
+
+    <!-- Results -->
+    <div id="bookResults"></div>
+
 
     <div class="back-to-main">
         <a href="../index.php">Vissza a főoldalra!</a>

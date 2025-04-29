@@ -37,19 +37,19 @@ function toggleCheckoutButton() {
  * }} [filter]
  */
 function loadBooks(container, filter = null) {
-    const queires = []
+    const queires = [];
 
     if (filter.categoryIds) {
         queires.push(...filter.categoryIds.map(id => `category_id[]=${encodeURIComponent(id)}`));
     }
 
     if (filter.electronic) {
-        queires.push(`electronic=1`)
+        queires.push(`electronic=1`);
     }
 
     if (filter.year) {
-        queires.push(`startYear=${filter.year[0]}`)
-        queires.push(`endYear=${filter.year[1]}`)
+        queires.push(`startYear=${filter.year[0]}`);
+        queires.push(`endYear=${filter.year[1]}`);
     }
 
     fetch(`books.php${queires.length ? '?' + queires.join('&') : ''}`)
@@ -60,23 +60,23 @@ function loadBooks(container, filter = null) {
                 return;
             }
 
-            container.innerHTML = ''
+            container.innerHTML = '';
 
             for (const book of data.books) {
                 const coverPath = '/bookshop/web/database/covers/' + book.cover + '.png';
-                const cardDiv = document.createElement('div')
-                cardDiv.classList.add('card')
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('card');
                 cardDiv.innerHTML = `
                     ${isLoggedIn === 'true' ? `<span class="wishlist-icon" data-id="${book.id}">&#9825;</span>` : ""}
-                        <img src="${coverPath}" alt="${book.title}" class="book-image"/>
-                        <div class="card-info">
-                            <p class="title">${book.title}</p>
-                            <p class="price">${book.price}</p>
-                            <button class="buy-btn">Vásárlás</button>
-                        </div>
+                    <img src="${coverPath}" alt="${book.title}" class="book-image" data-id="${book.id}" />
+                    <div class="card-info">
+                        <p class="title">${book.title}</p>
+                        <p class="price">${book.price}</p>
+                        <button class="buy-btn">Vásárlás</button>
+                    </div>
                 `;
 
-                container.appendChild(cardDiv)
+                container.appendChild(cardDiv);
 
                 const buyButton = cardDiv.querySelector(".buy-btn");
                 buyButton.addEventListener("click", function () {
@@ -87,7 +87,7 @@ function loadBooks(container, filter = null) {
 
                     // Kosárba adás
                     addToCart(book.id, cover, title, price);
-                    toggleCheckoutButton(); 
+                    toggleCheckoutButton();
                 });
 
                 const wishlistButton = cardDiv.querySelector(".wishlist-icon");
@@ -96,6 +96,13 @@ function loadBooks(container, filter = null) {
                     if (!isBookInWishlist(book.id)) {
                         window.WishlistManager.add(book.id);
                     }
+                });
+
+                // Add the click event for book image
+                const bookImage = cardDiv.querySelector('.book-image');
+                bookImage.addEventListener('click', function () {
+                    const bookId = bookImage.dataset.id;
+                    window.location.href = `/bookshop/web/info/info_frontend.php?bookId=${bookId}`;
                 });
             }
         })
@@ -187,4 +194,4 @@ if (urlParams.has("sessionEnded") && urlParams.get("sessionEnded") === "true") {
 document.addEventListener('DOMContentLoaded', () => {
     const cart = document.querySelector("#cart-icon");
     updateCartModal();
-})
+});

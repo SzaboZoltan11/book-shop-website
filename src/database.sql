@@ -76,12 +76,13 @@ CREATE TABLE `delivery` (
   `delivery_type` ENUM('standard', 'express', 'same_day') NOT NULL,
   `location` VARCHAR(255) NOT NULL,
   `delivery_date` DATE NOT NULL,
-  FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`) 
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`)
 );
 CREATE TABLE `game`(
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
   `user_id` INT(11) NOT NULL,
   `lastplayed` DATETIME,
-  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) 
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
 );
 
 CREATE TABLE user_tokens (
@@ -102,10 +103,12 @@ CREATE TABLE `wishlist` (
 CREATE TABLE `orders` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `user_id` INT(11),
+  `name` VARCHAR(255) NOT NULL,
   `address` VARCHAR(420) NOT NULL,
   `postal_code` INT(11) NOT NULL,
   `city` VARCHAR(420) NOT NULL,
-  `payment` VARCHAR(420) NOT NULL
+  `payment` VARCHAR(420) NOT NULL,
+  `discount` INT(11) NOT NULL
 );
 
 CREATE TABLE `ordered_book` (

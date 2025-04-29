@@ -29,12 +29,4 @@ document.addEventListener("DOMContentLoaded", function () {
             cartModal.classList.remove('show');
         }
     });
-
-    // addToCartBtn.addEventListener('click', function () {
-    //     var newItem = document.createElement('div');
-    //     newItem.classList.add('cart-item');
-    //     newItem.textContent = 'Könyv neve'; 
-    //     cartItemsContainer.appendChild(newItem);
-    //     toggleCheckoutButton(); 
-    // });
 });
