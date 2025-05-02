@@ -260,10 +260,10 @@ include '../src/check_token.php';
                 <div class="footer-images-help">
                     <!-- Footer Ikons-->
                     <div class="footer-images">
-                        <i class="fa fa-book"></i>
-                        <i class="fa fa-truck"></i>
-                        <i class="fa fa-credit-card"></i>
-                        <i class="fa fa-lock"></i>
+                    <i class="fa fa-book" style="font-size: 44px;"></i> 
+                    <i class="fa fa-truck" style="font-size: 40px;"></i> 
+                    <i class="fa fa-credit-card" style="font-size: 40px;"></i> 
+                    <i class="fa fa-lock" style="font-size: 44px;"></i> 
                     </div>
 
                     <!-- Info box -->

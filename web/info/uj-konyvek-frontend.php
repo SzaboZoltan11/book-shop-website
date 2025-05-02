@@ -247,7 +247,7 @@ include '../../src/check_token.php';
                 <div class="footer-follow">
                     <p id="footer_follow_p">Kövess minket:</p>
                     <p id="footer_follow_i">
-                        <i class="fa fa-facebook"></i>
+                    <i class="fa fa-facebook"></i>
                     </p>
                 </div>
             </div>
