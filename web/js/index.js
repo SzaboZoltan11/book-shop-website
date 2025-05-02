@@ -185,20 +185,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateCartModal() {
-        const cartItemsContainer = document.querySelector("#cartModal .modal-content #cart-items");
-        const totalAmountElement = document.querySelector("#cartModal .total-amount");
-        const checkoutBtn = document.querySelector("#checkout-btn");
+        /** @type {HTMLElement} */ const cartItemsContainer = document.querySelector("#cartModal .modal-content #cart-items");
+        /** @type {HTMLElement} */ const totalAmountElement = document.querySelector("#cartModal .total-amount");
+        /** @type {HTMLElement} */ const checkoutBtn = document.querySelector("#checkout-btn");
 
         if (!cartItemsContainer || !totalAmountElement || !checkoutBtn) {
             console.error('Néhány kosár elem nem található!');
             return;
         }
 
-        cartItemsContainer.innerHTML = ""; 
-
         let totalAmount = 0;
 
         if (cartItems.length > 0) {
+            cartItemsContainer.innerHTML = ""; 
+    
             cartItems.forEach((item, index) => {
                 const cartItem = document.createElement("div");
                 cartItem.classList.add("cart-item");
@@ -237,6 +237,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /**
+     * @param {number} index
+     */
     function removeFromCart(index) {
         cartItems.splice(index, 1);
         localStorage.setItem("cartItems", JSON.stringify(cartItems));

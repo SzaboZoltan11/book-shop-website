@@ -120,22 +120,20 @@ function isBookInWishlist(bookId) {
 }
 
 function updateCartModal() {
-    /** @type {HTMLElement} */ const cartModalContent = document.querySelector("#cartModal .modal-content p");
+    /** @type {HTMLElement} */ const cartItemsContainer = document.querySelector("#cartModal .modal-content #cart-items");
     /** @type {HTMLElement} */ const totalAmountElement = document.querySelector("#cartModal .total-amount");
     /** @type {HTMLElement} */ const checkoutBtn = document.querySelector("#checkout-btn");
-    /** @type {HTMLElement} */ const cartItemsContainer = document.querySelector("#cartModal .modal-content #cart-items");
 
     if (!cartItemsContainer || !totalAmountElement || !checkoutBtn) {
         console.error('Néhány kosár elem nem található!');
         return;
     }
 
-    cartModalContent.innerHTML = "";
-
     let totalAmount = 0;
 
     if (cartItems.length > 0) {
-        cartItemsContainer.innerHTML = ''
+        cartItemsContainer.innerHTML = "";
+        
         cartItems.forEach((item, index) => {
             const cartItem = document.createElement("div");
             cartItem.classList.add("cart-item");
@@ -155,10 +153,11 @@ function updateCartModal() {
 
             cartItemsContainer.appendChild(cartItem);
 
-            totalAmount += item.price || 0;
+            totalAmount += parseFloat(item.price) || 0;
         });
 
         const formattedTotalAmount = Math.floor(totalAmount).toLocaleString();
+
         if (totalAmountElement) {
             totalAmountElement.textContent = `Teljes összeg: ${formattedTotalAmount} Ft`;
         }

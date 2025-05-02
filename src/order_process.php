@@ -2,6 +2,23 @@
 include_once './connect.php';
 include_once './check_token.php';
 
+
+//validacio
+require_once './order_validator.php';
+
+$validator = new Validator($_POST);
+
+if (!$validator->validate()) {
+    $_SESSION['error'] = implode("<br>", $validator->getErrors());
+    header('Location: ../web/checkout.php'); // 
+    exit;
+}
+//sikeres megrendeles
+$_SESSION['success'] = "A megrendelés sikeresen leadva!";
+header('Location: ../web/index.php'); 
+exit;
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['cart'])) {
         print('Parameter "cart" is required');

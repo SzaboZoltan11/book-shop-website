@@ -18,6 +18,12 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
 </head>
 
 <body>
+<div class="navbar-header">
+    <a class="navbar-brand" href="../index.php">
+        <img src="../img/logo.png" alt="Logo" height="80px">
+    </a>
+    <h1 class="navbar-title">Admin</h1>
+</div>
     <?php
         if (isset($_GET['success'])) {
             if ($_GET['success'] == 1) echo "<p class='success-message'>Sikeres könyv feltöltés!</p>";
@@ -82,44 +88,7 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
                         <option value="">Válassz kategóriát</option>
                     </select>
                     <input type=hidden name="categories" value="" id="categories_input_hidden">
-                    <script>
-                        {
-                            const categoryInput = document.getElementById('category');
-                            const categoryContainer = document.getElementById('category-container');
-                            fetch('/bookshop/web/api/categories.php')
-                                .then(v => v.json())
-                                .then(v => {
-                                    for (const category of v) {
-                                        const option = document.createElement('option');
-                                        option.value = category.category_id;
-                                        option.textContent = category.name;
-                                        categoryInput.appendChild(option);
-                                    }
-                                });
-                            function refreshCategoriesInputValue() {
-                                const categoryItems = categoryContainer.getElementsByClassName('__category_item');
-                                const values = [];
-                                for (const categoryItem of categoryItems) {
-                                    values.push(categoryItem.getAttribute('data-category-id'));
-                                }
-                                document.getElementById('categories_input_hidden').value = values.join(',');
-                            }
-                            categoryInput.addEventListener('input', () => {
-                                const selectedCategory = categoryInput.selectedOptions.item(0);
-                                if (!selectedCategory) return;
-                                const categoryItem = document.createElement('div');
-                                categoryItem.innerHTML = `<span data-category-id="${selectedCategory.value}" class="__category_item">${selectedCategory.textContent}</span><span id="category-item-${selectedCategory.value}" class="category_style">X</span>`;
-                                categoryContainer.appendChild(categoryItem);
-                                const xButton = categoryContainer.querySelector(`#category-item-${selectedCategory.value}`);
-                                xButton.addEventListener('click', () => {
-                                    categoryItem.remove();
-                                    refreshCategoriesInputValue();
-                                });
-                                categoryInput.value = '';
-                                refreshCategoriesInputValue();
-                            });
-                        }
-                    </script>
+                
                 </div>
                 <div class="input-group">
                     <label for="cover">Kép feltöltése</label>
@@ -168,68 +137,13 @@ if (!isset($_SESSION['isadmin']) || $_SESSION['isadmin'] != 1) {
     </form>
 </div>
 
-<script>
-    document.getElementById('deleteButton').addEventListener('click', function() {
-        const categoryId = document.getElementById('delete_category').value;
-        
-        if (!categoryId) {
-            alert("Válassz kategóriát!");
-            return;
-        }
 
-        // Kérdezzük meg, hogy a felhasználó biztosan törölni akarja-e a kategóriát.
-        fetch(`/bookshop/web/api/categories.php?category_id=${categoryId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.has_books) {
-                    const confirmDelete = confirm("Ez a kategória könyveket is tartalmaz. Biztosan törölni szeretnéd a kategóriát és a benne lévő könyveket?");
-                    if (confirmDelete) {
-                        document.getElementById('deleteCategoryForm').submit();
-                    }
-                } else {
-                    const confirmDelete = confirm("Biztosan törölni szeretnéd a kategóriát?");
-                    if (confirmDelete) {
-                        document.getElementById('deleteCategoryForm').submit();
-                    }
-                }
-            })
-            .catch(error => {
-                alert("Hiba történt a kategória ellenőrzése során.");
-            });
-    });
-</script>
+</div>
+<div class="button-container">
+  <a href="orders.php" class="modern-button">Rendelések kilistázása</a>
+</div>
 
+<script src="../js/admin.js"></script>
 
-    </div>
-
-    <script>
-        fetch('/bookshop/web/api/categories.php')
-            .then(res => res.json())
-            .then(data => {
-                const select = document.getElementById('delete_category');
-                data.forEach(cat => {
-                    const option = document.createElement('option');
-                    option.value = cat.category_id;
-                    option.textContent = cat.name;
-                    select.appendChild(option);
-                });
-            });
-
-        function confirmDeleteCategory() {
-            const select = document.getElementById('delete_category');
-            const selectedText = select.options[select.selectedIndex].text;
-
-            if (!select.value) {
-                alert("Válassz egy kategóriát!");
-                return;
-            }
-
-            const confirmed = confirm(`Biztosan törölni szeretnéd a(z) "${selectedText}" kategóriát?\nFIGYELEM: Az ebben a kategóriában lévő könyvek is törlődnek!`);
-            if (confirmed) {
-                document.getElementById('delete-category-form').action = 'delete_category.php';
-                document.getElementById('delete-category-form').submit();
-            }
-        }
-    </script>
 </body>
 </html>

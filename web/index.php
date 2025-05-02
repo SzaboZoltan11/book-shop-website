@@ -172,6 +172,7 @@ include '../src/check_token.php';
 </nav>
 
 
+
         <!-- MODAL -->
         <div id="bookResultsBackdrop"></div>
 
@@ -241,6 +242,13 @@ include '../src/check_token.php';
             </div>
         </nav>
     </header>
+
+    <?php
+    if (isset($_SESSION['success'])) {
+        echo "<div class='success-message' style='color: white; margin: 10px; text-align:center'>" . $_SESSION['success'] . "</div>";
+        unset($_SESSION['success']);
+    }
+?>
 
     <main class="container mt-5"></main>
 

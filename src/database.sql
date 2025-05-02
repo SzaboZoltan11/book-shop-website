@@ -111,6 +111,11 @@ CREATE TABLE `orders` (
   `discount` INT(11) NOT NULL
 );
 
+-- SELECT orders.*, SUM(books.price) * (1 - orders.discount / 100) AS `price` FROM orders
+-- 	JOIN ordered_book ON ordered_book.order_id = orders.id
+--  JOIN books ON books.book_id = ordered_book.book_id
+--  GROUP BY orders.id
+
 CREATE TABLE `ordered_book` (
   `order_id` INT NOT NULL,
   `book_id` INT NOT NULL,

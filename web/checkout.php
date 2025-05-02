@@ -24,6 +24,13 @@ session_start();
                 unset($_SESSION['success']); 
             }
         ?>
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo "<div class='error-message' style='color: red; margin-bottom: 10px;'>" . $_SESSION['error'] . "</div>";
+            unset($_SESSION['error']);
+        }
+    ?>
+
 
         <form action="../php/order_process.php" method="POST" onsubmit="
             window.localStorage.setItem('cartItems', JSON.stringify([]))

@@ -146,3 +146,67 @@ select.input-field {
         max-width: 100%;
     }
 }
+
+
+.button-container {
+    text-align: center;
+    margin: 40px;
+  }
+  
+  .modern-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  }
+  
+  .modern-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+
+  
+  .order {
+    background: #4618ac;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    color: #fff;
+    cursor: default;
+  }
+  
+  .order h3 {
+    margin-top: 0;
+    color: #fff;
+  }
+  
+  .order p {
+    margin: 4px 0;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+
+
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar-title {
+    margin: 0;
+    font-size: 24px; 
+    cursor: default;
+}
