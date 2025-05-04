@@ -116,7 +116,7 @@ function loadBooks(container, filter = null) {
  * @param {number} bookId
  */
 function isBookInWishlist(bookId) {
-    return window.WishlistManager.wishlist.some(item => item.book_id === bookId);
+    return window.WishlistManager.wishlist.some(item => item.book_id == bookId);
 }
 
 function updateCartModal() {

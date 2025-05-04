@@ -244,11 +244,11 @@ include '../src/check_token.php';
     </header>
 
     <?php
-    if (isset($_SESSION['success'])) {
-        echo "<div class='success-message' style='color: white; margin: 10px; text-align:center'>" . $_SESSION['success'] . "</div>";
-        unset($_SESSION['success']);
-    }
-?>
+        if (isset($_SESSION['success'])) {
+            echo "<div class='success-message' style='color: white; margin: 10px; text-align:center'>" . $_SESSION['success'] . "</div>";
+            unset($_SESSION['success']);
+        }
+    ?>
 
     <main class="container mt-5"></main>
 

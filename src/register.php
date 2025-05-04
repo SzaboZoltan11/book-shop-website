@@ -116,10 +116,9 @@ class UserRegistration {
         try {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-            // Kezdjük tranzakcióval, hogy mindkét beszúrás sikeres legyen, vagy egyik se
             $this->conn->begin_transaction();
     
-            // Felhasználó beszúrása
+            //felhasznalo beszurasa
             $stmt = $this->conn->prepare("INSERT INTO users (surname, firstname, email, password, phone_number, accept_newsletter, isadmin) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssssis", $surname, $firstname, $email, $hashed_password, $phone_number, $accept_newsletter, $isadmin);
     
@@ -127,11 +126,11 @@ class UserRegistration {
                 throw new Exception("Hiba történt: " . $stmt->error);
             }
     
-            // Az új felhasználó ID-jának lekérdezése
+            //id lekerdezese
             $user_id = $this->conn->insert_id;
             $stmt->close();
     
-            // Beszúrás a game táblába
+            //beszuras game tablaba
             $stmt = $this->conn->prepare("INSERT INTO game (user_id, lastplayed, discount) VALUES (?, '2000-01-01 00:00:00', 0)");
             $stmt->bind_param("i", $user_id);
     
@@ -141,7 +140,7 @@ class UserRegistration {
     
             $stmt->close();
     
-            // Ha minden sikeres, akkor véglegesítjük a tranzakciót
+            //veglegesites, commit
             $this->conn->commit();
     
             $_SESSION['success'] = 'Sikeres regisztráció! Most már bejelentkezhetsz.';
@@ -149,7 +148,7 @@ class UserRegistration {
             exit;
     
         } catch (Exception $e) {
-            $this->conn->rollback(); // Ha hiba történik, visszavonjuk az adatbázisműveleteket
+            $this->conn->rollback(); //hiba eseten visszavonjuk az adatbazisaban tortent modositast
             $this->addError($e->getMessage());
         }
     }
