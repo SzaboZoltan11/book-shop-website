@@ -13,7 +13,6 @@ if (empty($categoryId)) {
     die('Kategória azonosító megadása kötelező');
 }
 
-// Ellenőrizzük, hogy a kategóriához vannak-e könyvek a book_category táblában
 $sql = "SELECT COUNT(*) AS book_count FROM book_category WHERE category_id = ?";
 $stmt = $conn->prepare($sql);
 
@@ -55,7 +54,7 @@ if ($row['book_count'] > 0) {
     }
 }
 
-// Most törölhetjük a kategóriát
+
 $sql = "DELETE FROM category WHERE category_id = ?";
 $stmt = $conn->prepare($sql);
 

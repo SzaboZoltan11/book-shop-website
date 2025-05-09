@@ -92,13 +92,13 @@ function loadBooks(container, filter = null) {
 
                 const wishlistButton = cardDiv.querySelector(".wishlist-icon");
                 wishlistButton?.addEventListener("click", function () {
-                    // Check if the book is already in the wishlist
+                    
                     if (!isBookInWishlist(book.id)) {
                         window.WishlistManager.add(book.id);
                     }
                 });
 
-                // Add the click event for book image
+                
                 const bookImage = cardDiv.querySelector('.book-image');
                 bookImage.addEventListener('click', function () {
                     const bookId = bookImage.dataset.id;

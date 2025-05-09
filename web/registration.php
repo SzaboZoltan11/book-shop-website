@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="logo">
-        <img src="./img/logo.png" alt="" width="100px" onclick="window.location.href='./index.html';">
+        <img src="./img/logo.png" alt="" width="100px" onclick="window.location.href='./index.php';">
     </div>
 
 

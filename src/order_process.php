@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Ha volt kedvezmény, törlés a game táblából
+    
     if (strlen($discountId)) {
         $deleteStatement = $conn->prepare("DELETE FROM game WHERE id = ?");
         $deleteStatement->bind_param("i", $discountId);

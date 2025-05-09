@@ -43,7 +43,6 @@ try {
     $sessionManager->destroySession();
     $sessionManager->deleteCookie('token');
     
-    // Redirect with a query parameter to notify JS about logout
     $sessionManager->redirect('../web/index.php?sessionEnded=true');
 } catch (Exception $e) {
     echo "Hiba történt: " . $e->getMessage();

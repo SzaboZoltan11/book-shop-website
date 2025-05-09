@@ -54,15 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         updateWishlistModal();
     });
 
-    // **Bezárás X gombra**
     closeWishlist.addEventListener("click", function() {
-        wishlistModal.style.display = "none"; // Bezárja a modált
+        wishlistModal.style.display = "none"; 
     });
 
-    // **Bezárás háttérre kattintáskor**
     window.addEventListener("click", function(event) {
         if (event.target == wishlistModal) {
-            wishlistModal.style.display = "none"; // Bezárja a modált
+            wishlistModal.style.display = "none"; 
         }
     });
 
