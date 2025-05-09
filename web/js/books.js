@@ -67,7 +67,8 @@ function loadBooks(container, filter = null) {
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card');
                 cardDiv.innerHTML = `
-                    ${isLoggedIn === 'true' ? `<span class="wishlist-icon" data-id="${book.id}">&#9825;</span>` : ""}
+                    ${ // @ts-ignore
+                    isLoggedIn === 'true' ? `<span class="wishlist-icon" data-id="${book.id}">&#9825;</span>` : ""}
                     <img src="${coverPath}" alt="${book.title}" class="book-image" data-id="${book.id}" />
                     <div class="card-info">
                         <p class="title">${book.title}</p>
@@ -98,7 +99,7 @@ function loadBooks(container, filter = null) {
                     }
                 });
 
-                
+                /** @type {HTMLElement} */
                 const bookImage = cardDiv.querySelector('.book-image');
                 bookImage.addEventListener('click', function () {
                     const bookId = bookImage.dataset.id;
