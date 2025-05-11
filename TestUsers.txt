@@ -1,0 +1,27 @@
+1)
+Email: kovacs.peter@testmail.com
+Telefonszám: +36301234567
+Jelszó: peter&Kovacs1337
+Név: Kovács Péter
+Szerep: Felhasználó
+
+2)
+Email: szabo.anna@gmail.com
+Telefonszám: +36209876543
+Jelszó: Sz@nna2001
+Név: Szabó Anna
+Szerep: Felhasználó
+
+3)
+Email: toth.gabor@freemail.hu
+Telefonszám: +36702345678
+Jelszó: gabovagy0k@77
+Név: Tóth Gábor
+Szerep: Felhasználó
+
+4)
+Email: nagy.julia@gmail.com
+Név: Nagy Júlia
+Jelszó: AĐminJulia1999
+Telefonszám: +36304456677
+Szerep: Admin

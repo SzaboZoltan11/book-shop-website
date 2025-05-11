@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Máj 02. 11:58
+-- Létrehozás ideje: 2025. Máj 10. 15:00
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -752,7 +752,11 @@ INSERT INTO `game` (`id`, `user_id`, `lastplayed`, `discount`) VALUES
 (4, 6, '2000-01-01 00:00:00', 0),
 (5, 7, '2000-01-01 00:00:00', 0),
 (6, 8, '2000-01-01 00:00:00', 0),
-(7, 9, '2000-01-01 00:00:00', 0);
+(7, 9, '2000-01-01 00:00:00', 0),
+(9, 11, '2000-01-01 00:00:00', 0),
+(11, 13, '2000-01-01 00:00:00', 0),
+(12, 14, '2025-05-10 12:30:14', 0),
+(13, 15, '2000-01-01 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -770,25 +774,23 @@ CREATE TABLE `ordered_book` (
 --
 
 INSERT INTO `ordered_book` (`order_id`, `book_id`) VALUES
-(3, 1),
-(3, 4),
-(3, 3),
-(4, 1),
-(6, 1),
-(6, 1),
-(6, 1),
-(7, 1),
-(7, 1),
-(7, 1),
-(7, 1),
-(8, 2),
-(8, 2),
-(8, 2),
-(8, 2),
-(8, 2),
-(9, 4),
-(10, 4),
-(10, 4);
+(12, 1),
+(12, 3),
+(13, 2),
+(14, 3),
+(14, 2),
+(16, 3),
+(16, 4),
+(17, 72),
+(17, 71),
+(17, 70),
+(18, 11),
+(18, 12),
+(18, 18),
+(18, 22),
+(18, 25),
+(18, 24),
+(19, 4);
 
 -- --------------------------------------------------------
 
@@ -812,29 +814,27 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `name`, `user_id`, `address`, `postal_code`, `city`, `payment`, `discount`) VALUES
-(3, '', NULL, '5', 5, 'asd', 'utanvet', 0),
-(4, '', NULL, 'asd', 0, 'asd', 'utanvet', 0),
-(5, '', 10, 'asdasdasdasd', 0, 'asdasdasdasd', 'utanvet', 0),
-(6, '', 10, 'asd', 0, 'asd', 'utanvet', 0),
-(7, '', 10, 'a', 0, 'a', 'utanvet', 0),
-(8, '', 10, 'asdasdasdasd', 0, 'asdasd', 'utanvet', 10),
-(9, '', 1, 'asd', 0, 'asd', 'utanvet', 0),
-(10, 'Szabó Zoltán', 1, 'Henyei Miklós utca 36', 5700, 'Gyula', 'utanvet', 0),
-(11, 'Zoltán Szabó', 1, 'Henyei Miklós utca 36', 5700, 'Gyula', 'utanvet', 0);
+(12, 'TESZ TESZT TESZT', 11, 'TESZ TESZT TESZT', 6500, 'TESZ TESZT TESZT', 'utanvet', 0),
+(13, 'TESZ TESZT TESZT', 11, 'TESZ TESZT TESZT', 6500, 'TESZ TESZT TESZT', 'utanvet', 0),
+(14, 'Tóth Gábor', 14, 'Csíkoséri sor 22.', 5700, 'Gyula', 'utanvet', 0),
+(15, 'Tóth Gábor', 14, 'Csíkoséri sor 22.', 5700, 'Gyula', 'utanvet', 0),
+(16, 'Tóth Gábor', 15, 'Csíkoséri sor 22.', 5700, 'Gyula', 'utanvet', 0),
+(17, 'Szabó Anna', 13, 'Kerék utca 3', 5700, 'Gyula', 'utanvet', 0),
+(18, 'Kovács Péter', 12, 'Ady köz 15/A', 5600, 'Békéscsaba', 'utanvet', 0),
+(19, 'Kovács Péter', 12, 'Ady köz 15/A', 5600, 'Békéscsaba', 'utanvet', 10);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `transactions`
+-- Tábla szerkezet ehhez a táblához `password_reset`
 --
 
-CREATE TABLE `transactions` (
-  `transaction_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `payment_method` enum('credit_card','paypal','bank_transfer','crypto','cash') NOT NULL,
-  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `amount` decimal(10,2) NOT NULL,
-  `order_number` varchar(50) NOT NULL
+CREATE TABLE `password_reset` (
+  `id` int(11) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `expires` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -869,7 +869,12 @@ INSERT INTO `users` (`user_id`, `surname`, `firstname`, `email`, `password`, `ph
 (7, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310192936@example.com', '$2y$10$8FUpQQ6SOic6p77nIoMO7eoPxLh/GuV9SH7/kAe01koyupXCoA.Dy', '+36(20)1234567', '2025-04-22 10:23:13', 1, 0),
 (8, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310686715@example.com', '$2y$10$Pr/4AtR2OvnwXrU09QnXz.9/gg6GnITWFlLIlmpVLrfy7vWW2z6TS', '+36(30)6667777', '2025-04-22 10:31:26', 1, 0),
 (9, 'Tesztcsalád', 'Tesztkereszt', 'teszt1745310779370@example.com', '$2y$10$d6SvLGIS0dItgRHp2j9vHuuhs4/.9XtQfNOO2S/r9S1U5Z.RRIH.i', '+36(30)6667778', '2025-04-22 10:32:59', 1, 0),
-(10, 'bot', 'bot', 'bot@gmail.com', '$2y$10$7cPMvxAf1lDKR7kWm3Yw9.NMp9g3Uk/MXIk6iP7Eio/rrLQ4MwCC.', '+36(30)8774335', '2025-04-29 13:00:12', 0, 0);
+(10, 'bot', 'bot', 'bot@gmail.com', '$2y$10$7cPMvxAf1lDKR7kWm3Yw9.NMp9g3Uk/MXIk6iP7Eio/rrLQ4MwCC.', '+36(30)8774335', '2025-04-29 13:00:12', 0, 0),
+(11, 'Szabo', 'Zola', 'zola1989.business@gmail.com', '$2y$10$ShFcKQYmkuiFTYJ1XIX9auBgkATLZW1e7FV/XdOh0SBYvYD2JXjrq', '+36(30)8468166', '2025-05-04 10:43:16', 1, 0),
+(12, 'Kovács', 'Péter', 'kovacs.peter@testmail.com', '$2y$10$0soe7A2HMF/GZJ67Wb8mweqRSdUz7EnfqlRmeUBgjIrVUCsTIJMqq', '+36(30)1234567', '2025-05-10 14:21:38', 1, 0),
+(13, 'Szabó', 'Anna', 'szabo.anna@gmail.com', '$2y$10$CJI2as/7yeZj3H6jr1PAzuVXz9aAT6zsYMzYe5ZkY5UuVDzAv8fmW', '+36(20)9876543', '2025-05-10 14:24:12', 1, 0),
+(14, 'Tóth', 'Gábor', 'toth.gabor@freemail.hu', '$2y$10$sIKIv3FWxc9cBYvU6XET4.7NMCFAVEMrnt4EG2CTSFQOHo2wdXSea', '+36(70)2345678', '2025-05-10 14:25:54', 0, 0),
+(15, 'Nagy', 'Júlia', 'nagy.julia@gmail.com', '$2y$10$7tmGd6HMSpohxeosiTzPX.VpqliOjpefN7w8sAjqnShvoYHOeAZuO', '+36(30)4456677', '2025-05-10 14:28:45', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -896,7 +901,12 @@ INSERT INTO `user_tokens` (`id`, `user_id`, `token`, `expires_at`) VALUES
 (5, 5, 'e2bb0eb4dd6d8daf0d05bb6a8a089333e7921916283a22daf74beb591898b263', '2025-05-10 18:59:24'),
 (6, 1, 'e41d014048bbdb85b54eee78bb943bdeffbc7ec075f258202fd9fee2529a09ed', '2025-05-17 11:19:48'),
 (7, 6, 'b1de8a0e80338412cbdbb2c8040b3587f407999225c443b83b2bacde3656fc12', '2025-05-22 09:59:18'),
-(8, 10, 'bf836a0f580aecee09f3a0fa111c971cc2b90092681c807984fb4413da122cb3', '2025-05-29 13:00:20');
+(8, 10, 'bf836a0f580aecee09f3a0fa111c971cc2b90092681c807984fb4413da122cb3', '2025-05-29 13:00:20'),
+(9, 11, 'ee63be2473ff697a662de5c10e21b07fd889df0f1993f3e1d3b21e39d133b1db', '2025-06-03 10:54:59'),
+(10, 14, 'dd2bcd6b6bfe7aae018b2bd7f7428e67d90dc6c4ef8951b3de6bf3fb15e00910', '2025-06-09 14:30:03'),
+(11, 15, '654d823c32c501fe9c6a2cd673ec3861cbd789c4ce478ae96e0f1d3b498130a1', '2025-06-09 14:32:34'),
+(12, 13, '0b728a82c3a7c14a9576275d3e330d213a0b3694ee66d167f754210b869b471c', '2025-06-09 14:34:47'),
+(13, 12, '100fc5dd0a1cefc257f22121eb286f7749b95383fe0aa4cc15db746d9dece890', '2025-06-09 14:35:42');
 
 -- --------------------------------------------------------
 
@@ -914,7 +924,15 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`user_id`, `book_id`) VALUES
-(5, 4);
+(5, 4),
+(14, 1),
+(14, 39),
+(14, 69),
+(14, 73),
+(14, 307),
+(13, 2),
+(13, 1),
+(13, 39);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -962,12 +980,10 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `transactions`
+-- A tábla indexei `password_reset`
 --
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`transaction_id`),
-  ADD UNIQUE KEY `order_number` (`order_number`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `password_reset`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `users`
@@ -1010,31 +1026,31 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT a táblához `game`
 --
 ALTER TABLE `game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT a táblához `transactions`
+-- AUTO_INCREMENT a táblához `password_reset`
 --
-ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `password_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT a táblához `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -1065,12 +1081,6 @@ ALTER TABLE `game`
 ALTER TABLE `ordered_book`
   ADD CONSTRAINT `ordered_book_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `ordered_book_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
-
---
--- Megkötések a táblához `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Megkötések a táblához `user_tokens`
