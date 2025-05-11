@@ -33,6 +33,12 @@ A felhasználói adatokat minden esetben módosítani kell!
 
 5. ADATBÁZIS
 ------------
+Hozza létre az adatbázist:
+
+CREATE DATABASE konyvwebaruhaz
+CHARACTER SET utf8
+COLLATE utf8_hungarian_ci;
+
 Importálja be minden esetben a mellékelt "konyvwebaruhaz.sql" fájlt!
 
 Admin jog beállítása:
@@ -40,3 +46,5 @@ Admin jog beállítása:
 
 ---------------------------------
 Köszönjük, hogy betartja az útmutatásban leírtakat!
+
+
