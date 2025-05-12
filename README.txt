@@ -44,6 +44,11 @@ Importálja be minden esetben a mellékelt "konyvwebaruhaz.sql" fájlt!
 Admin jog beállítása:
 - A "users" táblában az adott felhasználó "isAdmin" mezőjét állítsa 0 helyett 1 értékre.
 
+6. Gitea clone
+------------
+Ha Gitea-rol clonozza le, akkor a dokumentumok mappába a leírtaknak megfelelően járjon el, azonban a mappa neve mindig 
+ez legyen: book-shop-website
+
 ---------------------------------
 Köszönjük, hogy betartja az útmutatásban leírtakat!
 
