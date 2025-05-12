@@ -182,6 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItems.push({ book_id: bookId, cover, title, price });
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         updateCartModal();
+
+        window['notifyCartAddition']?.()
     }
 
     function updateCartModal() {
@@ -251,6 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function addToWishlist(bookId) {
         if (!isBookInWishlist(bookId)) {
             window.WishlistManager.add(bookId);
+            window['notifyWishlistAddition']?.()
         }
     }
 

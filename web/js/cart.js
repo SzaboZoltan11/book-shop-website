@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeModal = document.getElementById('close-modal');
     const checkoutBtn = document.getElementById('checkout-btn');
     const cartItemsContainer = document.getElementById('cart-items');
-    const addToCartBtn = document.getElementsByClassName('buy-btn').item(0);
+    const cartFeedback = document.getElementById('cart-feedback');
+    const wishlistFeedback = document.getElementById('wishlist-feedback');
 
     function toggleCheckoutButton() {
         if (cartItemsContainer.children.length > 0) {
@@ -25,8 +26,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener('click', function (event) {
-        if (event.target == cartModal) {
+        if (event.target === cartModal) {
             cartModal.classList.remove('show');
         }
     });
+
+    window['notifyCartAddition'] = function () {
+        const newItem = document.createElement('div');
+        newItem.textContent = 'Könyv';
+        cartItemsContainer.appendChild(newItem);
+
+        cartFeedback.classList.add('show');
+
+        setTimeout(() => {
+            cartFeedback.classList.remove('show');
+        }, 2000);
+
+        toggleCheckoutButton();
+    }
+
+    window['notifyWishlistAddition'] = function () {
+        const newItem = document.createElement('div');
+        newItem.textContent = 'Könyv';
+        cartItemsContainer.appendChild(newItem);
+
+        wishlistFeedback.classList.add('show');
+
+        setTimeout(() => {
+            wishlistFeedback.classList.remove('show');
+        }, 2000);
+
+        toggleCheckoutButton();
+    }
 });

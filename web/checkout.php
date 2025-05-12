@@ -40,7 +40,7 @@ session_start();
             </div>
 
             <div class="input-group">
-                <label for="address">Szállítási cím</label>
+                <label for="address">Szállítási cím (utca, házszám)</label>
                 <input type="text" name="address" id="address" class="input-field" required>
             </div>
 

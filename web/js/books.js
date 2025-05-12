@@ -16,6 +16,8 @@ function addToCart(bookId, cover, title, price) {
     cartItems.push({ book_id: bookId, cover, title, price: numericPrice });
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     updateCartModal();
+
+    window['notifyCartAddition']?.()
 }
 
 function toggleCheckoutButton() {
@@ -96,6 +98,7 @@ function loadBooks(container, filter = null) {
                     
                     if (!isBookInWishlist(book.id)) {
                         window.WishlistManager.add(book.id);
+                        window['notifyWishlistAddition']?.()
                     }
                 });
 

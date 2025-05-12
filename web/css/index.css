@@ -655,16 +655,11 @@ a {
 
 .navbar-toggler {
     position: absolute;
-    /* Fix it in place */
     top: 50%;
-    /* Center it vertically */
     right: 10px;
-    /* Position it towards the right */
     transform: translateY(-50%);
-    /* Adjust for perfect vertical centering */
 }
 
-/* Optionally, for better responsiveness */
 @media (max-width: 991px) {
     .navbar-toggler {
 
@@ -691,6 +686,20 @@ a {
     min-width: 200px;
     height: 300px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+
+.card .book-image {
+    transition: filter 0.3s ease-in-out;
+}
+
+.card:hover .book-image {
+    filter: brightness(0.8);
+}
+
+.card .wishlist-icon {
+    z-index: 2;
 }
 
 .card-info {
@@ -1214,3 +1223,24 @@ h2 {
       display: none !important;
     }
   }
+
+
+
+.feedback {
+    transition: all 0.5s ease;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-size: 14px;
+    transform: translateX(200%);
+}
+
+.feedback.show {
+    transform: translateX(0%);
+}

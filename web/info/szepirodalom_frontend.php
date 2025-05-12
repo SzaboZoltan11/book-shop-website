@@ -142,6 +142,9 @@ include '../../src/check_token.php';
             </div>
         </nav>
 
+        <div id="cart-feedback" class="feedback">A könyv a kosárba került!</div>
+        <div id="wishlist-feedback" class="feedback">A könyv a kívánságlistába került!</div>
+
         <!-- MODAL -->
         <div id="bookResultsBackdrop"></div>
 
