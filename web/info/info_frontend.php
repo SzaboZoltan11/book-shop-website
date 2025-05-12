@@ -233,7 +233,9 @@ include '../../src/check_token.php';
 
     <div class="button-container">
         <button id="button-add-cart" class="button-cart styled-button">Kosárba</button>
+        <?php if (isset($_SESSION['name'])): ?>
         <button id="button-add-wishlist" class="button-wish styled-button">Kívánságlistába</button>
+        <?php endif; ?>
     </div>
 
     <table class="info-table">

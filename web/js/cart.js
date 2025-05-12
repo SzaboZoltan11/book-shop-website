@@ -32,10 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window['notifyCartAddition'] = function () {
-        const newItem = document.createElement('div');
-        newItem.textContent = 'Könyv';
-        cartItemsContainer.appendChild(newItem);
-
         cartFeedback.classList.add('show');
 
         setTimeout(() => {
@@ -46,10 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window['notifyWishlistAddition'] = function () {
-        const newItem = document.createElement('div');
-        newItem.textContent = 'Könyv';
-        cartItemsContainer.appendChild(newItem);
-
         wishlistFeedback.classList.add('show');
 
         setTimeout(() => {

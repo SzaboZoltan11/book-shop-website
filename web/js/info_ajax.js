@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return
             }
 
-            document.getElementById('button-add-wishlist').addEventListener('click', () => {
+            document.getElementById('button-add-wishlist')?.addEventListener('click', () => {
                 if (!isBookInWishlist(bookId)) {
                     window.WishlistManager.add(bookId);
                     window['notifyWishlistAddition']?.()
